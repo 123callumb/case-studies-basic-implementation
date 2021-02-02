@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0D21A6DD-E8B4-4E0E-AD5E-3249D3D04EAA}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{CD48FE70-4446-4728-8DEB-0034DD79938B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +27,6 @@ Global
 		{0D21A6DD-E8B4-4E0E-AD5E-3249D3D04EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D21A6DD-E8B4-4E0E-AD5E-3249D3D04EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D21A6DD-E8B4-4E0E-AD5E-3249D3D04EAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD48FE70-4446-4728-8DEB-0034DD79938B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
