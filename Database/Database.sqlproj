@@ -6,7 +6,7 @@
     <Name>Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{5b081b99-071c-472c-91c6-3a9155d4146d}</ProjectGuid>
+    <ProjectGuid>{cd48fe70-4446-4728-8deb-0034dd79938b}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -22,7 +22,6 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <ValidateCasingOnIdentifiers>False</ValidateCasingOnIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -68,6 +67,5 @@
     <None Include="cs_implementation_db\vendor.sql" />
     <None Include="cs_implementation_db\vendor_item.sql" />
     <None Include="cs_implementation_db\vendor_user.sql" />
-    <None Include="PreDeploymentScript.sql" />
   </ItemGroup>
 </Project>

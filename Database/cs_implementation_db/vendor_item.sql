@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.4.17-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             11.1.0.6116
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -12,7 +5,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table cs_implementation_db.vendor_item
 DROP TABLE IF EXISTS `vendor_item`;
 CREATE TABLE IF NOT EXISTS `vendor_item` (
   `ItemID` int(11) NOT NULL AUTO_INCREMENT,
@@ -25,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `vendor_item` (
   CONSTRAINT `FK_Item_Vendor` FOREIGN KEY (`VendorID`) REFERENCES `vendor` (`VendorID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table cs_implementation_db.vendor_item: ~8 rows (approximately)
 DELETE FROM `vendor_item`;
 /*!40000 ALTER TABLE `vendor_item` DISABLE KEYS */;
 INSERT INTO `vendor_item` (`ItemID`, `VendorID`, `ItemName`, `ItemImageURL`, `ItemDescription`) VALUES
