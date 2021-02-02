@@ -1,9 +1,18 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Services.EntityFramework;
+using Services.EntityFramework.DbEntities;
+using Services.GenericRepository;
+using Services.GenericRepository.Implementation;
 
 namespace Services
 {
-    public class Services
+    public static class Services
     {
-        // this is a comment
+        public static void RegisterServices(this IServiceCollection svr)
+        {
+            svr.AddScoped<IDatabaseContext, DatabaseContext>();
+            svr.AddScoped<IGenericQuerier, GenericQuerier>();
+            svr.AddScoped<IGenericRepo, GenericRepo>();
+        }
     }
 }
