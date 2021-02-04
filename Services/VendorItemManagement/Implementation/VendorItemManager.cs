@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Services.EntityFramework.DbEntities;
+using Services.DTOs;
 using Services.GenericRepository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,9 +13,9 @@ namespace Services.VendorItemManagement.Implementation
         {
             _genericQuereir = genericQuerier;
         }
-        public async Task<List<VendorItem>> LoadVendorItems()
+        public async Task<List<VendorItemDTO>> LoadVendorItems()
         {
-            return await _genericQuereir.LoadDbSet<VendorItem>().ToListAsync();
+            return await _genericQuereir.Load(VendorItemDTO.MapToDTO).ToListAsync();
         }
     }
 }

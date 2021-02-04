@@ -1,4 +1,4 @@
-﻿using Services.EntityFramework.DbEntities;
+﻿using Services.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,6 +6,6 @@ namespace Services.VendorItemManagement
 {
     public interface IVendorItemManager
     {
-        Task<List<VendorItem>> LoadVendorItems();
+        Task<List<VendorItemDTO>> LoadVendorItems();
     }
 }
