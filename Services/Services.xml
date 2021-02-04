@@ -6,7 +6,8 @@
     <members>
         <member name="T:Services.GenericRepository.IGenericQuerier">
             <summary>
-             This is a generic query manager that subtracts the need for entity repositories.
+             This is a generic query manager that subtracts the need
+             for entity repositories.
              </summary>
         </member>
         <member name="M:Services.GenericRepository.IGenericQuerier.Load``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">

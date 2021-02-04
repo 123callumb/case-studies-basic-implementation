@@ -6,7 +6,8 @@ using System.Linq.Expressions;
 namespace Services.GenericRepository
 {
     /// <summary>
-    ///  This is a generic query manager that subtracts the need for entity repositories.
+    ///  This is a generic query manager that subtracts the need
+    ///  for entity repositories.
     ///  </summary>
     public interface IGenericQuerier
     {

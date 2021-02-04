@@ -3,6 +3,8 @@ using Services.EntityFramework;
 using Services.EntityFramework.DbEntities;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
+using Services.VendorItemManagement;
+using Services.VendorItemManagement.Implementation;
 
 namespace Services
 {
@@ -13,6 +15,7 @@ namespace Services
             svr.AddScoped<IDatabaseContext, DatabaseContext>();
             svr.AddScoped<IGenericQuerier, GenericQuerier>();
             svr.AddScoped<IGenericRepo, GenericRepo>();
+            svr.AddScoped<IVendorItemManager, VendorItemManager>();
         }
     }
 }

@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Users\Callum\Documents\Cs Level 6\Case Studies in Software Design\Semester 2\Assesment\Repository\case-studies-basic-implementation\Services\Services.xml</DocumentationFile>
+    <DocumentationFile>..\Services\Services.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
