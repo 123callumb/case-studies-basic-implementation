@@ -14,6 +14,19 @@ namespace Application.Controllers
             _authenticationManager = authenticationManager;
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { success = false, message = "Really need to add an error controller/an ooops something went wrong page." });
+            }
+        }
+
         [HttpPost]
         public async Task<JsonResult> AuthenticateInternalUser([FromBody]UserLogonRequest request)
         {
