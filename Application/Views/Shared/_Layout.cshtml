@@ -4,7 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ABC Portal</title>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-grid.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-utilities.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/site.css" type="text/css" />
+    @if (IsSectionDefined("PageCSS"))
+    {
+        @await RenderSectionAsync("PageCSS", required: false)
+    }
 </head>
 <body>
     <div class="container">
@@ -14,5 +21,9 @@
     </div>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @if (IsSectionDefined("PageJS"))
+    {
+        @await RenderSectionAsync("PageJS", required: false)
+    }
 </body>
 </html>
