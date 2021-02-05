@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Services.DTOs;
+using Services.Models.DTOs;
 using Services.GenericRepository;
 using System.Collections.Generic;
 using System.Threading.Tasks;

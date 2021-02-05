@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Services.DTOs;
 using System.Text.Json;
 
 namespace Services.SessionManagement.Helpers
@@ -24,6 +25,10 @@ namespace Services.SessionManagement.Helpers
             if (session.TryGetValue(UserSessionKey, out byte[] learnerSession))
                 return learnerSession.Length > 0;
             return false;
+        }
+        public static IUserDTO GetUserSession(this ISession session)
+        {
+            return session.HasUserSession() ? session.Get<IUserDTO>(UserSessionKey) : null;
         }
     }
 }

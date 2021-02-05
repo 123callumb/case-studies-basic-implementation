@@ -2,7 +2,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Services.DTOs
+namespace Services.Models.DTOs
 {
     public class VendorItemDTO
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Services.DTOs;
+using Services.Models.DTOs;
 using Microsoft.Extensions.Caching.Memory;
 using Services.GenericRepository;
 using Services.SessionManagement.Helpers;
@@ -23,6 +23,7 @@ namespace Services.AuthenticationManagement.Implementation
             if (user == null)
                 throw new Exception("Could not find user.");
 
+            // The user object is stored within the session, this is not secure what so ever but this is to speed the process up
             sessionContext.Set(SessionHelper.UserSessionKey, user.UserID);
         }
 

@@ -1,17 +1,17 @@
 ﻿using Application.Requests.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Services.AuthenticationManagement;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Application.Controllers
 {
-    public class AuthenticationController : Controller
+    public class AuthenticationController : BaseController
     {
-        public AuthenticationController()
+        private readonly IAuthenticationManager _authenticationManager;
+        public AuthenticationController(IAuthenticationManager authenticationManager)
         {
-
+            _authenticationManager = authenticationManager;
         }
 
         [HttpPost]
@@ -22,8 +22,8 @@ namespace Application.Controllers
                 if (request == null)
                     throw new Exception("Request sent was null");
 
-
-
+                await _authenticationManager.AuthenticateInternalUser(HttpContext.Session, request.Email);
+                return new JsonResult(new { success = true, message = "User logged, session started for user." });
             }
             catch (Exception e)
             {
@@ -36,7 +36,11 @@ namespace Application.Controllers
         {
             try
             {
-                return new JsonResult(new { success = false, message = "Not implemented." });
+                if (request == null)
+                    throw new Exception("Request sent was null");
+
+                await _authenticationManager.AuthenticateExternalUser(HttpContext.Session, request.Email);
+                return new JsonResult(new { success = true, message = "User logged, session started for user." });
             }
             catch(Exception e)
             {
