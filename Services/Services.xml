@@ -4,6 +4,14 @@
         <name>Services</name>
     </assembly>
     <members>
+        <member name="M:Services.Filters.GlobalActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            This method is called everytime a controller action is called. It ensures that the user in the current session has access to the action. 
+            </summary>
+            <param name="context">Current HttpContext</param>
+            <param name="next">The intended action method.</param>
+            <returns></returns>
+        </member>
         <member name="T:Services.GenericRepository.IGenericQuerier">
             <summary>
              This is a generic query manager that subtracts the need

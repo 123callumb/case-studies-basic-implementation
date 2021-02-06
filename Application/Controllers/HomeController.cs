@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Services.Filters.Attributes;
+using Services.Models.Enums;
 
 namespace Application.Controllers
 {
@@ -7,6 +9,7 @@ namespace Application.Controllers
 
         public HomeController() { }
 
+        [RequireUser(UserTypeEnum.INTERNAL)]
         public IActionResult Index()
         {
             return View();

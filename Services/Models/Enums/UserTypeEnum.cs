@@ -3,6 +3,7 @@
     public enum UserTypeEnum
     {
         INTERNAL,
-        EXTERNAL
+        EXTERNAL,
+        ANY
     }
 }

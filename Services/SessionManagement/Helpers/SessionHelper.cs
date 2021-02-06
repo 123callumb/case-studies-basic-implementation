@@ -22,8 +22,8 @@ namespace Services.SessionManagement.Helpers
 
         public static bool HasUserSession(this ISession session)
         {
-            if (session.TryGetValue(UserSessionKey, out byte[] learnerSession))
-                return learnerSession.Length > 0;
+            if (session.TryGetValue(UserSessionKey, out byte[] userSession))
+                return userSession.Length > 0;
             return false;
         }
         public static IUserDTO GetUserSession(this ISession session)
