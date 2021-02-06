@@ -1,4 +1,4 @@
-﻿using Services.DTOs;
+﻿using Services.Models.Abstract;
 using Services.EntityFramework.DbEntities;
 using Services.Models.Enums;
 using System;
@@ -6,14 +6,11 @@ using System.Linq.Expressions;
 
 namespace Services.Models.DTOs
 {
-    public class InternalUserDTO : IUserDTO
+    public class InternalUserDTO : AbstractUser
     {
-        public int UserID { get; set; }
         public int RoleID { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Email { get; set; }
-        public UserTypeEnum UserType { get; set; }
 
         public static Expression<Func<User, InternalUserDTO>> MapToDTO = m => new InternalUserDTO()
         {

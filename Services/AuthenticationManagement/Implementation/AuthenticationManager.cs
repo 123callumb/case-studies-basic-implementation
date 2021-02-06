@@ -6,7 +6,9 @@ using Services.SessionManagement.Helpers;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Services.DTOs;
+using Services.Models.Abstract;
+using Services.AuthenticationManagement.Models;
+using Services.Models.Enums;
 
 namespace Services.AuthenticationManagement.Implementation
 {
@@ -19,7 +21,7 @@ namespace Services.AuthenticationManagement.Implementation
         }
         public async Task AuthenticateInternalUser(ISession sessionContext, string email)
         {
-            IUserDTO user = await _genericQuerier.Load(InternalUserDTO.MapToDTO, w => w.CompanyEmail == email).FirstOrDefaultAsync();
+            var user = await _genericQuerier.Load(InternalUserDTO.MapToDTO, w => w.CompanyEmail == email).FirstOrDefaultAsync();
 
             if (user == null)
                 throw new Exception("Could not find user.");
@@ -30,12 +32,35 @@ namespace Services.AuthenticationManagement.Implementation
 
         public async Task AuthenticateExternalUser(ISession sessionContext, string email)
         {
-            IUserDTO user = await _genericQuerier.Load(ExternalUserDTO.MapToDTO, w => w.Email == email).FirstOrDefaultAsync();
+            var user = await _genericQuerier.Load(ExternalUserDTO.MapToDTO, w => w.Email == email).FirstOrDefaultAsync();
 
             if (user == null)
                 throw new Exception("Could not find user.");
 
             sessionContext.Set(SessionHelper.UserSessionKey, user);
+        }
+
+        // If this turns out to be slow becuase it has to access the database everytime we want the session user then when authenticating the user
+        // we shoud cache them in memory and then pull them from the cache instead of the db.
+        public async Task<AbstractUser> GetSessionUser(ISession sessionContext)
+        {
+            AuthenticatedSession authSession = sessionContext.GetUserSession();
+            AbstractUser sessionUser;
+
+            switch (authSession.UserType)
+            {
+                case UserTypeEnum.EXTERNAL:
+                    sessionUser = await _genericQuerier.Load(ExternalUserDTO.MapToDTO, w => w.VendorUserId == authSession.UserID).FirstOrDefaultAsync();
+                    break;
+                case UserTypeEnum.INTERNAL:
+                    sessionUser = await _genericQuerier.Load(InternalUserDTO.MapToDTO, w => w.UserId == authSession.UserID).FirstOrDefaultAsync();
+                    break;
+                default:
+                    sessionUser = null;
+                    break;
+            }
+
+            return sessionUser;
         }
     }
 }

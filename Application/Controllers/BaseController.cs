@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.DTOs;
-using Services.SessionManagement.Helpers;
+using Services.AuthenticationManagement;
+using Services.Models.Abstract;
+using System.Threading.Tasks;
 
 namespace Application.Controllers
 {
     public class BaseController : Controller
     {
-        private IUserDTO _instanceUser;
-        public BaseController()
+        private AbstractUser _instanceUser;
+        protected readonly IAuthenticationManager _authManager;
+        public BaseController(IAuthenticationManager authManager)
         {
-
+            _authManager = authManager;
         }
-        protected IUserDTO GetSessionUser()
+        protected async Task<AbstractUser> GetSessionUser()
         {
             if (_instanceUser == null)
-                _instanceUser = HttpContext.Session.GetUserSession();
+                _instanceUser = await _authManager.GetSessionUser(HttpContext.Session);
             return _instanceUser;
         }
     }

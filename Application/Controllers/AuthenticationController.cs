@@ -8,10 +8,8 @@ namespace Application.Controllers
 {
     public class AuthenticationController : BaseController
     {
-        private readonly IAuthenticationManager _authenticationManager;
-        public AuthenticationController(IAuthenticationManager authenticationManager)
+        public AuthenticationController(IAuthenticationManager authenticationManager) : base(authenticationManager)
         {
-            _authenticationManager = authenticationManager;
         }
 
         [HttpGet]
@@ -35,7 +33,7 @@ namespace Application.Controllers
                 if (request == null)
                     throw new Exception("Request sent was null");
 
-                await _authenticationManager.AuthenticateInternalUser(HttpContext.Session, request.Email);
+                await _authManager.AuthenticateInternalUser(HttpContext.Session, request.Email);
                 return new JsonResult(new { success = true, message = "User logged, session started for user." });
             }
             catch (Exception e)
@@ -52,7 +50,7 @@ namespace Application.Controllers
                 if (request == null)
                     throw new Exception("Request sent was null");
 
-                await _authenticationManager.AuthenticateExternalUser(HttpContext.Session, request.Email);
+                await _authManager.AuthenticateExternalUser(HttpContext.Session, request.Email);
                 return new JsonResult(new { success = true, message = "User logged, session started for user." });
             }
             catch(Exception e)

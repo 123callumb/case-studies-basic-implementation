@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
 using Services.SessionManagement.Helpers;
@@ -10,9 +11,13 @@ namespace Services.Filters
 {
     public class GlobalActionFilter : IAsyncActionFilter
     {
+        private readonly IAuthenticationManager _authManager;
         private RedirectToActionResult permissionError = new RedirectToActionResult("Index", "Error", new { errorMessage = "Access denied." });
         private RedirectToActionResult noSesssionResult = new RedirectToActionResult("Login", "Authentication", null);
-        public GlobalActionFilter() { }
+        public GlobalActionFilter(IAuthenticationManager authManager) 
+        {
+            _authManager = authManager;
+        }
         /// <summary>
         /// This method is called everytime a controller action is called. It ensures that the user in the current session has access to the action. 
         /// </summary>
@@ -35,9 +40,9 @@ namespace Services.Filters
                 context.Result = noSesssionResult; // redirect them to login if they have no session.
                 return;
             }
-
-            var userSession = session.GetUserSession();
-            if(userFilter.Get() != UserTypeEnum.ANY && userSession.UserType != userFilter.Get())
+            
+            var user = await _authManager.GetSessionUser(context.HttpContext.Session);
+            if(userFilter.Get() != UserTypeEnum.ANY && user.UserType != userFilter.Get())
             {
                 context.Result = permissionError;
                 return;

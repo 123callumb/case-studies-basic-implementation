@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Services.DTOs;
+using Services.AuthenticationManagement.Models;
 using System.Text.Json;
 
 namespace Services.SessionManagement.Helpers
@@ -26,9 +26,10 @@ namespace Services.SessionManagement.Helpers
                 return userSession.Length > 0;
             return false;
         }
-        public static IUserDTO GetUserSession(this ISession session)
+
+        public static AuthenticatedSession GetUserSession(this ISession session)
         {
-            return session.HasUserSession() ? session.Get<IUserDTO>(UserSessionKey) : null;
+            return session.HasUserSession() ? session.Get<AuthenticatedSession>(UserSessionKey) : null;
         }
     }
 }
