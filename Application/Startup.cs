@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Services;
 
 namespace Application
@@ -25,6 +21,11 @@ namespace Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession(opt =>
+            {
+                opt.Cookie.Name = ".cs_impl.Session";
+                opt.Cookie.SameSite = SameSiteMode.Strict;
+            });
             // Register services from services solution
             services.RegisterServices();
         }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Services.AuthenticationManagement;
+using Services.AuthenticationManagement.Implementation;
 using Services.EntityFramework;
 using Services.EntityFramework.DbEntities;
 using Services.GenericRepository;
@@ -15,6 +17,7 @@ namespace Services
             svr.AddScoped<IDatabaseContext, DatabaseContext>();
             svr.AddScoped<IGenericQuerier, GenericQuerier>();
             svr.AddScoped<IGenericRepo, GenericRepo>();
+            svr.AddScoped<IAuthenticationManager, AuthenticationManager>();
             svr.AddScoped<IVendorItemManager, VendorItemManager>();
         }
     }
