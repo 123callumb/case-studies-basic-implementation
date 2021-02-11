@@ -1,4 +1,4 @@
-﻿body {
+body {
     background-color: rgb(240, 240, 240);
     margin: 0;
     padding: 0;
@@ -26,6 +26,59 @@
     text-decoration: underline;
 }
 
+.home-menu-item {
+    color: white;
+    font-weight: bold;
+    margin: 0.5rem;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.home-menu-item span {
+    margin-top: 25px;
+    font-size: 70px;
+}
+
 .clickable {
     cursor: pointer;
+}
+
+.cs-inventory {
+    background: #BC73C8;
+}
+
+.cs-report {
+    background: #EB938D;
+}
+
+.cs-supplier {
+    background: #97A5D9;
+}
+
+.cs-vendor {
+    background: #97D99D;
+}
+.cs-company-resources {
+    background: #6576D2;
+}
+.cs-organisation {
+    background: #97D5D9;
+}
+.cs-accounts {
+    background: #EED374;
+}
+.cs-contracts {
+    background: #EC9696;
+}
+.cs-customer-management {
+    background: #FBBCED;
+}
+.cs-requests {
+    background: #A8DEF5;
 }
