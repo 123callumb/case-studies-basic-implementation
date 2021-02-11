@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Models;
+using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
@@ -13,7 +14,8 @@ namespace Application.Controllers
         [RequireUser(UserTypeEnum.INTERNAL)]
         public IActionResult Index()
         {
-            return View();
+            BaseViewModel vm = new BaseViewModel(GetSessionUser().Result);
+            return View(vm);
         }
 
     }

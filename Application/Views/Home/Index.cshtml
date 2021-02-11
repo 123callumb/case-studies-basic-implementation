@@ -1,3 +1,4 @@
+@model BaseViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,7 +10,7 @@
         <ol class="breadcrumb me-auto">
             <li class="breadcrumb-item active" aria-current="page">Home</li>
         </ol>
-        <div class="me-3">User name</div>
+        <div class="me-3">@Model.user.Email</div>
         <a class="btn btn-link">Home</a>
         <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
     </div>
