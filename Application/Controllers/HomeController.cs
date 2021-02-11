@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Application.Models;
+using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
@@ -11,9 +13,17 @@ namespace Application.Controllers
         public HomeController(IAuthenticationManager authManager) : base(authManager) { }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            BaseViewModel vm = new BaseViewModel(await GetSessionUser());
+            return View(vm);
+        }
+
+        [RequireUser(UserTypeEnum.INTERNAL)]
+        public async Task<IActionResult> VendorMenu()
+        {
+            BaseViewModel vm = new BaseViewModel(await GetSessionUser());
+            return View(vm);
         }
 
     }

@@ -1,5 +1,5 @@
-﻿body {
-    background-color: rgb(250, 250, 250);
+body {
+    background-color: rgb(240, 240, 240);
     margin: 0;
     padding: 0;
 }
@@ -16,6 +16,127 @@
     cursor: pointer;
 }
 
+.btn-link {
+    font-weight: 400;
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.home-menu-item {
+    color: white;
+    font-weight: bold;
+    margin: 0.5rem;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.home-menu-item span {
+    margin-top: 25px;
+    font-size: 70px;
+}
+
+.menu-item {
+    color: white;
+    font-weight: bold;
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-item span {
+    font-size: 50px;
+}
+
 .clickable {
     cursor: pointer;
+}
+
+/* Colour Scheme = cs */
+
+.cs-inventory {
+    background: #BC73C8;
+}
+
+.cs-report {
+    background: #EB938D;
+}
+
+.cs-supplier {
+    background: #97A5D9;
+}
+
+.cs-vendor {
+    background: #97D99D;
+}
+.cs-company-resources {
+    background: #6576D2;
+}
+.cs-organisation {
+    background: #97D5D9;
+}
+.cs-accounts {
+    background: #EED374;
+}
+.cs-contracts {
+    background: #EC9696;
+}
+.cs-customer-management {
+    background: #FBBCED;
+}
+.cs-requests {
+    background: #A8DEF5;
+}
+
+/* Hover colours */
+
+.cs-inventory:hover {
+    background: #a363ad;
+}
+
+.cs-report:hover {
+    background: #d1837d;
+}
+
+.cs-supplier:hover {
+    background: #8692bf;
+}
+
+.cs-vendor:hover {
+    background: #86bf8b;
+}
+
+.cs-company-resources:hover {
+    background: #5866b8;
+}
+
+.cs-organisation:hover {
+    background: #86bbbf;
+}
+
+.cs-accounts:hover {
+    background: #d4bc68;
+}
+
+.cs-contracts:hover {
+    background: #d48787;
+}
+
+.cs-customer-management:hover {
+    background: #e0a8d4;
+}
+
+.cs-requests:hover {
+    background: #97c7db;
 }

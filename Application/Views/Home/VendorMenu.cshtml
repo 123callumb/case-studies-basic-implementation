@@ -1,0 +1,47 @@
+@model BaseViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <img class="my-5 shadow-lg rounded" src="~/img/ABCEnergyLogo.PNG" />
+    <div class="d-flex flex-column flex-sm-row align-items-center">
+        <!-- Breadcrumb, User name, Home button and Logout button -->
+        <ol class="breadcrumb me-auto">
+            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item active" aria-current="page">Vendor</li>
+        </ol>
+        <div class="me-3">@Model.user.Email</div>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+    </div>
+    <div class="p-3 bg-white text-start">
+        <div class="d-flex flex-column">
+            <div class="col">
+                <div class="menu-item cs-vendor">
+                    <span class="material-icons-outlined">
+                        next_week
+                    </span>
+                    Vendor Catalog
+                </div>
+            </div>
+            <div class="col">
+                <div class="menu-item cs-supplier">
+                    <span class="material-icons">
+                        domain
+                    </span>
+                    Vendor List
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        document.querySelector('.cs-vendor').addEventListener('click', function() {
+            document.location.href = "@Url.Action("Index", "Vendor")";
+        });
+    </script>
+}
