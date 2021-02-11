@@ -3,6 +3,7 @@ using Services.AuthenticationManagement;
 using Services.AuthenticationManagement.Implementation;
 using Services.EntityFramework;
 using Services.EntityFramework.DbEntities;
+using Services.Filters;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
 using Services.VendorItemManagement;
@@ -19,6 +20,10 @@ namespace Services
             svr.AddScoped<IGenericRepo, GenericRepo>();
             svr.AddScoped<IAuthenticationManager, AuthenticationManager>();
             svr.AddScoped<IVendorItemManager, VendorItemManager>();
+            svr.AddMvcCore(opt =>
+            {
+                opt.Filters.Add<GlobalActionFilter>();
+            });
         }
     }
 }

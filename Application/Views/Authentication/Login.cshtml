@@ -1,10 +1,39 @@
-﻿<div>
-    <div>
-        <h2>ABC Employee Login</h2>
-    </div>
-    <div>
-        <h2>ABC Affiliate Login</h2>
+﻿@section PageCSS {
+    <link href="~/css/login.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="login-wrapper">
+    <div class="login-box pt-3">
+        <h2>ABC LOGO HERE</h2>
+        <div class="login-tabs mb-3">
+            <div data-btn-for="internal" class="tab active clickable">Internal</div>
+            <div data-btn-for="external" class="tab clickable">External</div>
+        </div>
+        <div data-tab-for="internal" class="p-3">
+            <h4>ABC Employee Login</h4>
+            <hr />
+            <input placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <div class="py-2">
+                <div class="btn-primary" data-login-btn="internal">Login</div>
+            </div>
+        </div>
+        <div data-tab-for="external" class="d-none p-3">
+            <h4>ABC Affiliate Login</h4>
+            <hr />
+            <input placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <div class="py-2">
+                <div class="btn-primary" data-login-btn="external">Login</div>
+            </div>
+        </div>
     </div>
 </div>
 
-<script src="~/js/login.js"></script>
+@section PageJS {
+    <script src="~/js/login.js" asp-append-version="true"></script>
+    <script>
+        LoginPage({
+            internalAuth: '@Url.Action("AuthenticateInternalUser", "Authentication")',
+            externalAuth: '@Url.Action("AuthenticateExternalUser", "Authentication")',
+        });
+    </script>
+}
