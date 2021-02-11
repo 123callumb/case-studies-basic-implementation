@@ -4,23 +4,31 @@
     <link href="~/css/vendor.css" rel="stylesheet" type="text/css" />
 }
 
-<div>
+<div class="vendor-home-wrapper">
     <h3>Vendor Home</h3>
-    <div>
+    <div class="user-details">
         <div>Logged in with @Model.User.Email for vendor: @Model.User.VendorName</div>
     </div>
+    <hr />
     <div>
-        <h4>Quotes Received from ABC</h4>
-        <hr />
-        <div>
+        <div class="quotes-list">
             @foreach (var quote in Model.Quotes)
             {
-                <div>
-                    <img src="@quote.VendorItem.ItemImageURL" width="200" />
-                    <h5>@quote.VendorItem.ItemName</h5>
-                    <div>
-                        <div><b>Quantity requested:</b> @quote.QuantityRequested.ToString()</div>
-                        <div><b>Quote date:</b> @quote.QuoteDate.ToString("dd-MM-yyyy")</div>
+                <div class="quote-item mt-2 row">
+                    <div class="col-3 text-center">
+                        <div class="w-100 h-100" style="background-image: url(@quote.VendorItem.ItemImageURL); background-size: cover; background-position: center"></div>
+                    </div>
+                    <div class="col-5 p-3">
+                        <h5>@quote.VendorItem.ItemName</h5>
+                        <hr />
+                        <div>
+                            <div><b>Quantity requested:</b> @quote.QuantityRequested.ToString()</div>
+                            <div><b>Quote date:</b> @quote.QuoteDate.ToString("dd-MM-yyyy")</div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div>Approve</div>
+                        <div>Reject</div>
                     </div>
                 </div>
             }

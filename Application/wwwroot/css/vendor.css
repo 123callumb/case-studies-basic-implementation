@@ -1,1 +1,12 @@
-﻿
+﻿.vendor-home-wrapper {
+    margin: auto;
+    max-width: 1000px;
+}
+
+.vendor-home-wrapper .user-details {
+}
+
+.vendor-home-wrapper .quotes-list .quote-item{
+    background-color: white;
+    box-shadow: 2px 2px 2px rgba(40, 40, 40, 0.3);
+}

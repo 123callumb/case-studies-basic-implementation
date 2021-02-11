@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Application.Models;
+using Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
