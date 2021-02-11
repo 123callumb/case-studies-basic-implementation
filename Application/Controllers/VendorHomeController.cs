@@ -31,7 +31,7 @@ namespace Application.Controllers
                 var sessionUser = await GetSessionUser();
                 var externalUser = await _userManager.GetExternalUser(sessionUser.UserID);
                 var vendorQuotes = await _quoteManager.GetVendorQuotes(externalUser.VendorID);
-                var viewModel = new VendorHomeViewModel(sessionUser, vendorQuotes);
+                var viewModel = new VendorHomeViewModel(externalUser, vendorQuotes);
 
                 return View(viewModel);
             }

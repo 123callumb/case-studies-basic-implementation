@@ -1,12 +1,11 @@
-﻿using Services.Models.Abstract;
-using Services.Models.DTOs;
+﻿using Services.Models.DTOs;
 using System.Collections.Generic;
 
 namespace Application.ViewModels
 {
-    public class VendorHomeViewModel : BaseViewModel
+    public class VendorHomeViewModel : ExternalBaseViewModel
     {
-        public VendorHomeViewModel(AbstractUser user, List<QuoteDTO> quotes) : base(user)
+        public VendorHomeViewModel(ExternalUserDTO user, List<QuoteDTO> quotes) : base(user)
         {
             Quotes = quotes;
         }

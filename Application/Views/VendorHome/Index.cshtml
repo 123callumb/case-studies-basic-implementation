@@ -1,0 +1,26 @@
+﻿@model VendorHomeViewModel
+
+<div>
+    <h3>Vendor Home</h3>
+    <div>
+        <div>Logged in with @Model.User.Email for vendor: @Model.User.VendorName</div>
+    </div>
+    <div>
+        <h4>Quotes Received from ABC</h4>
+        <hr />
+        <div>
+            @foreach(var quote in Model.Quotes)
+            {
+                <div>
+                    <img src="@quote.VendorItem.ItemImageURL" width="200" />
+                    <h5>@quote.VendorItem.ItemName</h5>
+                    <div>
+                        <div><b>Quantity requested:</b> @quote.QuantityRequested.ToString()</div>
+                        <div><b>Quote date:</b> @quote.QuoteDate.ToString("dd-MM-yyyy")</div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
