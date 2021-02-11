@@ -1,7 +1,110 @@
-﻿@{
+@model BaseViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <div>Hi basu, give 10/10 marks yes pelase thank you</div>
+    <img class="my-5 shadow-lg rounded" src="img/ABCEnergyLogo.PNG"/>
+    <div class="d-flex flex-column flex-sm-row align-items-center">
+        <!-- Breadcrumb, User name, Home button and Logout button -->
+        <ol class="breadcrumb me-auto">
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+        <div class="me-3">@Model.user.Email</div>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+    </div>
+    <div class="p-3 bg-white">
+        <div class="d-flex flex-wrap row-cols-2 row-cols-sm-2 row-cols-md-5">
+            <div class="col">
+                <div class="home-menu-item cs-inventory">
+                    <span class="material-icons">
+                        domain
+                    </span>
+                    Inventory
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-report">
+                    <span class="material-icons">
+                        multiline_chart
+                    </span>
+                    Report
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-supplier">
+                    <span class="material-icons">
+                        person_outline
+                    </span>
+                    Supplier
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-vendor">
+                    <span class="material-icons-outlined">
+                        next_week
+                    </span>
+                    Vendor
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-company-resources">
+                    <span class="material-icons">
+                        folder_open
+                    </span>
+                    Company Resources
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-organisation">
+                    <span class="material-icons-outlined">
+                        people
+                    </span>
+                    Organisation
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-accounts">
+                    <span class="material-icons">
+                        attach_money
+                    </span>
+                    Accounts
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-contracts">
+                    <span class="material-icons-outlined">
+                        assignment
+                    </span>
+                    Contracts
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-customer-management">
+                    <span class="material-icons-outlined">
+                        contact_phone
+                    </span>
+                    Customer Management
+                </div>
+            </div>
+            <div class="col">
+                <div class="home-menu-item cs-requests">
+                    <span class="material-icons-outlined">
+                        check_box
+                    </span>
+                    Requests
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        document.querySelector('.cs-vendor').addEventListener('click', function() {
+            document.location.href = "@Url.Action("VendorMenu", "Home")";
+        });
+    </script>
+}
