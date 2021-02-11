@@ -250,6 +250,18 @@ namespace Services.EntityFramework.DbEntities
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 
+                entity.Property(e => e.Firstname)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
+                entity.Property(e => e.Lastname)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
                 entity.Property(e => e.VendorId)
                     .HasColumnType("int(11)")
                     .HasColumnName("VendorID");

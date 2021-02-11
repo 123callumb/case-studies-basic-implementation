@@ -12,6 +12,7 @@
         <a class="btn btn-link" href="@Url.Action("Index", "VendorHome")">Home</a>
         <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
         <a class="float-end text-decoration-none text-muted">@Model.User.Email</a>
+        <a class="float-end text-decoration-none text-muted me-3">@Model.User.Firstname</a>
     </div>
     <div>
         <div class="quotes-list">
@@ -29,8 +30,8 @@
                         </div>
                     </div>
                     <div class="col-2 p-3 text-end">
-                        <div class="btn-primary">Approve</div>
-                        <div class="btn-danger mt-2">Counter Offer</div>
+                        <div class="btn-primary">Create Quote</div>
+                        <div class="btn-danger mt-2">Close Quote</div>
                     </div>
                 </div>
             }

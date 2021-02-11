@@ -17,7 +17,9 @@ namespace Services.Models.DTOs
             UserID = m.VendorUserId,
             VendorID = m.VendorId,
             UserType = UserTypeEnum.EXTERNAL,
-            VendorName = m.Vendor.VendorName
+            VendorName = m.Vendor.VendorName,
+            Firstname = m.Firstname,
+            Lastname = m.Lastname
         };
     }
 }

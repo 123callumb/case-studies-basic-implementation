@@ -9,8 +9,6 @@ namespace Services.Models.DTOs
     public class InternalUserDTO : AbstractUser
     {
         public int RoleID { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
 
         public static Expression<Func<User, InternalUserDTO>> MapToDTO = m => new InternalUserDTO()
         {
