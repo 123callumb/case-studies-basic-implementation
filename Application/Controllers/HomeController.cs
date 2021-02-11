@@ -18,5 +18,11 @@ namespace Application.Controllers
             return View(vm);
         }
 
+        public IActionResult VendorMenu()
+        {
+            BaseViewModel vm = new BaseViewModel(GetSessionUser().Result);
+            return View(vm);
+        }
+
     }
 }

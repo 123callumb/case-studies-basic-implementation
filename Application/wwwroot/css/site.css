@@ -33,7 +33,7 @@ body {
     height: 150px;
     display: flex;
     flex-direction: column;
-
+    cursor: pointer;
     -ms-align-items: center;
     -o-align-items: center;
     -webkit-align-items: center;
@@ -43,6 +43,20 @@ body {
 .home-menu-item span {
     margin-top: 25px;
     font-size: 70px;
+}
+
+.menu-item {
+    color: white;
+    font-weight: bold;
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-item span {
+    font-size: 50px;
 }
 
 .clickable {
@@ -83,4 +97,46 @@ body {
 }
 .cs-requests {
     background: #A8DEF5;
+}
+
+/* Hover colours */
+
+.cs-inventory:hover {
+    background: #a363ad;
+}
+
+.cs-report:hover {
+    background: #d1837d;
+}
+
+.cs-supplier:hover {
+    background: #8692bf;
+}
+
+.cs-vendor:hover {
+    background: #86bf8b;
+}
+
+.cs-company-resources:hover {
+    background: #5866b8;
+}
+
+.cs-organisation:hover {
+    background: #86bbbf;
+}
+
+.cs-accounts:hover {
+    background: #d4bc68;
+}
+
+.cs-contracts:hover {
+    background: #d48787;
+}
+
+.cs-customer-management:hover {
+    background: #e0a8d4;
+}
+
+.cs-requests:hover {
+    background: #97c7db;
 }
