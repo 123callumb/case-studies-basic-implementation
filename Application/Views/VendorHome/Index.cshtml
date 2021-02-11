@@ -1,5 +1,9 @@
 ﻿@model VendorHomeViewModel
 
+@section PageCSS {
+    <link href="~/css/vendor.css" rel="stylesheet" type="text/css" />
+}
+
 <div>
     <h3>Vendor Home</h3>
     <div>
@@ -9,7 +13,7 @@
         <h4>Quotes Received from ABC</h4>
         <hr />
         <div>
-            @foreach(var quote in Model.Quotes)
+            @foreach (var quote in Model.Quotes)
             {
                 <div>
                     <img src="@quote.VendorItem.ItemImageURL" width="200" />
