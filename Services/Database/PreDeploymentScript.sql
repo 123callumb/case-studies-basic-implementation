@@ -5,7 +5,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `cs_implementation_db`;
 CREATE DATABASE IF NOT EXISTS `cs_implementation_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `cs_implementation_db`;
 
@@ -18,10 +17,17 @@ CREATE TABLE IF NOT EXISTS `quote` (
   PRIMARY KEY (`QuoteID`),
   KEY `FK_Quote_Vendor_Item` (`VendorItemID`),
   CONSTRAINT `FK_Quote_Vendor_Item` FOREIGN KEY (`VendorItemID`) REFERENCES `vendor_item` (`ItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `quote`;
 /*!40000 ALTER TABLE `quote` DISABLE KEYS */;
+INSERT INTO `quote` (`QuoteID`, `VendorItemID`, `QuoteDate`, `QuantityRequested`) VALUES
+	(1, 7, '2021-02-11 11:51:18', 100),
+	(2, 8, '2021-02-11 11:51:18', 5),
+	(3, 6, '2021-02-11 11:51:49', 5),
+	(4, 5, '2021-02-11 19:51:28', 50),
+	(5, 2, '2021-02-11 19:51:34', 300),
+	(6, 3, '2021-02-11 19:51:54', 500);
 /*!40000 ALTER TABLE `quote` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `quote_response`;
@@ -136,6 +142,8 @@ CREATE TABLE IF NOT EXISTS `vendor_user` (
   `VendorUserID` int(11) NOT NULL AUTO_INCREMENT,
   `VendorID` int(11) NOT NULL,
   `Email` varchar(100) NOT NULL,
+  `Firstname` varchar(200) NOT NULL,
+  `Lastname` varchar(200) NOT NULL,
   PRIMARY KEY (`VendorUserID`),
   KEY `FK_Vendor_User_Vendor` (`VendorID`),
   CONSTRAINT `FK_Vendor_User_Vendor` FOREIGN KEY (`VendorID`) REFERENCES `vendor` (`VendorID`)
@@ -143,10 +151,10 @@ CREATE TABLE IF NOT EXISTS `vendor_user` (
 
 DELETE FROM `vendor_user`;
 /*!40000 ALTER TABLE `vendor_user` DISABLE KEYS */;
-INSERT INTO `vendor_user` (`VendorUserID`, `VendorID`, `Email`) VALUES
-	(2, 4, 'jim.halpert@dundermifflin.com'),
-	(3, 4, 'dwight.schrute@dundermifflin.com'),
-	(4, 1, 'fry@pe.com');
+INSERT INTO `vendor_user` (`VendorUserID`, `VendorID`, `Email`, `Firstname`, `Lastname`) VALUES
+	(2, 4, 'jim.halpert@dundermifflin.com', 'Jim', 'Halpert'),
+	(3, 4, 'dwight.schrute@dundermifflin.com', 'Dwight', 'Schrute'),
+	(4, 1, 'fry@pe.com', 'Philip', 'J.Fry');
 /*!40000 ALTER TABLE `vendor_user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

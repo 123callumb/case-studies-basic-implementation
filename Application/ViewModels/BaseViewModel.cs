@@ -1,7 +1,6 @@
-using System;
 using Services.Models.Abstract;
 
-namespace Application.Models
+namespace Application.ViewModels
 {
     public class BaseViewModel
     {

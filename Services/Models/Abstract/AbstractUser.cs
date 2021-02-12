@@ -10,5 +10,7 @@ namespace Services.Models.Abstract
         public int UserID { get; set; }
         public String Email { get; set; }
         public UserTypeEnum UserType { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
     }
 }

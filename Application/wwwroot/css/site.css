@@ -11,10 +11,22 @@ body {
     text-align: center;
 }
 
-.btn-primary:hover {
-    background-color: rgba(151, 173, 271, 0.75);
-    cursor: pointer;
+    .btn-primary:hover {
+        background-color: rgba(151, 173, 271, 0.75);
+        cursor: pointer;
+    }
+
+.btn-danger {
+    background-color: rgba(205, 92, 92, 1);
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
 }
+
+    .btn-danger:hover {
+        background-color: rgba(205, 92, 92, 0.75);
+        cursor: pointer;
+    }
 
 .btn-link {
     font-weight: 400;
@@ -22,9 +34,9 @@ body {
     text-decoration: none;
 }
 
-.btn-link:hover {
-    text-decoration: underline;
-}
+    .btn-link:hover {
+        text-decoration: underline;
+    }
 
 .home-menu-item {
     color: white;
@@ -40,10 +52,10 @@ body {
     align-items: center;
 }
 
-.home-menu-item span {
-    margin-top: 25px;
-    font-size: 70px;
-}
+    .home-menu-item span {
+        margin-top: 25px;
+        font-size: 70px;
+    }
 
 .menu-item {
     color: white;
@@ -55,9 +67,9 @@ body {
     cursor: pointer;
 }
 
-.menu-item span {
-    font-size: 50px;
-}
+    .menu-item span {
+        font-size: 50px;
+    }
 
 .clickable {
     cursor: pointer;
@@ -80,21 +92,27 @@ body {
 .cs-vendor {
     background: #97D99D;
 }
+
 .cs-company-resources {
     background: #6576D2;
 }
+
 .cs-organisation {
     background: #97D5D9;
 }
+
 .cs-accounts {
     background: #EED374;
 }
+
 .cs-contracts {
     background: #EC9696;
 }
+
 .cs-customer-management {
     background: #FBBCED;
 }
+
 .cs-requests {
     background: #A8DEF5;
 }
