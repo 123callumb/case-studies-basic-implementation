@@ -30,7 +30,7 @@ class VendorHome {
 
     RegisterModalEvents() {
         const sendBtn = document.querySelector(`[data-new-res-btn]`)
-
+        //
         if (sendBtn != null)
             sendBtn.addEventListener('click', this.CreateResponse);
     }
