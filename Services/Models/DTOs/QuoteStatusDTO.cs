@@ -9,7 +9,7 @@ namespace Services.Models.DTOs
     {
         public int StatusID { get; set; }
         public string StatusName { get; set; }
-        public QuoteStatusEnum AsEnum => Enum.Parse<QuoteStatusEnum>(StatusName);
+        public QuoteStatusEnum AsEnum => (QuoteStatusEnum)StatusID;
         public string Colour { get; set; }
         public static Expression<Func<QuoteStatus, QuoteStatusDTO>> MapToDTO = s => new QuoteStatusDTO()
         {

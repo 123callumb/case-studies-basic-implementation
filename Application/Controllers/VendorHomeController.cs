@@ -44,7 +44,7 @@ namespace Application.Controllers
         }
 
         [RequireUser(UserTypeEnum.EXTERNAL)]
-        public async Task<JsonResult> QuoteResponseModal([FromBody] BaseQuoteRequest request)
+        public async Task<IActionResult> QuoteResponseModal([FromBody] BaseQuoteRequest request)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace Application.Controllers
             }
             catch(Exception e)
             {
-                return new JsonResult(new { success = false, message = "Failed to load quote response modal" });
+                return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote response modal" });
             }
         }
     }

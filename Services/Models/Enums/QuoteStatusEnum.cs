@@ -2,9 +2,9 @@
 {
     public enum QuoteStatusEnum
     {
-        NONE,
-        APPROVED,
-        REJECTED,
-        AWAITING_REVIEW
+        NONE = 0,
+        APPROVED = 1,
+        REJECTED = 2,
+        AWAITING_REVIEW = 3
     }
 }
