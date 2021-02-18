@@ -2,11 +2,12 @@
 @model Services.Models.DTOs.QuoteDTO
 
 <div>
+    <div style="background-image: url(@Model.VendorItem.ItemImageURL)"></div>
     <h2>@Model.VendorItem.ItemName</h2>
     <div>@Model.VendorItem.ItemDescription</div>
     <div><b>Quantity Requested:</b> @Model.QuantityRequested</div>
     <hr />
-    <h3>Previous Responses</h3>
+    <h4>Previous Responses</h4>
     <div>
         @foreach (var response in Model.Responses)
         {
@@ -22,17 +23,21 @@
             <div>£@response.QuotePrice</div>
         }
     </div>
-    @if (Model.Responses.OrderByDescending(o => o.QuoteResponseId).First().Status.AsEnum == QuoteStatusEnum.AWAITING_REVIEW)
+    <hr />
+    @if (Model.Responses.Any() && Model.Responses.OrderByDescending(o => o.QuoteResponseId).First().Status.AsEnum == QuoteStatusEnum.AWAITING_REVIEW)
     {
         <h4>Still awaiting response from abc for the previous offer.</h4>
     }
     else
     {
-        @{ QuoteResponse newRes = new QuoteResponse() }
-        <h3>New Ressponse</h3>
-        <form asp-controller="QuoteResponse" asp-action="Create" method="post">
-            <input asp-for="@newRes.ReponseText" />
-
+        <h4>New Ressponse</h4>
+        <form data-form-for="new-response">
+            <label class="form-label">Price Quoted</label>
+            <input data-name="Quote" type="number" step="0.01" min="0" placeholder="0.00" class="form-control"/>
+            <label class="form-label">Response Description</label>
+            <input  data-name="ReponseText" class="form-control" />
+            <input type="hidden" value="@Model.QuoteID"  data-name="QuoteID" />
+            <div type="submit" class="btn-primary mt-3 border-0" data-new-res-btn>Send Quote Response</div>
         </form>
     }
 </div>

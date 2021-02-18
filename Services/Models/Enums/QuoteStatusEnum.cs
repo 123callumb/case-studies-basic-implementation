@@ -3,8 +3,8 @@
     public enum QuoteStatusEnum
     {
         NONE = 0,
-        APPROVED = 1,
+        AWAITING_REVIEW = 1,
         REJECTED = 2,
-        AWAITING_REVIEW = 3
+        APPROVED = 3
     }
 }

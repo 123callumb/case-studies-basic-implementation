@@ -42,21 +42,5 @@ namespace Application.Controllers
                 return new RedirectToActionResult("Index", "Error", new { errorMessage = e.Message });
             }
         }
-
-        [RequireUser(UserTypeEnum.EXTERNAL)]
-        public async Task<IActionResult> QuoteResponseModal([FromBody] BaseQuoteRequest request)
-        {
-            try
-            {
-                if (request == null)
-                    throw new Exception("Request sent was null");
-
-                return new JsonResult(new { success = true, data = "<modal partial here lol>" });
-            }
-            catch(Exception e)
-            {
-                return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote response modal" });
-            }
-        }
     }
 }
