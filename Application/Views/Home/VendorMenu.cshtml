@@ -1,6 +1,6 @@
 @model BaseViewModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Vendor Home";
 }
 
 <div class="text-center">
@@ -41,7 +41,7 @@
 {
     <script type="text/javascript">
         document.querySelector('.cs-vendor').addEventListener('click', function() {
-            document.location.href = "@Url.Action("Index", "Vendor")";
+            document.location.href = "@Url.Action("VendorCatalogue", "Home")";
         });
     </script>
 }

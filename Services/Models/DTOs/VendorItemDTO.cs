@@ -8,6 +8,7 @@ namespace Services.Models.DTOs
     {
         public int ItemID { get; set; }
         public int? VendorID { get; set; }
+        public string VendorName { get; set; }        
         public string ItemName { get; set; }
         public string ItemImageURL { get; set; }
         public string ItemDescription { get; set; }
@@ -18,7 +19,8 @@ namespace Services.Models.DTOs
             ItemID = m.ItemId,
             ItemImageURL = m.ItemImageUrl,
             ItemName = m.ItemName,
-            VendorID = m.VendorId
+            VendorID = m.VendorId,      
+            VendorName = m.Vendor.VendorName
         };
     }
 }

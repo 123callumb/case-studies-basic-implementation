@@ -17,5 +17,10 @@ namespace Services.VendorItemManagement.Implementation
         {
             return await _genericQuereir.Load(VendorItemDTO.MapToDTO).ToListAsync();
         }
+
+        public async Task<List<VendorItemDTO>> SearchVendorItems(string searchString)
+        {
+            return await _genericQuereir.Load(VendorItemDTO.MapToDTO, v => v.ItemName.Contains(searchString)).ToListAsync();
+        }
     }
 }

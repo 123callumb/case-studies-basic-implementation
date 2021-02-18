@@ -7,5 +7,7 @@ namespace Services.VendorItemManagement
     public interface IVendorItemManager
     {
         Task<List<VendorItemDTO>> LoadVendorItems();
+
+        Task<List<VendorItemDTO>> SearchVendorItems(string searchString);
     }
 }
