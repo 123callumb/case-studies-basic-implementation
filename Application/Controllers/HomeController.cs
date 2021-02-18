@@ -20,7 +20,7 @@ namespace Application.Controllers
 
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> Index()
-        {
+        { 
             BaseViewModel vm = new BaseViewModel(await GetSessionUser());
             return View(vm);
         }
@@ -35,21 +35,35 @@ namespace Application.Controllers
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> VendorCatalogue()
         {
-            List<VendorItemDTO> vendorItems = await _vendorItemManager.LoadVendorItems();
-            VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);            
-            return View(vm);
+            try
+            {
+                List<VendorItemDTO> vendorItems = await _vendorItemManager.LoadVendorItems();
+                VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);
+                return View(vm);
+            }catch(Exception ex)
+            {                
+                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+            }
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> VendorCatalogueSearch(string searchTerm) {
-            ViewBag.SearchTerm = searchTerm;
-            List<VendorItemDTO> vendorItems;
-            
-            if (searchTerm == null) vendorItems = await _vendorItemManager.LoadVendorItems();            
-            else vendorItems = await _vendorItemManager.SearchVendorItems(searchTerm);
 
-            VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);
-            return View("VendorCatalogue", vm);
+            try
+            {
+                ViewBag.SearchTerm = searchTerm;
+                List<VendorItemDTO> vendorItems;
+
+                if (searchTerm == null) vendorItems = await _vendorItemManager.LoadVendorItems();
+                else vendorItems = await _vendorItemManager.SearchVendorItems(searchTerm);
+
+                VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);
+                return View("VendorCatalogue", vm);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+            }
         }
     }
 }
