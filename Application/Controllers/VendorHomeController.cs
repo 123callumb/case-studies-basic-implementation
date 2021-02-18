@@ -1,4 +1,5 @@
-﻿using Application.ViewModels;
+﻿using Application.Requests.Vendor;
+using Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
@@ -39,6 +40,22 @@ namespace Application.Controllers
             {
                 // not really safe to pass the exception to the error page but its fine for now for debugging
                 return new RedirectToActionResult("Index", "Error", new { errorMessage = e.Message });
+            }
+        }
+
+        [RequireUser(UserTypeEnum.EXTERNAL)]
+        public async Task<JsonResult> QuoteResponseModal([FromBody] BaseQuoteRequest request)
+        {
+            try
+            {
+                if (request == null)
+                    throw new Exception("Request sent was null");
+
+                return new JsonResult(new { success = true, data = "<modal partial here lol>" });
+            }
+            catch(Exception e)
+            {
+                return new JsonResult(new { success = false, message = "Failed to load quote response modal" });
             }
         }
     }

@@ -5,10 +5,10 @@ namespace Application.ViewModels
 {
     public class VendorHomeViewModel : ExternalBaseViewModel
     {
-        public VendorHomeViewModel(ExternalUserDTO user, List<QuoteDTO> quotes) : base(user)
+        public VendorHomeViewModel(ExternalUserDTO user, List<QuoteOverviewDTO> quotes) : base(user)
         {
             Quotes = quotes;
         }
-        public List<QuoteDTO> Quotes { get; set; }
+        public List<QuoteOverviewDTO> Quotes { get; set; }
     }
 }

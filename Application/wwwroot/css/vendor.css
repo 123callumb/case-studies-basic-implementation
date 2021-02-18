@@ -9,3 +9,11 @@
 .vendor-home-wrapper .quotes-list .quote-item{
     background-color: white;
 }
+
+.status-box {
+    padding: 5px;
+    max-width: 150px;
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+}
