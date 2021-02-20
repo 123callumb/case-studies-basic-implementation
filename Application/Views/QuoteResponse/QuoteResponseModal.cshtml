@@ -2,42 +2,57 @@
 @model Services.Models.DTOs.QuoteDTO
 
 <div>
-    <div style="background-image: url(@Model.VendorItem.ItemImageURL)" class="vendor-response-header"></div>
-    <h2>@Model.VendorItem.ItemName</h2>
-    <div>@Model.VendorItem.ItemDescription</div>
-    <div><b>Quantity Requested:</b> @Model.QuantityRequested</div>
-    <hr />
-    <h4>Previous Responses</h4>
+    <div class="bg-white shadow-sm">
+        <div style="background-image: url(@Model.VendorItem.ItemImageURL)" class="vendor-response-header"></div>
+        <div class="p-3">
+            <h2>@Model.VendorItem.ItemName</h2>
+            <div>@Model.VendorItem.ItemDescription</div>
+            <div><b>Quantity Requested:</b> @Model.QuantityRequested</div>
+        </div>
+    </div>
+    <h5 class="text-black-50 mt-3">Previous Responses</h5>
     <div>
         @foreach (var response in Model.Responses)
         {
-            <hr />
-            <div class="status-box" style="background-color:@response.Status.Colour">@response.Status.StatusName</div>
-            <b>Date:</b>
-            <div>@response.ResponseDate.ToShortDateString()</div>
-            <b>Message:</b>
-            <br />
-            <div>@response.ReponseText</div>
-            <b>Price Offered:</b>
-            <br />
-            <div>£@response.QuotePrice</div>
+            <div class="p-2">
+                <div class="d-inline-block w-100 text-end">
+                    <div class="status-box" style="background-color:@response.Status.Colour">@response.Status.StatusName</div>
+                </div>
+                <div class="row mb-2 p-2 pb-1 shadow-sm bg-white">
+                    <div class="col-3">
+                        <h6 class="text-black-50 mb-0">Date</h6>
+                        <div>@response.ResponseDate.ToShortDateString()</div>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="text-black-50 mb-0">Message</h6>
+                        <div>@response.ReponseText</div>
+                    </div>
+                    <div class="col-3">
+                        <h6 class="text-black-50 mb-0">Price Offered</h6>
+                        <div>£@response.QuotePrice</div>
+                    </div>
+                </div>
+            </div>
         }
     </div>
-    <hr />
     @if (Model.Responses.Any() && Model.Responses.OrderByDescending(o => o.QuoteResponseId).First().Status.AsEnum == QuoteStatusEnum.AWAITING_REVIEW)
     {
-        <h4>Still awaiting response from abc for the previous offer.</h4>
+        <div class="text-center text-black-50 mt-4">
+            <h5 class="mb-0">Still awaiting response from abc for the previous offer.</h5>
+        </div>
     }
     else
     {
-        <h4>New Ressponse</h4>
-        <form data-form-for="new-response">
-            <label class="form-label">Price Quoted</label>
-            <input data-name="Quote" type="number" step="0.01" min="0" placeholder="0.00" class="form-control"/>
-            <label class="form-label">Response Description</label>
-            <input  data-name="ReponseText" class="form-control" />
-            <input type="hidden" value="@Model.QuoteID"  data-name="QuoteID" />
-            <div type="submit" class="btn-primary mt-3 border-0" data-new-res-btn>Send Quote Response</div>
-        </form>
+        <h5 class="text-black-50 mt-3">New Ressponse</h5>
+        <div class="bg-white shadow-sm p-3">
+            <form data-form-for="new-response">
+                <label class="form-label">Price Quoted</label>
+                <input data-name="Quote" type="number" step="0.01" min="0" placeholder="0.00" class="form-control" />
+                <label class="form-label">Response Description</label>
+                <textarea data-name="ReponseText" class="form-control"></textarea>
+                <input type="hidden" value="@Model.QuoteID" data-name="QuoteID" />
+                <div type="submit" class="btn-primary mt-3 border-0" data-new-res-btn>Send Quote Response</div>
+            </form>
+        </div>
     }
 </div>

@@ -57,6 +57,7 @@ class VendorHome {
             // I Cba updating the dom so this will close
             // and when it reopens it will be there
             this._modal.close();
+            location.reload(); // lol this is just so we dont have to update the dim
         } else {
             throw "Failed to create new quote response";
         }
