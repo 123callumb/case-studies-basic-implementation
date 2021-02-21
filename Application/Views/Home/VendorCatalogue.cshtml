@@ -169,11 +169,11 @@ else if(Model.quantiyResult.quantity != 0)
         <hr width="1" size="150">
         <div class="listingNav">
             <div class="listingButton" style="background-color: rgb(240, 240, 240);">
-                <input type="number" placeholder="Enter Quantity" />
+                <input id="quantity_@Model.VendorItems[i].ItemID" type="number" placeholder="Enter Quantity" />
             </div>
-            <a class="listingButton cs-vendor" href="@Url.Action("RequestVendorQuote", "Home", new { vendorItemID = Model.VendorItems[i].ItemID, quantity = Model.VendorItems[i].ItemID } )">
+            <div class="listingButton cs-vendor" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
                 <span>Request quote</span>
-            </a>
+            </div>
         </div>
     </div>
     <br />
@@ -200,5 +200,17 @@ else if(Model.quantiyResult.quantity != 0)
         document.getElementById('searchButton').addEventListener('click', function () {
             runAction();
         });
+
+        function requestQuote(vendorItemID) {
+
+            var quantityInput = document.getElementById("quantity_" + vendorItemID);
+            var quantity = quantityInput.value;
+            if (quantity > 0) {
+                var url = '@Url.Action("RequestVendorQuote", "Home")?vendorItemID=' + vendorItemID + "&quantity=" + quantity;
+                if (document.getElementById('searchInput').value != "") url = url +"&searchTerm=" + document.getElementById('searchInput').value;
+                console.log(url);
+                location.href = url;
+            } else quantityInput.parentElement.style.border = "1px solid red";            
+        }
     </script>
 }
