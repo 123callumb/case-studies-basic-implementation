@@ -130,10 +130,10 @@
         <div class="listingNav">
             <div class="listingButton" style="background-color: rgb(240, 240, 240);">
                 <input type="number" placeholder="Enter Quantity" />
-            </div>
-            <div class="listingButton cs-vendor">
+            </div>            
+            <a class="listingButton cs-vendor" href="@Url.Action("RequestVendorQuote", "Home", new { vendorItemID = Model.VendorItems[i].ItemID, quantity = Model.VendorItems[i].ItemID } )">
                 <span>Request quote</span>
-            </div>
+            </a>
         </div>
     </div>
     <br/>
