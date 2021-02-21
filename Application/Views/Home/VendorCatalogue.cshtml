@@ -4,48 +4,64 @@
 }
 
 <style>
-    .localBG { background-color: #97D99D; }
+    .localBG {
+        background-color: #97D99D;
+    }
+
     .searchBar {
         width: 100%;
         margin: auto;
         margin-top: 5px;
     }
-    .searchBar > div:first-of-type {
-        background-color: rgb(240, 240, 240);
-        display: inline-flex;
-    }
-    .searchBar > div:last-of-type:hover { cursor: pointer; }
-    .searchBar input {
-        border: 0;
-        background-color: transparent;
-        margin: 12px;
-        flex: 1;
-    }
-    .searchBar input:focus {
-        border: 10px;
-        outline: 0;
-    }
+
+        .searchBar > div:first-of-type {
+            background-color: rgb(240, 240, 240);
+            display: inline-flex;
+        }
+
+        .searchBar > div:last-of-type:hover {
+            cursor: pointer;
+        }
+
+        .searchBar input {
+            border: 0;
+            background-color: transparent;
+            margin: 12px;
+            flex: 1;
+        }
+
+            .searchBar input:focus {
+                border: 10px;
+                outline: 0;
+            }
+
     .catalogueItem {
         display: flex;
         flex-direction: row;
     }
+
     .listingImage {
         flex: 1;
         width: 20%;
         border: 1px solid black;
-        background-size:cover;
-        background-repeat:no-repeat;
-
+        background-size: cover;
+        background-repeat: no-repeat;
     }
-    .listingImage > img { width: 100%; }
+
+        .listingImage > img {
+            width: 100%;
+        }
+
     .listingContent {
         padding: 0px 20px;
-        width:60%;
+        width: 60%;
     }
+
     .subtitile {
         margin-bottom: 0;
         font-weight: 600;
     }
+
     .listingNav {
         flex: 1;
         display: flex;
@@ -54,23 +70,32 @@
         text-align: center;
         padding-left: 20px;
     }
+
     .listingButton {
         display: flex;
         padding: 12px;
         font-weight: 600;
     }
-    .listingButton:hover { cursor: pointer; }
-    .listingButton > input {
-        flex: 1;
-        border: 0;
-        text-align: center;
-        background-color: transparent;
-    }
-    .listingButton > input:focus { outline: 0; }
-    .listingButton > span {
-        color: white;
-        flex: 1;
-    }
+
+        .listingButton:hover {
+            cursor: pointer;
+        }
+
+        .listingButton > input {
+            flex: 1;
+            border: 0;
+            text-align: center;
+            background-color: transparent;
+        }
+
+            .listingButton > input:focus {
+                outline: 0;
+            }
+
+        .listingButton > span {
+            color: white;
+            flex: 1;
+        }
 </style>
 
 <div class="text-center">
@@ -87,6 +112,21 @@
         <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
     </div>
 </div>
+@* Alerts *@
+@if (Model.quantiyResult.success)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+        Quote request for <strong><span>@Model.quantiyResult.quantity</span>x "@Model.quantiyResult.itemName"</strong> successful!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if(Model.quantiyResult.quantity != 0)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
+        Something went wrong when requesting quote for <strong><span>@Model.quantiyResult.quantity</span>x "@Model.quantiyResult.itemName"</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 @*search bar *@
 <div class="p-3 bg-white">
@@ -103,7 +143,7 @@
                 </span>
             </div>
             <div class="width:96%" style="display: flex; flex:1">
-                <input type="text" id="searchInput" onkeydown="readInput(this, event)" placeholder="@ViewBag.SearchTerm"/>
+                <input type="text" id="searchInput" onkeydown="readInput(this, event)" placeholder="@ViewBag.SearchTerm" />
             </div>
         </div>
         <div class="col-2 cs-vendor text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
@@ -130,14 +170,16 @@
         <div class="listingNav">
             <div class="listingButton" style="background-color: rgb(240, 240, 240);">
                 <input type="number" placeholder="Enter Quantity" />
-            </div>            
+            </div>
             <a class="listingButton cs-vendor" href="@Url.Action("RequestVendorQuote", "Home", new { vendorItemID = Model.VendorItems[i].ItemID, quantity = Model.VendorItems[i].ItemID } )">
                 <span>Request quote</span>
             </a>
         </div>
     </div>
-    <br/>
+    <br />
 }
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
 
 @section Scripts{
     <script type="text/javascript">
@@ -148,7 +190,7 @@
         function runAction() {
             location.href = '@Url.Action("VendorCatalogueSearch", "Home")?searchTerm=' + document.getElementById('searchInput').value;
         }
-        
+
         function readInput(el, e) {
             if (e.keyCode == 13) {
                 runAction();

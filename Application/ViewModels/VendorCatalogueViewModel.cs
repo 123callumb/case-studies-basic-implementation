@@ -24,8 +24,10 @@ namespace Application.ViewModels
         public VendorCatalogueViewModel(AbstractUser user, List<VendorItemDTO> vendorItems, QuantityResult quantityRes = null) : base(user)
         {
             VendorItems = vendorItems;
-            QuantityResult quantiyResult = quantityRes;
+            if (quantityRes == null) quantiyResult = new QuantityResult();
+            else quantiyResult = quantityRes;
         }
+        public QuantityResult quantiyResult;
         public List<VendorItemDTO> VendorItems { get; set; }
     }
 }
