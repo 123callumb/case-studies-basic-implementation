@@ -9,6 +9,8 @@ using Services.Models.Enums;
 using Services.Models.DTOs;
 using System.Collections.Generic;
 using Services.QuoteManagement;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Application.Controllers
 {
@@ -70,7 +72,8 @@ namespace Application.Controllers
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
-        public async Task<IActionResult> RequestVendorQuote(int vendorItemID, int quantity, string searchTerm = null)
+        [HttpPost]
+        public async Task<JsonResult> RequestVendorQuote(int vendorItemID, int quantity, string searchTerm = null)
         {
             try
             {
@@ -79,20 +82,13 @@ namespace Application.Controllers
                 QuantityResult qr = new QuantityResult(false, requestedItem.ItemName, quantity);
                 qr.success = _quoteManager.RequestQuote(requestedItem, quantity).Result;
 
-                //find way to not have this be copied twice                                
-                ViewBag.SearchTerm = searchTerm;
-                List<VendorItemDTO> vendorItems = await _vendorItemManager.LoadVendorItems();
-
-                if (searchTerm == null) vendorItems = await _vendorItemManager.LoadVendorItems();
-                else vendorItems = await _vendorItemManager.SearchVendorItems(searchTerm);
-
-                VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems, qr);
-
-                return View("VendorCatalogue", vm);
+                //return JSON
+                string jsonString = JsonSerializer.Serialize(qr);
+                return Json(jsonString);                
 
             }catch(Exception ex)
             {
-                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+                return Json("error");                
             }
         }
     }

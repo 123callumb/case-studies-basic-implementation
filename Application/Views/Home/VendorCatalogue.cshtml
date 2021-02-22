@@ -113,20 +113,17 @@
     </div>
 </div>
 @* Alerts *@
-@if (Model.quantiyResult.success)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
-        Quote request for <strong><span>@Model.quantiyResult.quantity</span>x "@Model.quantiyResult.itemName"</strong> successful!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-else if(Model.quantiyResult.quantity != 0)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
-        Something went wrong when requesting quote for <strong><span>@Model.quantiyResult.quantity</span>x "@Model.quantiyResult.itemName"</strong>.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display:none;">
+    Quote request for <strong><span id="successText"></span></strong> successful!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display:none;">
+    Something went wrong.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 
 @*search bar *@
 <div class="p-3 bg-white">
@@ -179,8 +176,8 @@ else if(Model.quantiyResult.quantity != 0)
     <br />
 }
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
-
+@* should I remove jquery? *@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 @section Scripts{
     <script type="text/javascript">
         window.onload = function () {
@@ -202,14 +199,28 @@ else if(Model.quantiyResult.quantity != 0)
         });
 
         function requestQuote(vendorItemID) {
-
             var quantityInput = document.getElementById("quantity_" + vendorItemID);
             var quantity = quantityInput.value;
             if (quantity > 0) {
-                var url = '@Url.Action("RequestVendorQuote", "Home")?vendorItemID=' + vendorItemID + "&quantity=" + quantity;
-                if (document.getElementById('searchInput').value != "") url = url +"&searchTerm=" + document.getElementById('searchInput').value;
-                console.log(url);
-                location.href = url;
+                $.ajax({
+                    url: "/Home/RequestVendorQuote",
+                    type : "POST",
+                    data: {
+                        vendorItemID : vendorItemID,
+                        quantity : quantity,
+                        searchTerm : document.getElementById('searchInput').value
+                    },
+                    success: function(data){
+                        var parsedData = JSON.parse(data);                        
+                        if (parsedData.success == true) {
+                            quantityInput.value = null;
+                            $('#successText').text(parsedData.quantity + "x " + parsedData.itemName);
+                            $('#successAlert').show();
+                        } else {    
+                            $('#errorAlert').show();
+                        }
+                    }
+                });
             } else quantityInput.parentElement.style.border = "1px solid red";            
         }
     </script>

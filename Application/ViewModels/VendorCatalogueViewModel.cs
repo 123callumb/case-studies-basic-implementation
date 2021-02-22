@@ -13,9 +13,9 @@ namespace Application.ViewModels
             itemName = i;
             quantity = q;
         }
-        public bool success = false;
-        public string itemName = null;
-        public int quantity = 0;
+        public bool success { get; set; }
+        public string itemName { get; set; }
+        public int quantity { get; set; }
     }
 
     public class VendorCatalogueViewModel : BaseViewModel
