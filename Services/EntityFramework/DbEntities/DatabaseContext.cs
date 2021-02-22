@@ -113,6 +113,13 @@ namespace Services.EntityFramework.DbEntities
                     .HasColumnType("int(11)")
                     .HasColumnName("QuoteStatusID");
 
+                entity.Property(e => e.Colour)
+                    .IsRequired()
+                    .HasColumnType("varchar(50)")
+                    .HasDefaultValueSql("'#66d17f'")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
                 entity.Property(e => e.StatusName)
                     .IsRequired()
                     .HasColumnType("varchar(50)")

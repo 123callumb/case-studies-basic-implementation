@@ -17,9 +17,15 @@ namespace Services.QuoteManagement.Implementation
             _genericQuerier = genericQuerier;
             _genericRepo = genericRepo;
         }
-        public async Task<List<QuoteDTO>> GetVendorQuotes(int vendorID)
+
+        public async Task<QuoteDTO> GetQuote(int quoteID)
         {
-            return await _genericQuerier.Load(QuoteDTO.MapToDTO, w => w.VendorItem.VendorId == vendorID).ToListAsync();
+            return await _genericQuerier.Load(QuoteDTO.MapToDTO, w => w.QuoteId == quoteID).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<QuoteOverviewDTO>> GetVendorQuotes(int vendorID)
+        {
+            return await _genericQuerier.Load(QuoteOverviewDTO.MapToDTO, w => w.VendorItem.VendorId == vendorID).ToListAsync();
         }
         public async Task<bool> RequestQuote(VendorItemDTO item, int quantity)
         {           

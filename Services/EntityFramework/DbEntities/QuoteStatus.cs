@@ -14,6 +14,7 @@ namespace Services.EntityFramework.DbEntities
 
         public int QuoteStatusId { get; set; }
         public string StatusName { get; set; }
+        public string Colour { get; set; }
 
         public virtual ICollection<QuoteResponse> QuoteResponses { get; set; }
     }

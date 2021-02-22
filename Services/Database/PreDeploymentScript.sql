@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `quote`;
 CREATE TABLE IF NOT EXISTS `quote` (
   `QuoteID` int(11) NOT NULL AUTO_INCREMENT,
   `VendorItemID` int(11) NOT NULL,
-  `QuoteDate` datetime NOT NULL,
+  `QuoteDate` datetime NOT NULL DEFAULT current_timestamp(),
   `QuantityRequested` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`QuoteID`),
   KEY `FK_Quote_Vendor_Item` (`VendorItemID`),
@@ -34,8 +34,8 @@ DROP TABLE IF EXISTS `quote_response`;
 CREATE TABLE IF NOT EXISTS `quote_response` (
   `QuoteResponseID` int(11) NOT NULL AUTO_INCREMENT,
   `QuoteID` int(11) NOT NULL,
-  `QuoteStatusID` int(11) NOT NULL DEFAULT 0,
-  `ResponseDate` datetime NOT NULL,
+  `QuoteStatusID` int(11) NOT NULL DEFAULT 1,
+  `ResponseDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ReponseText` varchar(1000) NOT NULL,
   `Quote` float NOT NULL,
   PRIMARY KEY (`QuoteResponseID`),
@@ -43,25 +43,31 @@ CREATE TABLE IF NOT EXISTS `quote_response` (
   KEY `FK_Quote_Reponse_Status` (`QuoteStatusID`),
   CONSTRAINT `FK_Quote_Quote_Response` FOREIGN KEY (`QuoteID`) REFERENCES `quote` (`QuoteID`),
   CONSTRAINT `FK_Quote_Reponse_Status` FOREIGN KEY (`QuoteStatusID`) REFERENCES `quote_status` (`QuoteStatusID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `quote_response`;
 /*!40000 ALTER TABLE `quote_response` DISABLE KEYS */;
+INSERT INTO `quote_response` (`QuoteResponseID`, `QuoteID`, `QuoteStatusID`, `ResponseDate`, `ReponseText`, `Quote`) VALUES
+	(4, 1, 2, '0001-01-01 00:00:00', 'That\'s all ya getting fella, no more no less', 1000),
+	(6, 1, 1, '0001-01-01 00:00:00', 'This is as low as i can go flower.', 980),
+	(7, 3, 1, '0001-01-01 00:00:00', 'It\'s a very expensive box', 1000000),
+	(8, 2, 2, '0001-01-01 00:00:00', 'It\'s very expensive are you sure you want 5?', 100000);
 /*!40000 ALTER TABLE `quote_response` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `quote_status`;
 CREATE TABLE IF NOT EXISTS `quote_status` (
   `QuoteStatusID` int(11) NOT NULL AUTO_INCREMENT,
   `StatusName` varchar(50) NOT NULL,
+  `Colour` varchar(50) NOT NULL DEFAULT '#66d17f',
   PRIMARY KEY (`QuoteStatusID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `quote_status`;
 /*!40000 ALTER TABLE `quote_status` DISABLE KEYS */;
-INSERT INTO `quote_status` (`QuoteStatusID`, `StatusName`) VALUES
-	(1, 'Awaiting Response'),
-	(2, 'Rejected'),
-	(3, 'Approved');
+INSERT INTO `quote_status` (`QuoteStatusID`, `StatusName`, `Colour`) VALUES
+	(1, 'Awaitng Response', '#ebcc34'),
+	(2, 'Rejected', '#eb3d34'),
+	(3, 'Approved', '#66d17f');
 /*!40000 ALTER TABLE `quote_status` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `role`;
