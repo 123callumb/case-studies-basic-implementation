@@ -8,6 +8,8 @@ using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
 using Services.QuoteManagement;
 using Services.QuoteManagement.Implementation;
+using Services.QuoteResponseManagement;
+using Services.QuoteResponseManagement.Implementation;
 using Services.UserManagement;
 using Services.UserManagement.Implementation;
 using Services.VendorItemManagement;
@@ -26,6 +28,7 @@ namespace Services
             svr.AddScoped<IVendorItemManager, VendorItemManager>();
             svr.AddScoped<IQuoteManager, QuoteManager>();
             svr.AddScoped<IUserManager, UserManager>();
+            svr.AddScoped<IQuoteResponseManager, QuoteResponseManager>();
             svr.AddMvcCore(opt =>
             {
                 opt.Filters.Add<GlobalActionFilter>();

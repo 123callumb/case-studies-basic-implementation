@@ -1,20 +1,19 @@
 ﻿using Services.EntityFramework.DbEntities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Services.Models.DTOs
 {
-    public class QuoteDTO
+    public class QuoteOverviewDTO
     {
         public int QuoteID { get; set; }
         public VendorItemDTO VendorItem { get; set; }
         public DateTime QuoteDate { get; set; }
-        public List<QuoteResponseDTO> Responses { get; set; }
+        public QuoteStatusDTO LatestStatus { get; set; }
         public int QuantityRequested { get; set; }
 
-        public static Expression<Func<Quote, QuoteDTO>> MapToDTO = s => new QuoteDTO()
+        public static Expression<Func<Quote, QuoteOverviewDTO>> MapToDTO = s => new QuoteOverviewDTO()
         {
             QuoteID = s.QuoteId,
             QuantityRequested = s.QuantityRequested,
@@ -28,7 +27,7 @@ namespace Services.Models.DTOs
                 VendorID = s.VendorItem.VendorId,
                 VendorName = s.VendorItem.Vendor.VendorName
             },
-            Responses = s.QuoteResponses.AsQueryable().Select(QuoteResponseDTO.MapToDTO).ToList()
+            LatestStatus = s.QuoteResponses.Any() ? QuoteStatusDTO.MapToDTO.Compile().Invoke(s.QuoteResponses.OrderByDescending(o => o.QuoteResponseId).FirstOrDefault().QuoteStatus) : null
         };
     }
 }
