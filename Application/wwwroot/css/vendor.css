@@ -9,3 +9,28 @@
 .vendor-home-wrapper .quotes-list .quote-item{
     background-color: white;
 }
+
+.status-box {
+    padding: 5px;
+    max-width: 150px;
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+}
+
+.vendor-response-header {
+    height: 260px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.vendor-response-item-wrapper {
+    max-height: 300px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.tingle-modal-box__content {
+    background-color: whitesmoke;
+}

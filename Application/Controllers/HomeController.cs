@@ -8,14 +8,19 @@ using Services.Filters.Attributes;
 using Services.Models.Enums;
 using Services.Models.DTOs;
 using System.Collections.Generic;
+using Services.QuoteManagement;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Application.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly IVendorItemManager _vendorItemManager;
-        public HomeController(IAuthenticationManager authManager, IVendorItemManager vendorItemManager) : base(authManager) {
+        private readonly IQuoteManager _quoteManager;
+        public HomeController(IAuthenticationManager authManager, IVendorItemManager vendorItemManager, IQuoteManager quoteManager) : base(authManager) {
             _vendorItemManager = vendorItemManager;
+            _quoteManager = quoteManager;
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
@@ -47,8 +52,8 @@ namespace Application.Controllers
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
-        public async Task<IActionResult> VendorCatalogueSearch(string searchTerm) {
-
+        public async Task<IActionResult> VendorCatalogueSearch(string searchTerm) 
+        {
             try
             {
                 ViewBag.SearchTerm = searchTerm;
@@ -63,6 +68,27 @@ namespace Application.Controllers
             catch (Exception ex)
             {
                 return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+            }
+        }
+
+        [RequireUser(UserTypeEnum.INTERNAL)]
+        [HttpPost]
+        public async Task<JsonResult> RequestVendorQuote(int vendorItemID, int quantity, string searchTerm = null)
+        {
+            try
+            {
+                VendorItemDTO requestedItem = _vendorItemManager.LoadVendorItem(vendorItemID).Result;
+                //upload quote 
+                QuantityResult qr = new QuantityResult(false, requestedItem.ItemName, quantity);
+                qr.success = _quoteManager.RequestQuote(requestedItem, quantity).Result;
+
+                //return JSON
+                string jsonString = JsonSerializer.Serialize(qr);
+                return Json(jsonString);                
+
+            }catch(Exception ex)
+            {
+                return Json("error");                
             }
         }
     }
