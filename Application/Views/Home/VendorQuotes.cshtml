@@ -1,0 +1,60 @@
+@model VendorQuoteViewModel
+@{
+    ViewData["Title"] = "Vendor Quotes";
+}
+
+<div class="text-center">
+    <img class="my-5 shadow-lg rounded" src="~/img/ABCEnergyLogo.PNG" />
+    <div class="d-flex flex-column flex-sm-row align-items-center">
+        <!-- Breadcrumb, User name, Home button and Logout button -->
+        <ol class="breadcrumb me-auto">
+            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Vendor", "VendorMenu", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item active" aria-current="page">Vendor Quotes</li>
+        </ol>
+        <div class="me-3">@Model.user.Email</div>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+    </div>
+    <div class="p-3 bg-white text-start">
+        <div class="d-flex flex-column">
+            <div class="col">
+                @foreach (var quote in Model.Quotes)
+                {
+                    <div class="quote-item mt-2 row shadow-sm">
+                        <div class="col-3 text-center px-0">
+                            <div class="w-100 h-100" style="background-image: url(@quote.VendorItem.ItemImageURL); background-size: cover; background-position: center"></div>
+                        </div>
+                        <div class="col-7 p-3">
+                            @if (quote.LatestStatus == null)
+                            {
+                                <div class="bg-danger status-box">Response Required</div>
+                            }
+                            else
+                            {
+                                <div class="status-box" style="background-color: @quote.LatestStatus.Colour">@quote.LatestStatus.StatusName</div>
+                            }
+                            <h5 class="mt-2">@quote.VendorItem.ItemName</h5>
+                            <div>
+                                <div><b>Quantity requested:</b> @quote.QuantityRequested.ToString()</div>
+                                <div><b>Quote date:</b> @quote.QuoteDate.ToString("dd-MM-yyyy")</div>
+                            </div>
+                        </div>
+                        <div class="col-2 p-3 text-end">
+                            <div class="btn-primary" data-quote-btn="@quote.QuoteID">Open Quote</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        document.querySelector('.cs-vendor').addEventListener('click', function() {
+            document.location.href = "@Url.Action("VendorCatalogue", "Home")";
+        });
+    </script>
+}
