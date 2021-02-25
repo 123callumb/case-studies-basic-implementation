@@ -27,6 +27,7 @@ namespace Services.QuoteManagement.Implementation
         {
             return await _genericQuerier.Load(QuoteOverviewDTO.MapToDTO, w => w.VendorItem.VendorId == vendorID).ToListAsync();
         }
+
         public async Task<bool> RequestQuote(VendorItemDTO item, int quantity)
         {           
             Quote q = new Quote()
