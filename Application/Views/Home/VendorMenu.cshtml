@@ -1,6 +1,6 @@
 @model BaseViewModel
 @{
-    ViewData["Title"] = "Vendor Home";
+    ViewData["Title"] = "Vendor Menu";
 }
 
 <div class="text-center">
@@ -33,6 +33,14 @@
                     Vendor List
                 </div>
             </div>
+            <div class="col">
+                <div class="menu-item cs-accounts">
+                    <span class="material-icons">
+                        request_quote
+                    </span>
+                    Vendor Quotes
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -42,6 +50,9 @@
     <script type="text/javascript">
         document.querySelector('.cs-vendor').addEventListener('click', function() {
             document.location.href = "@Url.Action("VendorCatalogue", "Home")";
+        });
+        document.querySelector('.cs-accounts').addEventListener('click', function() {
+            document.location.href = "@Url.Action("VendorQuotes", "Home")";
         });
     </script>
 }
