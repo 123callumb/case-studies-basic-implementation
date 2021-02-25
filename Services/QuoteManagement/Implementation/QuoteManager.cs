@@ -23,7 +23,7 @@ namespace Services.QuoteManagement.Implementation
         {
             return await _genericQuerier.Load(QuoteDTO.MapToDTO, w => w.QuoteId == quoteID).FirstOrDefaultAsync();
         }
-        public async Task<List<QuoteOverviewDTO>> GetVendorQuotes()
+        public async Task<List<QuoteOverviewDTO>> GetQuotes()
         {
             return await _genericQuerier.Load(QuoteOverviewDTO.MapToDTO).OrderBy(q => q.QuoteDate).ToListAsync();
         }

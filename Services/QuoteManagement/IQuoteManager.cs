@@ -7,7 +7,7 @@ namespace Services.QuoteManagement
     public interface IQuoteManager
     {
         Task<bool> RequestQuote(VendorItemDTO item, int quantity);
-        Task<List<QuoteOverviewDTO>> GetVendorQuotes();
+        Task<List<QuoteOverviewDTO>> GetQuotes();
         Task<List<QuoteOverviewDTO>> GetVendorQuotes(int vendorID);
         Task<QuoteDTO> GetQuote(int quoteID);
     }
