@@ -22,13 +22,66 @@ namespace UnitTests.ManagerTests
         {
             var c = new MockContainer();
             var manager = Manager(c);
+            int vendorItemID = 69;
             c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<VendorItem, VendorItemDTO>>>(), It.IsAny<Expression<Func<VendorItem, bool>>>())).Returns(new List<VendorItemDTO>() {
                 new VendorItemDTO()
                 {
-                    ItemID = 69
+                    ItemID = vendorItemID
                 }
             }.GetMockQueryable());
 
+
+            // Act
+            var res = await manager.LoadVendorItems();
+
+            // Assert
+            Assert.AreEqual(res.FirstOrDefault().ItemID, vendorItemID);
+        }
+
+        [TestMethod]
+        public async Task LoadVendorItem_Success()
+        {
+            var c = new MockContainer();
+            var manager = Manager(c);
+            int vendorItemID = 69;
+            c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<VendorItem, VendorItemDTO>>>(), It.IsAny<Expression<Func<VendorItem, bool>>>())).Returns(new List<VendorItemDTO>() {
+                new VendorItemDTO()
+                {
+                    ItemID = vendorItemID
+                }
+            }.GetMockQueryable());
+
+
+            // Act
+            var res = await manager.LoadVendorItem(vendorItemID);
+
+            // Assert
+            Assert.AreEqual(res.ItemID, vendorItemID);
+        }
+
+        [TestMethod]
+        public async Task SearchVendorItems_Success()
+        {
+            var c = new MockContainer();
+            var manager = Manager(c);
+            int vendorItemID = 69;
+            string searchVal = "test";
+
+            c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<VendorItem, VendorItemDTO>>>(), It.IsAny<Expression<Func<VendorItem, bool>>>())).Returns(new List<VendorItemDTO>() {
+                new VendorItemDTO()
+                {
+                    ItemID = vendorItemID,
+                    ItemName = searchVal
+                }
+            }.GetMockQueryable());
+
+
+            // Act
+            var res = await manager.SearchVendorItems(searchVal);
+
+            // Assert
+            Assert.AreEqual(res.FirstOrDefault().ItemID, vendorItemID);
+            Assert.AreEqual(res.FirstOrDefault().ItemName, searchVal);
         }
     }
 }
