@@ -55,12 +55,15 @@
                 }
             </div>
             <div id="tabApprovedQuotes" class="col">
+                @{ var isApprovedQuotes = false; }
                 @foreach (var quote in Model.Quotes)
                 {
                     @if (quote.LatestStatus != null)
                     {
                         @if (quote.LatestStatus.AsEnum == QuoteStatusEnum.APPROVED)
                         {
+
+                            isApprovedQuotes = true;
                             <div class="quote-item mt-2 row shadow-sm">
                                 <div class="col-3 text-center px-0">
                                     <div class="w-100 h-100" style="background-image: url(@quote.VendorItem.ItemImageURL); background-size: cover; background-position: center"></div>
@@ -87,6 +90,10 @@
                         }
                     }
                 }
+                @if (!isApprovedQuotes)
+                {
+                    <div class="quote-item mt-2 row-sm text-center">No Approved Requests</div>
+                }
             </div>
         </div>
     </div>
@@ -97,7 +104,6 @@
     <script type="text/javascript">
         window.onload = function() {
             document.querySelector('#tabApprovedQuotes').style.display = "none";
-            document.querySelector('#tabApprovedQuotes').innerHTML = '<div class="quote-item mt-2 row-sm text-center">No Approved Requests</div>';
         };
 
         document.querySelector('#tabApproved').addEventListener('click', (t) => {
