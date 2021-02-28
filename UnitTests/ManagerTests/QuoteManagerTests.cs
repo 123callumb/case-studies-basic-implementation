@@ -5,6 +5,7 @@ using Services.Models.DTOs;
 using Services.QuoteManagement.Implementation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -36,6 +37,46 @@ namespace UnitTests.ManagerTests
 
             // Assert
             Assert.AreEqual(result.QuoteID, quoteID);
+        }
+
+        [TestMethod]
+        public async Task GetVendorQuote_Success()
+        {
+            // Arrange
+            var c = new MockContainer();
+            var manager = Manager(c);
+            int quoteID = 34;
+
+            c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<Quote, QuoteOverviewDTO>>>(), It.IsAny<Expression<Func<Quote, bool>>>()))
+                .Returns(new List<QuoteOverviewDTO>() {
+                    new QuoteOverviewDTO() { QuoteID = quoteID }
+                }.GetMockQueryable());
+
+            // Act
+            var result = await manager.GetVendorQuotes(21);
+
+            // Assert
+            Assert.AreEqual(result.FirstOrDefault().QuoteID, quoteID);
+        }
+
+        [TestMethod]
+        public async Task GetQuotes_Success()
+        {
+            // Arrange
+            var c = new MockContainer();
+            var manager = Manager(c);
+            int quoteID = 34;
+
+            c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<Quote, QuoteOverviewDTO>>>(), It.IsAny<Expression<Func<Quote, bool>>>()))
+                .Returns(new List<QuoteOverviewDTO>() {
+                    new QuoteOverviewDTO() { QuoteID = quoteID }
+                }.GetMockQueryable());
+
+            // Act
+            var result = await manager.GetQuotes();
+
+            // Assert
+            Assert.AreEqual(result.FirstOrDefault().QuoteID, quoteID);
         }
 
         [TestMethod]

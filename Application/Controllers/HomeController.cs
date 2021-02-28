@@ -100,7 +100,7 @@ namespace Application.Controllers
             try
             {
                 var sessionUser = await GetSessionUser();
-                var vendorQuotes = await _quoteManager.GetVendorQuotes();
+                var vendorQuotes = await _quoteManager.GetQuotes();
                 var viewModel = new VendorQuoteViewModel(sessionUser, vendorQuotes);
 
                 return View(viewModel);
