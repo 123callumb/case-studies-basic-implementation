@@ -4,5 +4,54 @@
         <name>Application</name>
     </assembly>
     <members>
+        <member name="M:Application.Controllers.AuthenticationController.Login">
+            <summary>
+            Used for loading the login screen
+            </summary>
+            <returns>Returns a login screen for external and internal users.</returns>
+        </member>
+        <member name="M:Application.Controllers.AuthenticationController.AuthenticateInternalUser(Application.Requests.Authentication.UserLogonRequest)">
+            <summary>
+            Authenticates abc users into the system. Will redirect them to their homepage
+            </summary>
+            <param name="request">Request asks for their email address</param>
+            <returns>Returns a json result to tell the javascript if their login was successful</returns>
+        </member>
+        <member name="M:Application.Controllers.AuthenticationController.AuthenticateExternalUser(Application.Requests.Authentication.UserLogonRequest)">
+            <summary>
+            Authenticates external vendor users into the system. Will redirect them to their homepage
+            </summary>
+            <param name="request">Request asks for their email address</param>
+            <returns>Returns a json result to tell the javascript if their login was successful</returns>
+        </member>
+        <member name="M:Application.Controllers.BaseController.GetSessionUser">
+            <summary>
+            Used as a shared mthod across all controllers to quickly access the 
+            current user session. 
+            </summary>
+            <returns>Returns the active user session, will reutrn null if there is no user session</returns>
+        </member>
+        <member name="M:Application.Controllers.QuoteResponseController.QuoteResponseModal(Application.Requests.Vendor.BaseQuoteRequest)">
+            <summary>
+            Loads up the html for the modal that allows for external vendor users
+            to respond to a specific quote
+            </summary>
+            <param name="request">Requests a quote id fot the associated quote</param>
+            <returns>Returns a html string for the javascript to render in a modal</returns>
+        </member>
+        <member name="M:Application.Controllers.QuoteResponseController.Create(Services.EntityFramework.DbEntities.QuoteResponse)">
+            <summary>
+            For creating a new quote response for a given quote. Used by external vendor users
+            </summary>
+            <param name="newResponse">Wull respond with a json object for the javascript to determine if the request has been completed</param>
+            <returns>Quote response object asks for a price and a text response.</returns>
+        </member>
+        <member name="M:Application.Controllers.VendorHomeController.Index">
+            <summary>
+            This is for the home screen of external users, it will load up a list of thier current
+            quotes that are active for the vendor that they work for.
+            </summary>
+            <returns>Returns a View</returns>
+        </member>
     </members>
 </doc>

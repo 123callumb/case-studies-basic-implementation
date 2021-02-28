@@ -13,6 +13,11 @@ namespace Application.Controllers
         {
             _authManager = authManager;
         }
+        /// <summary>
+        /// Used as a shared mthod across all controllers to quickly access the 
+        /// current user session. 
+        /// </summary>
+        /// <returns>Returns the active user session, will reutrn null if there is no user session</returns>
         protected async Task<AbstractUser> GetSessionUser()
         {
             if (_instanceUser == null)

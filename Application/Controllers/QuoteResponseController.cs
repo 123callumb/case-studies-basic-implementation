@@ -24,7 +24,12 @@ namespace Application.Controllers
             _quoteResponseManager = quoteResponseManager;
         }
 
-
+        /// <summary>
+        /// Loads up the html for the modal that allows for external vendor users
+        /// to respond to a specific quote
+        /// </summary>
+        /// <param name="request">Requests a quote id fot the associated quote</param>
+        /// <returns>Returns a html string for the javascript to render in a modal</returns>
         [RequireUser(UserTypeEnum.EXTERNAL)]
         [HttpPost]
         public async Task<IActionResult> QuoteResponseModal([FromBody] BaseQuoteRequest request)
@@ -43,7 +48,11 @@ namespace Application.Controllers
                 return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote response modal" });
             }
         }
-
+        /// <summary>
+        /// For creating a new quote response for a given quote. Used by external vendor users
+        /// </summary>
+        /// <param name="newResponse">Wull respond with a json object for the javascript to determine if the request has been completed</param>
+        /// <returns>Quote response object asks for a price and a text response.</returns>
         [RequireUser(UserTypeEnum.EXTERNAL)]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] QuoteResponse newResponse)
