@@ -6,6 +6,8 @@ using Services.EntityFramework.DbEntities;
 using Services.Filters;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
+using Services.MVCManagement;
+using Services.MVCManagement.Implementation;
 using Services.QuoteManagement;
 using Services.QuoteManagement.Implementation;
 using Services.QuoteResponseManagement;
@@ -29,6 +31,7 @@ namespace Services
             svr.AddScoped<IQuoteManager, QuoteManager>();
             svr.AddScoped<IUserManager, UserManager>();
             svr.AddScoped<IQuoteResponseManager, QuoteResponseManager>();
+            svr.AddScoped<IMVCManager, MVCManager>();
             svr.AddMvcCore(opt =>
             {
                 opt.Filters.Add<GlobalActionFilter>();
