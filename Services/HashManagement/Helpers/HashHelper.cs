@@ -9,6 +9,11 @@ namespace Services.HashManagement.Implementation
         private static readonly int KeySize = 24;
         private static readonly int HashIterations = 9001;
 
+        /// <summary>
+        /// Hash a string with crytpo libs
+        /// </summary>
+        /// <param name="value">string value to hash</param>
+        /// <returns>hashed string</returns>
         public static string Hash(this string value)
         {
             var rndSalt = new byte[SaltSize];
@@ -17,7 +22,14 @@ namespace Services.HashManagement.Implementation
             byte[] hash = rfc2898.GetBytes(KeySize);
             return $"{Convert.ToBase64String(rndSalt)}|{HashIterations}|{Convert.ToBase64String(hash)}";
         }
-
+        /// <summary>
+        /// Compare a hased value with a non hashed value, used for seeing if passwords are
+        /// correct as it is not possible to has the value and see if it exists in the db.
+        /// The password hash must first be brough back.
+        /// </summary>
+        /// <param name="hash">Hashed string</param>
+        /// <param name="value">Value to compare</param>
+        /// <returns>Will return true if the hash is equal to the value and false if not</returns>
         public static bool CompareHashToValue(string hash, string value)
         {
             var hashParts = hash.Split('|', 3);

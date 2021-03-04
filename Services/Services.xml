@@ -108,6 +108,23 @@
             </summary>
             <returns>An integer for how many rows in the db have been affected.</returns>
         </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.Hash(System.String)">
+            <summary>
+            Hash a string with crytpo libs
+            </summary>
+            <param name="value">string value to hash</param>
+            <returns>hashed string</returns>
+        </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.CompareHashToValue(System.String,System.String)">
+            <summary>
+            Compare a hased value with a non hashed value, used for seeing if passwords are
+            correct as it is not possible to has the value and see if it exists in the db.
+            The password hash must first be brough back.
+            </summary>
+            <param name="hash">Hashed string</param>
+            <param name="value">Value to compare</param>
+            <returns>Will return true if the hash is equal to the value and false if not</returns>
+        </member>
         <member name="M:Services.QuoteManagement.IQuoteManager.RequestQuote(Services.Models.DTOs.VendorItemDTO,System.Int32)">
             <summary>
             Used to request a quote from a vendor 
