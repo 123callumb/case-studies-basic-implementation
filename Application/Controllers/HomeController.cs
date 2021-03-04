@@ -12,6 +12,9 @@ using Services.QuoteManagement;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Services.UserManagement;
+using Application.Requests.Vendor;
+using Services.MVCManagement.Helpers;
+using Services.QuoteResponseManagement;
 
 namespace Application.Controllers
 {
@@ -19,10 +22,12 @@ namespace Application.Controllers
     {
         private readonly IVendorItemManager _vendorItemManager;
         private readonly IQuoteManager _quoteManager;
+        private readonly IQuoteResponseManager _quoteResponseManager;
         private readonly IUserManager _userManager;
-        public HomeController(IAuthenticationManager authManager, IVendorItemManager vendorItemManager, IQuoteManager quoteManager) : base(authManager) {
+        public HomeController(IAuthenticationManager authManager, IVendorItemManager vendorItemManager, IQuoteManager quoteManager, IQuoteResponseManager _quoteResponseManager) : base(authManager) {
             _vendorItemManager = vendorItemManager;
             _quoteManager = quoteManager;
+            _quoteResponseManager = quoteResponseManager;
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
@@ -82,7 +87,7 @@ namespace Application.Controllers
                 VendorItemDTO requestedItem = _vendorItemManager.LoadVendorItem(vendorItemID).Result;
                 //upload quote 
                 QuantityResult qr = new QuantityResult(false, requestedItem.ItemName, quantity);
-                qr.success = _quoteManager.RequestQuote(requestedItem, quantity).Result;
+                qr.success = await _quoteManager.RequestQuote(requestedItem, quantity);
 
                 //return JSON
                 string jsonString = JsonSerializer.Serialize(qr);
@@ -108,6 +113,51 @@ namespace Application.Controllers
             catch (Exception ex)
             {
                 return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+            }
+        }
+
+        //temp location        
+        [RequireUser(UserTypeEnum.INTERNAL)]
+        [HttpPost]
+        public async Task<IActionResult> QuoteResponderModal([FromBody] BaseQuoteRequest request)
+        {
+            try
+            {
+                if (request == null)
+                    throw new Exception("Request sent was null.");
+
+                var quote = await _quoteManager.GetQuote(request.QuoteID);
+                if(quote.Responses.Find(x=>x.Status.AsEnum == QuoteStatusEnum.AWAITING_REVIEW) != null)
+                {                   
+                    //can filter this modal to only pop up when there is a quote awaiting review.
+                }
+                string modalAsString = await this.RenderViewToString(quote);
+                return new JsonResult(new { success = true, data = modalAsString });
+
+            }catch(Exception ex)
+            {
+                return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote." });
+            }
+        }
+        [RequireUser(UserTypeEnum.INTERNAL)]
+        [HttpPost]
+        public async Task<IActionResult> Respond([FromBody] BaseQuoteRequest request)
+        {
+            try
+            {
+                if (request != null)
+                {
+                    bool success = await _quoteResponseManager.Respond(request.QuoteID, (bool)request.IsApproved);
+                }
+                else
+                {
+
+                }
+                return new JsonResult(new { success = true, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { success = false, message = "Failed to load quote response modal" });
             }
         }
     }
