@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Services.MVCManagement.Helpers
+namespace Services.MVCManagement.Implementation
 {
-    public static class MVCHelper
+    public class MVCManager : IMVCManager
     {
-        public static async Task<string> RenderViewToString(this Controller controller, object model, string viewName = null, bool partial = true)
+        public async Task<string> RenderViewToString(Controller controller, object model, string viewName = null, bool partial = true)
         {
             if (string.IsNullOrEmpty(viewName))
             {

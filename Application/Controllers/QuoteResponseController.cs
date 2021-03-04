@@ -4,7 +4,7 @@ using Services.AuthenticationManagement;
 using Services.EntityFramework.DbEntities;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
-using Services.MVCManagement.Helpers;
+using Services.MVCManagement;
 using Services.QuoteManagement;
 using Services.QuoteResponseManagement;
 using System;
@@ -16,12 +16,15 @@ namespace Application.Controllers
     {
         private readonly IQuoteManager _quoteManager;
         private readonly IQuoteResponseManager _quoteResponseManager;
+        private readonly IMVCManager _mvcManager;
         public QuoteResponseController(IAuthenticationManager authManager,
                                        IQuoteManager quoteManager,
-                                       IQuoteResponseManager quoteResponseManager) : base(authManager)
+                                       IQuoteResponseManager quoteResponseManager,
+                                       IMVCManager mvcManager) : base(authManager)
         {
             _quoteManager = quoteManager;
             _quoteResponseManager = quoteResponseManager;
+            _mvcManager = mvcManager;
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace Application.Controllers
                     throw new Exception("Request sent was null");
 
                 var quote = await _quoteManager.GetQuote(request.QuoteID);
-                string modalAsString = await this.RenderViewToString(quote);
+                string modalAsString = await _mvcManager.RenderViewToString(this, quote);
                 return new JsonResult(new { success = true, data = modalAsString });
             }
             catch (Exception e)
