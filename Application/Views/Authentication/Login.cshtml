@@ -37,3 +37,27 @@
         });
     </script>
 }
+
+@section Scripts
+{
+    <script type="text/javascript">
+        window.addEventListener('load', (event) => {
+            var playlist = new talkify.playlist()
+                .begin()
+                .usingPlayer(player)
+                .withRootSelector('.loginbox')
+                .build();
+
+            playlist.play();
+        });
+
+        document.querySelector('.clickable').addEventListener('mouseover', (t) => {
+            var playlist = new talkify.playlist()
+                .begin()
+                .usingPlayer(player)
+                .withRootSelector('.clickable')
+                .build();
+            playlist.play();
+        });
+    </script>
+}

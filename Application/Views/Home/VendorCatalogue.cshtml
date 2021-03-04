@@ -180,9 +180,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 @section Scripts{
     <script type="text/javascript">
-        window.onload = function () {
+        window.addEventListener('load', (event) => {
             document.getElementById("searchInput").focus();
-        };
+        });
 
         function runAction() {
             location.href = '@Url.Action("VendorCatalogueSearch", "Home")?searchTerm=' + document.getElementById('searchInput').value;

@@ -102,9 +102,9 @@
 @section Scripts
 {
     <script type="text/javascript">
-        window.onload = function() {
+        window.addEventListener('load', (event) => {
             document.querySelector('#tabApprovedQuotes').style.display = "none";
-        };
+        });
 
         document.querySelector('#tabApproved').addEventListener('click', (t) => {
             document.querySelector('#tabApprovedQuotes').style.display = "block";
