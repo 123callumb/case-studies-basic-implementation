@@ -19,7 +19,8 @@ namespace Services.Models.DTOs
             UserType = UserTypeEnum.EXTERNAL,
             VendorName = m.Vendor.VendorName,
             Firstname = m.Firstname,
-            Lastname = m.Lastname
+            Lastname = m.Lastname,
+            PasswordHash = m.PasswordHash
         };
     }
 }

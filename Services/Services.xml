@@ -4,20 +4,22 @@
         <name>Services</name>
     </assembly>
     <members>
-        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String)">
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
             <summary>
             For authenticating internal users. (Part of the login process)
             </summary>
             <param name="sessionContext"></param>
             <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
             <returns>Void</returns>
         </member>
-        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String)">
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
             <summary>
             For authenticating external users. (Part of the login process)
             </summary>
             <param name="sessionContext"></param>
             <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
             <returns>Void</returns>
         </member>
         <member name="M:Services.AuthenticationManagement.IAuthenticationManager.GetSessionUser(Microsoft.AspNetCore.Http.ISession)">

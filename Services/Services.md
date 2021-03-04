@@ -6,8 +6,8 @@
 - [GlobalActionFilter](#T-Services-Filters-GlobalActionFilter 'Services.Filters.GlobalActionFilter')
   - [OnActionExecutionAsync(context,next)](#M-Services-Filters-GlobalActionFilter-OnActionExecutionAsync-Microsoft-AspNetCore-Mvc-Filters-ActionExecutingContext,Microsoft-AspNetCore-Mvc-Filters-ActionExecutionDelegate- 'Services.Filters.GlobalActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)')
 - [IAuthenticationManager](#T-Services-AuthenticationManagement-IAuthenticationManager 'Services.AuthenticationManagement.IAuthenticationManager')
-  - [AuthenticateExternalUser(sessionContext,email)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String)')
-  - [AuthenticateInternalUser(sessionContext,email)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String)')
+  - [AuthenticateExternalUser(sessionContext,email,password)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)')
+  - [AuthenticateInternalUser(sessionContext,email,password)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)')
   - [GetSessionUser(sessionContext)](#M-Services-AuthenticationManagement-IAuthenticationManager-GetSessionUser-Microsoft-AspNetCore-Http-ISession- 'Services.AuthenticationManagement.IAuthenticationManager.GetSessionUser(Microsoft.AspNetCore.Http.ISession)')
 - [IGenericQuerier](#T-Services-GenericRepository-IGenericQuerier 'Services.GenericRepository.IGenericQuerier')
   - [LoadDbSet\`\`1()](#M-Services-GenericRepository-IGenericQuerier-LoadDbSet``1 'Services.GenericRepository.IGenericQuerier.LoadDbSet``1')
@@ -72,8 +72,8 @@ This method is called everytime a controller action is called. It ensures that t
 
 Services.AuthenticationManagement
 
-<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String-'></a>
-### AuthenticateExternalUser(sessionContext,email) `method`
+<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String-'></a>
+### AuthenticateExternalUser(sessionContext,email,password) `method`
 
 ##### Summary
 
@@ -89,9 +89,10 @@ Void
 | ---- | ---- | ----------- |
 | sessionContext | [Microsoft.AspNetCore.Http.ISession](#T-Microsoft-AspNetCore-Http-ISession 'Microsoft.AspNetCore.Http.ISession') |  |
 | email | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users email address |
+| password | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users password, compared with exisitng hash |
 
-<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String-'></a>
-### AuthenticateInternalUser(sessionContext,email) `method`
+<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String-'></a>
+### AuthenticateInternalUser(sessionContext,email,password) `method`
 
 ##### Summary
 
@@ -107,6 +108,7 @@ Void
 | ---- | ---- | ----------- |
 | sessionContext | [Microsoft.AspNetCore.Http.ISession](#T-Microsoft-AspNetCore-Http-ISession 'Microsoft.AspNetCore.Http.ISession') |  |
 | email | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users email address |
+| password | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users password, compared with exisitng hash |
 
 <a name='M-Services-AuthenticationManagement-IAuthenticationManager-GetSessionUser-Microsoft-AspNetCore-Http-ISession-'></a>
 ### GetSessionUser(sessionContext) `method`
