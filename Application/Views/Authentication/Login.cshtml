@@ -4,12 +4,12 @@
 
 <div class="login-wrapper">
     <div class="login-box pt-3">
-        <h2>ABC LOGO HERE</h2>
+        <img class="shadow-lg rounded" src="~/img/ABCEnergyLogo.PNG"/>
         <div class="login-tabs mb-3">
             <div data-btn-for="internal" class="tab active clickable">Internal</div>
             <div data-btn-for="external" class="tab clickable">External</div>
         </div>
-        <div data-tab-for="internal" class="p-3">
+        <div data-tab-for="internal" class="internal p-3">
             <h4>ABC Employee Login</h4>
             <hr />
             <input placeholder="Email Address..." type="email" name="email" class="w-100" />
@@ -17,7 +17,7 @@
                 <div class="btn-primary" data-login-btn="internal">Login</div>
             </div>
         </div>
-        <div data-tab-for="external" class="d-none p-3">
+        <div data-tab-for="external" class="external d-none p-3">
             <h4>ABC Affiliate Login</h4>
             <hr />
             <input placeholder="Email Address..." type="text" name="email" class="w-100" />
@@ -45,19 +45,14 @@
             var playlist = new talkify.playlist()
                 .begin()
                 .usingPlayer(player)
-                .withRootSelector('.loginbox')
+                .withRootSelector('.login-box')
                 .build();
 
             playlist.play();
         });
 
         document.querySelector('.clickable').addEventListener('mouseover', (t) => {
-            var playlist = new talkify.playlist()
-                .begin()
-                .usingPlayer(player)
-                .withRootSelector('.clickable')
-                .build();
-            playlist.play();
+            
         });
     </script>
 }
