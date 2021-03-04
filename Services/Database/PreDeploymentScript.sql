@@ -49,7 +49,7 @@ DELETE FROM `quote_response`;
 /*!40000 ALTER TABLE `quote_response` DISABLE KEYS */;
 INSERT INTO `quote_response` (`QuoteResponseID`, `QuoteID`, `QuoteStatusID`, `ResponseDate`, `ReponseText`, `Quote`) VALUES
 	(4, 1, 2, '0001-01-01 00:00:00', 'That\'s all ya getting fella, no more no less', 1000),
-	(6, 1, 1, '0001-01-01 00:00:00', 'This is as low as i can go flower.', 980),
+	(6, 1, 3, '0001-01-01 00:00:00', 'This is as low as i can go flower.', 980),
 	(7, 3, 1, '0001-01-01 00:00:00', 'It\'s a very expensive box', 1000000),
 	(8, 2, 2, '0001-01-01 00:00:00', 'It\'s very expensive are you sure you want 5?', 100000);
 /*!40000 ALTER TABLE `quote_response` ENABLE KEYS */;
@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Lastname` varchar(100) NOT NULL,
   `CompanyEmail` varchar(50) NOT NULL,
   `DOB` date DEFAULT NULL,
+  `PasswordHash` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`UserID`) USING BTREE,
   KEY `FK_User_RoleID` (`RoleID`),
   CONSTRAINT `FK_User_RoleID` FOREIGN KEY (`RoleID`) REFERENCES `role` (`RoleID`)
@@ -98,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`UserID`, `RoleID`, `Firstname`, `Lastname`, `CompanyEmail`, `DOB`) VALUES
-	(5, 1, 'Callum', 'Beckwith', 'cb@abc.com', '1998-05-27');
+INSERT INTO `user` (`UserID`, `RoleID`, `Firstname`, `Lastname`, `CompanyEmail`, `DOB`, `PasswordHash`) VALUES
+	(5, 1, 'Callum', 'Beckwith', 'cb@abc.com', '1998-05-27', '9Vph5FcPMwH7dvYYol1jkg==|9001|QugR2xVVHAhxt5bG7dcdNbSp5igDT69/');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `vendor`;
@@ -150,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `vendor_user` (
   `Email` varchar(100) NOT NULL,
   `Firstname` varchar(200) NOT NULL,
   `Lastname` varchar(200) NOT NULL,
+  `PasswordHash` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`VendorUserID`),
   KEY `FK_Vendor_User_Vendor` (`VendorID`),
   CONSTRAINT `FK_Vendor_User_Vendor` FOREIGN KEY (`VendorID`) REFERENCES `vendor` (`VendorID`)
@@ -157,10 +159,10 @@ CREATE TABLE IF NOT EXISTS `vendor_user` (
 
 DELETE FROM `vendor_user`;
 /*!40000 ALTER TABLE `vendor_user` DISABLE KEYS */;
-INSERT INTO `vendor_user` (`VendorUserID`, `VendorID`, `Email`, `Firstname`, `Lastname`) VALUES
-	(2, 4, 'jim.halpert@dundermifflin.com', 'Jim', 'Halpert'),
-	(3, 4, 'dwight.schrute@dundermifflin.com', 'Dwight', 'Schrute'),
-	(4, 1, 'fry@pe.com', 'Philip', 'J.Fry');
+INSERT INTO `vendor_user` (`VendorUserID`, `VendorID`, `Email`, `Firstname`, `Lastname`, `PasswordHash`) VALUES
+	(2, 4, 'jim.halpert@dundermifflin.com', 'Jim', 'Halpert', '9Vph5FcPMwH7dvYYol1jkg==|9001|QugR2xVVHAhxt5bG7dcdNbSp5igDT69/'),
+	(3, 4, 'dwight.schrute@dundermifflin.com', 'Dwight', 'Schrute', '9Vph5FcPMwH7dvYYol1jkg==|9001|QugR2xVVHAhxt5bG7dcdNbSp5igDT69/'),
+	(4, 1, 'fry@pe.com', 'Philip', 'J.Fry', '9Vph5FcPMwH7dvYYol1jkg==|9001|QugR2xVVHAhxt5bG7dcdNbSp5igDT69/');
 /*!40000 ALTER TABLE `vendor_user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
