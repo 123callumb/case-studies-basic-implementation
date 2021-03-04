@@ -11,7 +11,7 @@ namespace Services.QuoteManagement
         /// </summary>
         /// <param name="item">The item in question</param>
         /// <param name="quantity">The amount of the item in question requested</param>
-        /// <returns>Returns a bool, true if the request is created./returns>
+        /// <returns>Returns a bool, true if the request is created.</returns>
         Task<bool> RequestQuote(VendorItemDTO item, int quantity);
         /// <summary>
         /// Load all quotes that are currently on the system 

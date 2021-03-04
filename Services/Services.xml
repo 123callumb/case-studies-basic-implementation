@@ -106,7 +106,14 @@
             </summary>
             <returns>An integer for how many rows in the db have been affected.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Services.QuoteManagement.IQuoteManager.RequestQuote(Services.Models.DTOs.VendorItemDTO,System.Int32)" -->
+        <member name="M:Services.QuoteManagement.IQuoteManager.RequestQuote(Services.Models.DTOs.VendorItemDTO,System.Int32)">
+            <summary>
+            Used to request a quote from a vendor 
+            </summary>
+            <param name="item">The item in question</param>
+            <param name="quantity">The amount of the item in question requested</param>
+            <returns>Returns a bool, true if the request is created.</returns>
+        </member>
         <member name="M:Services.QuoteManagement.IQuoteManager.GetQuotes">
             <summary>
             Load all quotes that are currently on the system 
