@@ -54,7 +54,8 @@ namespace UnitTests.ControllerTests
             // Act
             var res = await controller.AuthenticateInternalUser(new UserLogonRequest()
             {
-                Email = "cb@abc.com"
+                Email = "cb@abc.com",
+                Password = "password"
             });
 
             // Assert
@@ -87,7 +88,8 @@ namespace UnitTests.ControllerTests
             // Act
             var res = await controller.AuthenticateExternalUser(new UserLogonRequest()
             {
-                Email = "fr@pe.com"
+                Email = "fr@pe.com",
+                Password = "password"
             });
 
             // Assert
