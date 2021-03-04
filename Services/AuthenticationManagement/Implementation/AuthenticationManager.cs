@@ -45,6 +45,10 @@ namespace Services.AuthenticationManagement.Implementation
         public async Task<AbstractUser> GetSessionUser(ISession sessionContext)
         {
             AuthenticatedSession authSession = sessionContext.GetUserSession();
+
+            if (authSession == null)
+                return null;
+
             AbstractUser sessionUser;
 
             switch (authSession.UserType)

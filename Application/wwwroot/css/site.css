@@ -75,6 +75,14 @@ body {
     cursor: pointer;
 }
 
+.status-box {
+    padding: 5px;
+    max-width: 150px;
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+}
+
 /* Colour Scheme = cs */
 
 .cs-inventory {

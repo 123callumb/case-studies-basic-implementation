@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Services.QuoteManagement;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Services.UserManagement;
 
 namespace Application.Controllers
 {
@@ -18,6 +19,7 @@ namespace Application.Controllers
     {
         private readonly IVendorItemManager _vendorItemManager;
         private readonly IQuoteManager _quoteManager;
+        private readonly IUserManager _userManager;
         public HomeController(IAuthenticationManager authManager, IVendorItemManager vendorItemManager, IQuoteManager quoteManager) : base(authManager) {
             _vendorItemManager = vendorItemManager;
             _quoteManager = quoteManager;
@@ -89,6 +91,23 @@ namespace Application.Controllers
             }catch(Exception ex)
             {
                 return Json("error");                
+            }
+        }
+
+        [RequireUser(UserTypeEnum.INTERNAL)]
+        public async Task<IActionResult> VendorQuotes()
+        {
+            try
+            {
+                var sessionUser = await GetSessionUser();
+                var vendorQuotes = await _quoteManager.GetQuotes();
+                var viewModel = new VendorQuoteViewModel(sessionUser, vendorQuotes);
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
             }
         }
     }
