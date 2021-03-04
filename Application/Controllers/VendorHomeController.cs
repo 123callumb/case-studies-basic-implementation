@@ -23,7 +23,11 @@ namespace Application.Controllers
             _quoteManager = quoteManager;
             _userManager = userManager;
         }
-
+        /// <summary>
+        /// This is for the home screen of external users, it will load up a list of thier current
+        /// quotes that are active for the vendor that they work for.
+        /// </summary>
+        /// <returns>Returns a View</returns>
         [RequireUser(UserTypeEnum.EXTERNAL)]
         public async Task<IActionResult> Index()
         {
