@@ -4,20 +4,22 @@
         <name>Services</name>
     </assembly>
     <members>
-        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String)">
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
             <summary>
             For authenticating internal users. (Part of the login process)
             </summary>
             <param name="sessionContext"></param>
             <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
             <returns>Void</returns>
         </member>
-        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String)">
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
             <summary>
             For authenticating external users. (Part of the login process)
             </summary>
             <param name="sessionContext"></param>
             <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
             <returns>Void</returns>
         </member>
         <member name="M:Services.AuthenticationManagement.IAuthenticationManager.GetSessionUser(Microsoft.AspNetCore.Http.ISession)">
@@ -105,6 +107,23 @@
             Used after editing dbset entities.
             </summary>
             <returns>An integer for how many rows in the db have been affected.</returns>
+        </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.Hash(System.String)">
+            <summary>
+            Hash a string with crytpo libs
+            </summary>
+            <param name="value">string value to hash</param>
+            <returns>hashed string</returns>
+        </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.CompareHashToValue(System.String,System.String)">
+            <summary>
+            Compare a hased value with a non hashed value, used for seeing if passwords are
+            correct as it is not possible to has the value and see if it exists in the db.
+            The password hash must first be brough back.
+            </summary>
+            <param name="hash">Hashed string</param>
+            <param name="value">Value to compare</param>
+            <returns>Will return true if the hash is equal to the value and false if not</returns>
         </member>
         <member name="M:Services.QuoteManagement.IQuoteManager.RequestQuote(Services.Models.DTOs.VendorItemDTO,System.Int32)">
             <summary>

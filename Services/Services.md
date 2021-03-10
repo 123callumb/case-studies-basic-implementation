@@ -5,9 +5,12 @@
 
 - [GlobalActionFilter](#T-Services-Filters-GlobalActionFilter 'Services.Filters.GlobalActionFilter')
   - [OnActionExecutionAsync(context,next)](#M-Services-Filters-GlobalActionFilter-OnActionExecutionAsync-Microsoft-AspNetCore-Mvc-Filters-ActionExecutingContext,Microsoft-AspNetCore-Mvc-Filters-ActionExecutionDelegate- 'Services.Filters.GlobalActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)')
+- [HashHelper](#T-Services-HashManagement-Implementation-HashHelper 'Services.HashManagement.Implementation.HashHelper')
+  - [CompareHashToValue(hash,value)](#M-Services-HashManagement-Implementation-HashHelper-CompareHashToValue-System-String,System-String- 'Services.HashManagement.Implementation.HashHelper.CompareHashToValue(System.String,System.String)')
+  - [Hash(value)](#M-Services-HashManagement-Implementation-HashHelper-Hash-System-String- 'Services.HashManagement.Implementation.HashHelper.Hash(System.String)')
 - [IAuthenticationManager](#T-Services-AuthenticationManagement-IAuthenticationManager 'Services.AuthenticationManagement.IAuthenticationManager')
-  - [AuthenticateExternalUser(sessionContext,email)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String)')
-  - [AuthenticateInternalUser(sessionContext,email)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String)')
+  - [AuthenticateExternalUser(sessionContext,email,password)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)')
+  - [AuthenticateInternalUser(sessionContext,email,password)](#M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String- 'Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)')
   - [GetSessionUser(sessionContext)](#M-Services-AuthenticationManagement-IAuthenticationManager-GetSessionUser-Microsoft-AspNetCore-Http-ISession- 'Services.AuthenticationManagement.IAuthenticationManager.GetSessionUser(Microsoft.AspNetCore.Http.ISession)')
 - [IGenericQuerier](#T-Services-GenericRepository-IGenericQuerier 'Services.GenericRepository.IGenericQuerier')
   - [LoadDbSet\`\`1()](#M-Services-GenericRepository-IGenericQuerier-LoadDbSet``1 'Services.GenericRepository.IGenericQuerier.LoadDbSet``1')
@@ -65,6 +68,50 @@ This method is called everytime a controller action is called. It ensures that t
 | context | [Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext](#T-Microsoft-AspNetCore-Mvc-Filters-ActionExecutingContext 'Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext') | Current HttpContext |
 | next | [Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate](#T-Microsoft-AspNetCore-Mvc-Filters-ActionExecutionDelegate 'Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate') | The intended action method. |
 
+<a name='T-Services-HashManagement-Implementation-HashHelper'></a>
+## HashHelper `type`
+
+##### Namespace
+
+Services.HashManagement.Implementation
+
+<a name='M-Services-HashManagement-Implementation-HashHelper-CompareHashToValue-System-String,System-String-'></a>
+### CompareHashToValue(hash,value) `method`
+
+##### Summary
+
+Compare a hased value with a non hashed value, used for seeing if passwords are
+correct as it is not possible to has the value and see if it exists in the db.
+The password hash must first be brough back.
+
+##### Returns
+
+Will return true if the hash is equal to the value and false if not
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| hash | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Hashed string |
+| value | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Value to compare |
+
+<a name='M-Services-HashManagement-Implementation-HashHelper-Hash-System-String-'></a>
+### Hash(value) `method`
+
+##### Summary
+
+Hash a string with crytpo libs
+
+##### Returns
+
+hashed string
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| value | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | string value to hash |
+
 <a name='T-Services-AuthenticationManagement-IAuthenticationManager'></a>
 ## IAuthenticationManager `type`
 
@@ -72,8 +119,8 @@ This method is called everytime a controller action is called. It ensures that t
 
 Services.AuthenticationManagement
 
-<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String-'></a>
-### AuthenticateExternalUser(sessionContext,email) `method`
+<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateExternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String-'></a>
+### AuthenticateExternalUser(sessionContext,email,password) `method`
 
 ##### Summary
 
@@ -89,9 +136,10 @@ Void
 | ---- | ---- | ----------- |
 | sessionContext | [Microsoft.AspNetCore.Http.ISession](#T-Microsoft-AspNetCore-Http-ISession 'Microsoft.AspNetCore.Http.ISession') |  |
 | email | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users email address |
+| password | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users password, compared with exisitng hash |
 
-<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String-'></a>
-### AuthenticateInternalUser(sessionContext,email) `method`
+<a name='M-Services-AuthenticationManagement-IAuthenticationManager-AuthenticateInternalUser-Microsoft-AspNetCore-Http-ISession,System-String,System-String-'></a>
+### AuthenticateInternalUser(sessionContext,email,password) `method`
 
 ##### Summary
 
@@ -107,6 +155,7 @@ Void
 | ---- | ---- | ----------- |
 | sessionContext | [Microsoft.AspNetCore.Http.ISession](#T-Microsoft-AspNetCore-Http-ISession 'Microsoft.AspNetCore.Http.ISession') |  |
 | email | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users email address |
+| password | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Users password, compared with exisitng hash |
 
 <a name='M-Services-AuthenticationManagement-IAuthenticationManager-GetSessionUser-Microsoft-AspNetCore-Http-ISession-'></a>
 ### GetSessionUser(sessionContext) `method`

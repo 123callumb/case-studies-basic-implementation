@@ -14,14 +14,14 @@
             <summary>
             Authenticates abc users into the system. Will redirect them to their homepage
             </summary>
-            <param name="request">Request asks for their email address</param>
+            <param name="request">Request asks for their email address and password</param>
             <returns>Returns a json result to tell the javascript if their login was successful</returns>
         </member>
         <member name="M:Application.Controllers.AuthenticationController.AuthenticateExternalUser(Application.Requests.Authentication.UserLogonRequest)">
             <summary>
             Authenticates external vendor users into the system. Will redirect them to their homepage
             </summary>
-            <param name="request">Request asks for their email address</param>
+            <param name="request">Request asks for their email address and password</param>
             <returns>Returns a json result to tell the javascript if their login was successful</returns>
         </member>
         <member name="M:Application.Controllers.BaseController.GetSessionUser">

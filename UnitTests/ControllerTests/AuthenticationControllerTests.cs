@@ -49,12 +49,13 @@ namespace UnitTests.ControllerTests
             var c = new MockContainer();
             var controller = Controller(c);
 
-            c.AuthenticationManager.Setup(s => s.AuthenticateInternalUser(It.IsAny<ISession>(), It.IsAny<string>())).Returns(Task.CompletedTask);
+            c.AuthenticationManager.Setup(s => s.AuthenticateInternalUser(It.IsAny<ISession>(), It.IsAny<string>(), It.IsAny<string>())).Returns(Task.CompletedTask);
 
             // Act
             var res = await controller.AuthenticateInternalUser(new UserLogonRequest()
             {
-                Email = "cb@abc.com"
+                Email = "cb@abc.com",
+                Password = "password"
             });
 
             // Assert
@@ -82,12 +83,13 @@ namespace UnitTests.ControllerTests
             var c = new MockContainer();
             var controller = Controller(c);
 
-            c.AuthenticationManager.Setup(s => s.AuthenticateExternalUser(It.IsAny<ISession>(), It.IsAny<string>())).Returns(Task.CompletedTask);
+            c.AuthenticationManager.Setup(s => s.AuthenticateExternalUser(It.IsAny<ISession>(), It.IsAny<string>(), It.IsAny<string>())).Returns(Task.CompletedTask);
 
             // Act
             var res = await controller.AuthenticateExternalUser(new UserLogonRequest()
             {
-                Email = "fr@pe.com"
+                Email = "fr@pe.com",
+                Password = "password"
             });
 
             // Assert
