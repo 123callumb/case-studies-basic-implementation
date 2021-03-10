@@ -1,5 +1,5 @@
 ﻿talkify.config.remoteService.host = 'https://talkify.net';
-talkify.config.remoteService.apiKey = 'b8f0832c-75ec-4823-9fc8-cf3d4ccaa3d1';
+talkify.config.remoteService.apiKey = '298c9307-7ac8-4654-8cf5-7de63ff4f95f';
 
 talkify.config.ui.audioControls.enabled = true;
 talkify.config.ui.audioControls.voicepicker.enabled = true;
