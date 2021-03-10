@@ -10,12 +10,14 @@ var player = new talkify.TtsPlayer()
     .enableTextHighlighting()
     .forceVoice({ name: "Hazel" });
 
+
 var btnAudioAssist = document.querySelector('#audioAssistButton');
 btnAudioAssist.addEventListener('click',
     (event) => {
         if (btnAudioAssist.classList.contains('active')) {
             btnAudioAssist.classList.remove('active');
             btnAudioAssist.querySelector('span').innerHTML = 'volume_off';
+            player.pause();
         } else {
             btnAudioAssist.classList.add('active');
             btnAudioAssist.querySelector('span').innerHTML = 'volume_up';
@@ -27,11 +29,10 @@ document.querySelectorAll('[data-voice]').forEach(item => {
         (event) => {
             if (btnAudioAssist.classList.contains('active')) {
                 var msg = event.target.getAttribute("data-voice");
-                console.log(msg);
                 if (msg !== '') {
                     player.playText(msg);
                 } else {
-                    player.playText(event.target.innerHTML);
+                    player.playText(event.target.innerText);
                 }
             }
         });
