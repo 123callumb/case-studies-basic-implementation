@@ -15,20 +15,25 @@
     }
 </head>
 <body>
-    <div class="container">
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
-    <script src="~/lib/tingle/tingle.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/talkify/talkify.min.js"></script>
-    <script src="~/lib/talkify/talkify.config.js"></script>
-    @await RenderSectionAsync("PageJS", required: false)
-    @if (IsSectionDefined("Scripts"))
-    {
-        @await RenderSectionAsync("Scripts", required: false)
-    }
+<div id="audioAssistButton" class="btn btn-secondary mt-3 ms-3">
+    <span class="material-icons align-middle">
+        volume_off
+    </span>
+</div>
+<div class="container">
+    <main role="main">
+        @RenderBody()
+    </main>
+</div>
+<script src="~/lib/tingle/tingle.min.js"></script>
+<script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/talkify/talkify.min.js"></script>
+<script src="~/lib/talkify/audioReader.js"></script>
+@await RenderSectionAsync("PageJS", required: false)
+@if (IsSectionDefined("Scripts"))
+{
+    @await RenderSectionAsync("Scripts", required: false)
+}
 </body>
 </html>

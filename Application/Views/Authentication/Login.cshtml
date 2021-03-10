@@ -6,23 +6,23 @@
     <div class="login-box pt-3">
         <img class="shadow-lg rounded" src="~/img/ABCEnergyLogo.PNG"/>
         <div class="login-tabs mb-3">
-            <div data-btn-for="internal" class="tab active clickable">Internal</div>
-            <div data-btn-for="external" class="tab clickable">External</div>
+            <div data-btn-for="internal" data-voice="Internal Login" class="tab active clickable">Internal</div>
+            <div data-btn-for="external" data-voice="External Login" class="tab clickable">External</div>
         </div>
         <div data-tab-for="internal" class="internal p-3">
-            <h4>ABC Employee Login</h4>
+            <h4 data-voice>ABC Employee Login</h4>
             <hr />
-            <input placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <input data-voice="Email Address" placeholder="Email Address..." type="email" name="email" class="w-100" />
             <div class="py-2">
-                <div class="btn-primary" data-login-btn="internal">Login</div>
+                <div class="btn-primary" data-login-btn="internal" data-voice>Login</div>
             </div>
         </div>
         <div data-tab-for="external" class="external d-none p-3">
-            <h4>ABC Affiliate Login</h4>
+            <h4 data-voice>ABC Affiliate Login</h4>
             <hr />
-            <input placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <input data-voice="Email Address" placeholder="Email Address..." type="text" name="email" class="w-100" />
             <div class="py-2">
-                <div class="btn-primary" data-login-btn="external">Login</div>
+                <div class="btn-primary" data-login-btn="external" data-voice>Login</div>
             </div>
         </div>
     </div>
@@ -41,18 +41,6 @@
 @section Scripts
 {
     <script type="text/javascript">
-        window.addEventListener('load', (event) => {
-            var playlist = new talkify.playlist()
-                .begin()
-                .usingPlayer(player)
-                .withRootSelector('.login-box')
-                .build();
-
-            playlist.play();
-        });
-
-        document.querySelector('.clickable').addEventListener('mouseover', (t) => {
-            
-        });
+        
     </script>
 }
