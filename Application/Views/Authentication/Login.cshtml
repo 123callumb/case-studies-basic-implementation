@@ -13,6 +13,8 @@
             <h4 data-voice>ABC Employee Login</h4>
             <hr />
             <input data-voice="Email Address" placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <input placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <input placeholder="Password" type="password" name="password" class="w-100 mt-2" />
             <div class="py-2">
                 <div class="btn-primary" data-login-btn="internal" data-voice>Login</div>
             </div>
@@ -21,6 +23,8 @@
             <h4 data-voice>ABC Affiliate Login</h4>
             <hr />
             <input data-voice="Email Address" placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <input placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <input placeholder="Password" type="password" name="password" class="w-100 mt-2" />
             <div class="py-2">
                 <div class="btn-primary" data-login-btn="external" data-voice>Login</div>
             </div>
@@ -35,12 +39,5 @@
             internalAuth: '@Url.Action("AuthenticateInternalUser", "Authentication")',
             externalAuth: '@Url.Action("AuthenticateExternalUser", "Authentication")',
         });
-    </script>
-}
-
-@section Scripts
-{
-    <script type="text/javascript">
-        
     </script>
 }

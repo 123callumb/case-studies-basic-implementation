@@ -51,7 +51,9 @@ namespace Services.EntityFramework.DbEntities
                     .HasColumnType("int(11)")
                     .HasDefaultValueSql("'1'");
 
-                entity.Property(e => e.QuoteDate).HasColumnType("datetime");
+                entity.Property(e => e.QuoteDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("current_timestamp()");
 
                 entity.Property(e => e.VendorItemId)
                     .HasColumnType("int(11)")
@@ -82,7 +84,8 @@ namespace Services.EntityFramework.DbEntities
 
                 entity.Property(e => e.QuoteStatusId)
                     .HasColumnType("int(11)")
-                    .HasColumnName("QuoteStatusID");
+                    .HasColumnName("QuoteStatusID")
+                    .HasDefaultValueSql("'1'");
 
                 entity.Property(e => e.ReponseText)
                     .IsRequired()
@@ -90,7 +93,9 @@ namespace Services.EntityFramework.DbEntities
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 
-                entity.Property(e => e.ResponseDate).HasColumnType("datetime");
+                entity.Property(e => e.ResponseDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("current_timestamp()");
 
                 entity.HasOne(d => d.QuoteNavigation)
                     .WithMany(p => p.QuoteResponses)
@@ -171,6 +176,11 @@ namespace Services.EntityFramework.DbEntities
                 entity.Property(e => e.Lastname)
                     .IsRequired()
                     .HasColumnType("varchar(100)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
+                entity.Property(e => e.PasswordHash)
+                    .HasColumnType("varchar(1000)")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 
@@ -266,6 +276,11 @@ namespace Services.EntityFramework.DbEntities
                 entity.Property(e => e.Lastname)
                     .IsRequired()
                     .HasColumnType("varchar(200)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
+                entity.Property(e => e.PasswordHash)
+                    .HasColumnType("varchar(1000)")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 

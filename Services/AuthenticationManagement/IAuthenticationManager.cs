@@ -11,15 +11,17 @@ namespace Services.AuthenticationManagement
         /// </summary>
         /// <param name="sessionContext"></param>
         /// <param name="email">Users email address</param>
+        /// <param name="password">Users password, compared with exisitng hash</param>
         /// <returns>Void</returns>
-        Task AuthenticateInternalUser(ISession sessionContext, string email);
+        Task AuthenticateInternalUser(ISession sessionContext, string email, string password);
         /// <summary>
         /// For authenticating external users. (Part of the login process)
         /// </summary>
         /// <param name="sessionContext"></param>
         /// <param name="email">Users email address</param>
+        /// <param name="password">Users password, compared with exisitng hash</param>
         /// <returns>Void</returns>
-        Task AuthenticateExternalUser(ISession sessionContext, string email);
+        Task AuthenticateExternalUser(ISession sessionContext, string email, string password);
         /// <summary>
         /// Get a users current session user external or internal, will return null if the user does
         /// not have a logged in session.

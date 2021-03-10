@@ -12,7 +12,7 @@ namespace Services.Filters
     public class GlobalActionFilter : IAsyncActionFilter
     {
         private readonly IAuthenticationManager _authManager;
-        private RedirectToActionResult permissionError = new RedirectToActionResult("Index", "Error", new { errorMessage = "Access denied." });
+        //private RedirectToActionResult permissionError = new RedirectToActionResult("Index", "Error", new { errorMessage = "Access denied." });
         private RedirectToActionResult noSesssionResult = new RedirectToActionResult("Login", "Authentication", null);
         public GlobalActionFilter(IAuthenticationManager authManager) 
         {
@@ -44,7 +44,7 @@ namespace Services.Filters
             var user = await _authManager.GetSessionUser(context.HttpContext.Session);
             if(userFilter.Get() != UserTypeEnum.ANY && user.UserType != userFilter.Get())
             {
-                context.Result = permissionError;
+                context.Result = noSesssionResult;
                 return;
             }
 

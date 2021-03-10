@@ -37,7 +37,7 @@ Returns a json result to tell the javascript if their login was successful
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| request | [Application.Requests.Authentication.UserLogonRequest](#T-Application-Requests-Authentication-UserLogonRequest 'Application.Requests.Authentication.UserLogonRequest') | Request asks for their email address |
+| request | [Application.Requests.Authentication.UserLogonRequest](#T-Application-Requests-Authentication-UserLogonRequest 'Application.Requests.Authentication.UserLogonRequest') | Request asks for their email address and password |
 
 <a name='M-Application-Controllers-AuthenticationController-AuthenticateInternalUser-Application-Requests-Authentication-UserLogonRequest-'></a>
 ### AuthenticateInternalUser(request) `method`
@@ -54,7 +54,7 @@ Returns a json result to tell the javascript if their login was successful
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| request | [Application.Requests.Authentication.UserLogonRequest](#T-Application-Requests-Authentication-UserLogonRequest 'Application.Requests.Authentication.UserLogonRequest') | Request asks for their email address |
+| request | [Application.Requests.Authentication.UserLogonRequest](#T-Application-Requests-Authentication-UserLogonRequest 'Application.Requests.Authentication.UserLogonRequest') | Request asks for their email address and password |
 
 <a name='M-Application-Controllers-AuthenticationController-Login'></a>
 ### Login() `method`
