@@ -2,8 +2,8 @@
 /*
  * Talkify.js allows us to send a request for an text to speech audio sample that can
  * be played on the website. Here we have set up the talkify apiKey required for the service.
- * You are allocated 1000 free requests a month on the free account. This is enought for
- * testing purposes.
+ * You are allocated 1000 free requests a month on the free account. This is enough for
+ * testing purposes for this case studies project.
  */
 
 talkify.config.remoteService.host = 'https://talkify.net';
