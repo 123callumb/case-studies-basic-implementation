@@ -8,16 +8,19 @@
     <div class="d-flex flex-column flex-sm-row align-items-center">
         <!-- Breadcrumb, User name, Home button and Logout button -->
         <ol class="breadcrumb me-auto">
-            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item" aria-current="page" data-voice>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
             <li class="breadcrumb-item active" aria-current="page">Vendor</li>
         </ol>
         <div class="me-3">@Model.user.Email</div>
-        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
-        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+        <div data-voice>
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        </div>
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")" data-voice="log out">Logout</a>
     </div>
     <div class="p-3 bg-white text-start">
         <div class="d-flex flex-column">
             <div class="col">
+                <div class="menu-item cs-vendor" data-voice="Vendor Catalog">
                 <div class="menu-item cs-green">
                     <span class="material-icons-outlined">
                         next_week
@@ -26,6 +29,7 @@
                 </div>
             </div>
             <div class="col">
+                <div class="menu-item cs-supplier" data-voice="Vendor List">
                 <div class="menu-item cs-lightblue">
                     <span class="material-icons">
                         domain
@@ -34,6 +38,7 @@
                 </div>
             </div>
             <div class="col">
+                <div class="menu-item cs-accounts" data-voice="Vendor Quotes">
                 <div class="menu-item cs-yellow">
                     <span class="material-icons">
                         request_quote
