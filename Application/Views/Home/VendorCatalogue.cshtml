@@ -103,18 +103,20 @@
     <div class="d-flex flex-column flex-sm-row align-items-center">
         <!-- Breadcrumb, User name, Home button and Logout button -->
         <ol class="breadcrumb me-auto">
-            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
-            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Vendor", "VendorMenu", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item" aria-current="page" data-voice>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item" aria-current="page" data-voice>@Html.ActionLink("Vendor", "VendorMenu", "Home", null, new { @class = "btn-link" })</li>
             <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
         </ol>
         <div class="me-3">@Model.user.Email</div>
-        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
-        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+        <div data-voice>
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        </div>
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")" data-voice="log out">Logout</a>
     </div>
 </div>
 @* Alerts *@
 
-<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display:none;">
+<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display:none;" data-voice>
     Quote request for <strong><span id="successText"></span></strong> successful!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
@@ -139,11 +141,11 @@
                     search
                 </span>
             </div>
-            <div class="width:96%" style="display: flex; flex:1">
+            <div data-voice="Search Bar" class="width:96%" style="display: flex; flex:1">
                 <input type="text" id="searchInput" onkeydown="readInput(this, event)" placeholder="@ViewBag.SearchTerm" />
             </div>
         </div>
-        <div class="col-2 cs-vendor text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
+        <div data-voice class="col-2 cs-vendor text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
             Search
         </div>
     </div>
@@ -156,19 +158,19 @@
     <div class="p-3 bg-white catalogueItem">
         <div class="listingImage" style="background-image:url(@Model.VendorItems[i].ItemImageURL)">
         </div>
-        <div class="listingContent">
+        <div class="listingContent" data-voice>
             <h3>@Model.VendorItems[i].ItemName</h3>
             <p class="subtitile">Supplier</p>
             <p>@Model.VendorItems[i].VendorName</p>
-            <p class="subtitile">description</p>
+            <p class="subtitile">Description</p>
             <p>@Model.VendorItems[i].ItemDescription</p>
         </div>
         <hr width="1" size="150">
         <div class="listingNav">
             <div class="listingButton" style="background-color: rgb(240, 240, 240);">
-                <input id="quantity_@Model.VendorItems[i].ItemID" type="number" placeholder="Enter Quantity" />
+                <input data-voice="Enter Quantity" id="quantity_@Model.VendorItems[i].ItemID" type="number" placeholder="Enter Quantity" />
             </div>
-            <div class="listingButton cs-vendor" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
+            <div data-voice class="listingButton cs-vendor" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
                 <span>Request quote</span>
             </div>
         </div>
@@ -180,9 +182,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 @section Scripts{
     <script type="text/javascript">
-        window.onload = function () {
+        window.addEventListener('load', (event) => {
             document.getElementById("searchInput").focus();
-        };
+        });
 
         function runAction() {
             location.href = '@Url.Action("VendorCatalogueSearch", "Home")?searchTerm=' + document.getElementById('searchInput').value;
