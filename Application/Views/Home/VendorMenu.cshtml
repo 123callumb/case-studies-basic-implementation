@@ -20,8 +20,7 @@
     <div class="p-3 bg-white text-start">
         <div class="d-flex flex-column">
             <div class="col">
-                <div class="menu-item cs-vendor" data-voice="Vendor Catalog">
-                <div class="menu-item cs-green">
+                <div class="menu-item cs-green" data-voice="Vendor Catalog">
                     <span class="material-icons-outlined">
                         next_week
                     </span>
@@ -29,8 +28,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-supplier" data-voice="Vendor List">
-                <div class="menu-item cs-lightblue">
+                <div class="menu-item cs-lightblue" data-voice="Vendor List">
                     <span class="material-icons">
                         domain
                     </span>
@@ -38,8 +36,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-accounts" data-voice="Vendor Quotes">
-                <div class="menu-item cs-yellow">
+                <div class="menu-item cs-yellow" data-voice="Vendor Quotes">
                     <span class="material-icons">
                         request_quote
                     </span>
@@ -55,9 +52,6 @@
     <script type="text/javascript">
         document.querySelector('.cs-green').addEventListener('click', function() {
             document.location.href = "@Url.Action("VendorCatalogue", "Home")";
-        });
-        document.querySelector('.cs-accounts').addEventListener('click', function() {
-            document.location.href = "@Url.Action("VendorQuotes", "Home")";
         });
     </script>
 }

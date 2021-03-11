@@ -145,8 +145,7 @@
                 <input type="text" id="searchInput" onkeydown="readInput(this, event)" placeholder="@ViewBag.SearchTerm" />
             </div>
         </div>
-        <div data-voice class="col-2 cs-vendor text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
-        <div class="col-2 cs-green text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
+        <div data-voice class="col-2 cs-green text-center" id="searchButton" style="color:white; padding:15px; font-weight:600;">
             Search
         </div>
     </div>
@@ -171,8 +170,7 @@
             <div class="listingButton" style="background-color: rgb(240, 240, 240);">
                 <input data-voice="Enter Quantity" id="quantity_@Model.VendorItems[i].ItemID" type="number" placeholder="Enter Quantity" />
             </div>
-            <div data-voice class="listingButton cs-vendor" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
-            <div class="listingButton cs-green" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
+            <div data-voice class="listingButton cs-green" onclick="requestQuote(@Model.VendorItems[i].ItemID)">
                 <span>Request quote</span>
             </div>
         </div>
