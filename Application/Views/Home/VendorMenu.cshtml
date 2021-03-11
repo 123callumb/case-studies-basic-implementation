@@ -18,7 +18,7 @@
     <div class="p-3 bg-white text-start">
         <div class="d-flex flex-column">
             <div class="col">
-                <div class="menu-item cs-vendor">
+                <div class="menu-item cs-green">
                     <span class="material-icons-outlined">
                         next_week
                     </span>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-supplier">
+                <div class="menu-item cs-lightblue">
                     <span class="material-icons">
                         domain
                     </span>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-accounts">
+                <div class="menu-item cs-yellow">
                     <span class="material-icons">
                         request_quote
                     </span>
@@ -48,7 +48,7 @@
 @section Scripts
 {
     <script type="text/javascript">
-        document.querySelector('.cs-vendor').addEventListener('click', function() {
+        document.querySelector('.cs-green').addEventListener('click', function() {
             document.location.href = "@Url.Action("VendorCatalogue", "Home")";
         });
         document.querySelector('.cs-accounts').addEventListener('click', function() {

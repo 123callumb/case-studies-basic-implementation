@@ -85,84 +85,94 @@ body {
 
 /* Colour Scheme = cs */
 
-.cs-inventory {
+/*.cs-inventory*/
+.cs-purple {
     background: #BC73C8;
 }
 
-.cs-report {
+/*.cs-report*/
+.cs-orange {
     background: #EB938D;
 }
 
-.cs-supplier {
+/*.cs-supplier*/
+.cs-lightblue {
     background: #97A5D9;
 }
 
-.cs-vendor {
+/*.cs-vendor*/
+.cs-green {
     background: #97D99D;
 }
 
-.cs-company-resources {
+/*.cs-company-resources*/
+.cs-blue {
     background: #6576D2;
 }
 
-.cs-organisation {
+/*.cs-organisation*/
+.cs-teal {
     background: #97D5D9;
 }
 
-.cs-accounts {
+/*.cs-accounts*/
+.cs-yellow {
     background: #EED374;
 }
 
-.cs-contracts {
+/*.cs-contracts*/
+.cs-red {
     background: #EC9696;
 }
 
-.cs-customer-management {
+/*.cs-customer-management*/
+.cs-pink {
     background: #FBBCED;
 }
 
-.cs-requests {
+/*.cs-requests*/
+.cs-cyan {
     background: #A8DEF5;
 }
 
 /* Hover colours */
 
-.cs-inventory:hover {
+.cs-purple:hover {
     background: #a363ad;
 }
 
-.cs-report:hover {
+.cs-orange:hover {
     background: #d1837d;
 }
 
-.cs-supplier:hover {
+.cs-lightblue:hover {
     background: #8692bf;
 }
 
-.cs-vendor:hover {
+.cs-green:hover {
     background: #86bf8b;
 }
 
-.cs-company-resources:hover {
+.cs-blue:hover {
     background: #5866b8;
 }
 
-.cs-organisation:hover {
+.cs-teal:hover {
     background: #86bbbf;
 }
 
-.cs-accounts:hover {
+.cs-yellow:hover {
     background: #d4bc68;
 }
 
-.cs-contracts:hover {
+.cs-red:hover {
     background: #d48787;
 }
 
-.cs-customer-management:hover {
+.cs-pink:hover {
     background: #e0a8d4;
 }
 
-.cs-requests:hover {
+.cs-cyan:hover {
     background: #97c7db;
 }
