@@ -37,16 +37,20 @@ btnAudioAssist.addEventListener('click',
 // Find each element with the data-voice attribute and add a mouse over event listener to
 // use the audio player to play the inner Text of the element or the specified msg written in
 // the data-voice attribute. This is used for custom messages for specific elements.
-document.querySelectorAll('[data-voice]').forEach(item => {
-    item.addEventListener('mouseover',
-        (event) => {
-            if (btnAudioAssist.classList.contains('active')) {
-                var msg = event.target.getAttribute("data-voice");
-                if (msg !== '') {
-                    player.playText(msg);
-                } else {
-                    player.playText(event.target.innerText);
+var EnableVoiceAssist = function() {
+    document.querySelectorAll('[data-voice]').forEach(item => {
+        item.addEventListener('mouseover',
+            (event) => {
+                if (btnAudioAssist.classList.contains('active')) {
+                    var msg = event.target.getAttribute("data-voice");
+                    if (msg !== '') {
+                        player.playText(msg);
+                    } else {
+                        player.playText(event.target.innerText);
+                    }
                 }
-            }
-        });
-});
+            });
+    });
+}
+
+EnableVoiceAssist();

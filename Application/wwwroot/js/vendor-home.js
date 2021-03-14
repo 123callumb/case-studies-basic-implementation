@@ -35,28 +35,12 @@ class VendorHome {
             sendBtn.addEventListener('click', this.CreateResponse);
     }
 
-    EnableVoiceAssist() {
-        document.querySelectorAll('[data-voice]').forEach(item => {
-            item.addEventListener('mouseover',
-                (event) => {
-                    if (btnAudioAssist.classList.contains('active')) {
-                        var msg = event.target.getAttribute("data-voice");
-                        if (msg !== '') {
-                            player.playText(msg);
-                        } else {
-                            player.playText(event.target.innerText);
-                        }
-                    }
-                });
-        });
-    }
-
     async OpenQuoteModal(quoteID) {
         const res = await MakeRequest(this._urls.quoteResponseModal, "POST", { QuoteID: quoteID });
 
         if (res.success) {
             this._modal.setContent(res.data);
-            this.EnableVoiceAssist();
+            EnableVoiceAssist();
             this._modal.open();
         } else {
             throw "Failed to load modal response partial... check the logs...that we dont event have lol";
