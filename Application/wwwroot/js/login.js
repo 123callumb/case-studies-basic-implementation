@@ -26,8 +26,9 @@ class Login {
         const loginType = e.target.getAttribute(this._loginButtonTag);
         const loginUrl = loginType === this._loginInternal ? this._urls.internalAuth : this._urls.externalAuth;
         const email = document.querySelector(`[${this._dataTabWrapper}="${loginType}"] [name="email"]`).value;
+        const password = document.querySelector(`[${this._dataTabWrapper}="${loginType}"] [name="password"]`).value;
 
-        let res = await MakeRequest(loginUrl, "POST", { Email: email });
+        let res = await MakeRequest(loginUrl, "POST", { Email: email, Password: password });
         if (res.success) {
             location.href = loginType === this._loginInternal ? "/Home" : "/VendorHome";
         }

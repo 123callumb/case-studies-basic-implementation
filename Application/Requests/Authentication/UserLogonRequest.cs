@@ -2,7 +2,7 @@
 {
     public class UserLogonRequest
     {
-        // Just using the email address, we aint got time for hashing passwords
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

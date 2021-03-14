@@ -13,6 +13,7 @@ namespace Services.EntityFramework.DbEntities
         public string Lastname { get; set; }
         public string CompanyEmail { get; set; }
         public DateTime? Dob { get; set; }
+        public string PasswordHash { get; set; }
 
         public virtual Role Role { get; set; }
     }

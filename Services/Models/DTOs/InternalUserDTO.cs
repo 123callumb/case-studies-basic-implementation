@@ -17,7 +17,8 @@ namespace Services.Models.DTOs
             Lastname = m.Lastname,
             RoleID = m.RoleId,
             UserID = m.UserId,
-            UserType = UserTypeEnum.INTERNAL
+            UserType = UserTypeEnum.INTERNAL,
+            PasswordHash = m.PasswordHash
         };
     }
 }

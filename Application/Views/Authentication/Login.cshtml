@@ -4,25 +4,27 @@
 
 <div class="login-wrapper">
     <div class="login-box pt-3">
-        <h2>ABC LOGO HERE</h2>
+        <img data-voice="A B C Energy" class="shadow-lg rounded" src="~/img/ABCEnergyLogo.PNG"/>
         <div class="login-tabs mb-3">
-            <div data-btn-for="internal" class="tab active clickable">Internal</div>
-            <div data-btn-for="external" class="tab clickable">External</div>
+            <div data-btn-for="internal" data-voice="Internal Login" class="tab active clickable">Internal</div>
+            <div data-btn-for="external" data-voice="External Login" class="tab clickable">External</div>
         </div>
-        <div data-tab-for="internal" class="p-3">
-            <h4>ABC Employee Login</h4>
+        <div data-tab-for="internal" class="internal p-3">
+            <h4 data-voice>ABC Employee Login</h4>
             <hr />
-            <input placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <input data-voice="Email Address" placeholder="Email Address..." type="email" name="email" class="w-100" />
+            <input data-voice="Password" placeholder="Password" type="password" name="password" class="w-100 mt-2" />
             <div class="py-2">
-                <div class="btn-primary" data-login-btn="internal">Login</div>
+                <div class="btn-primary" data-login-btn="internal" data-voice>Login</div>
             </div>
         </div>
-        <div data-tab-for="external" class="d-none p-3">
-            <h4>ABC Affiliate Login</h4>
+        <div data-tab-for="external" class="external d-none p-3">
+            <h4 data-voice>ABC Affiliate Login</h4>
             <hr />
-            <input placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <input data-voice="Email Address" placeholder="Email Address..." type="text" name="email" class="w-100" />
+            <input data-voice="Password" placeholder="Password" type="password" name="password" class="w-100 mt-2" />
             <div class="py-2">
-                <div class="btn-primary" data-login-btn="external">Login</div>
+                <div class="btn-primary" data-login-btn="external" data-voice>Login</div>
             </div>
         </div>
     </div>

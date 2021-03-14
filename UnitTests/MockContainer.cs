@@ -1,7 +1,9 @@
 using Moq;
 using Services.AuthenticationManagement;
 using Services.GenericRepository;
+using Services.MVCManagement;
 using Services.QuoteManagement;
+using Services.QuoteResponseManagement;
 using Services.UserManagement;
 
 namespace UnitTests
@@ -12,15 +14,19 @@ namespace UnitTests
         {
             GenericQuerier = new Mock<IGenericQuerier>();
             GenericRepo = new Mock<IGenericRepo>();
-            AuthenticationController = new Mock<IAuthenticationManager>();
+            AuthenticationManager = new Mock<IAuthenticationManager>();
             QuoteManager = new Mock<IQuoteManager>();
             UserManager = new Mock<IUserManager>();
+            QuoteResponseManager = new Mock<IQuoteResponseManager>();
+            MVCManager = new Mock<IMVCManager>();
         }
 
         public Mock<IGenericQuerier> GenericQuerier { get; set; }
         public Mock<IGenericRepo> GenericRepo { get; set; }
-        public Mock<IAuthenticationManager> AuthenticationController { get; set; }
+        public Mock<IAuthenticationManager> AuthenticationManager { get; set; }
         public Mock<IQuoteManager> QuoteManager { get; set; }
+        public Mock<IQuoteResponseManager> QuoteResponseManager { get; set; }
         public Mock<IUserManager> UserManager { get; set; }
+        public Mock<IMVCManager> MVCManager { get; set; }
     }
 }

@@ -4,6 +4,32 @@
         <name>Services</name>
     </assembly>
     <members>
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateInternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
+            <summary>
+            For authenticating internal users. (Part of the login process)
+            </summary>
+            <param name="sessionContext"></param>
+            <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
+            <returns>Void</returns>
+        </member>
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.AuthenticateExternalUser(Microsoft.AspNetCore.Http.ISession,System.String,System.String)">
+            <summary>
+            For authenticating external users. (Part of the login process)
+            </summary>
+            <param name="sessionContext"></param>
+            <param name="email">Users email address</param>
+            <param name="password">Users password, compared with exisitng hash</param>
+            <returns>Void</returns>
+        </member>
+        <member name="M:Services.AuthenticationManagement.IAuthenticationManager.GetSessionUser(Microsoft.AspNetCore.Http.ISession)">
+            <summary>
+            Get a users current session user external or internal, will return null if the user does
+            not have a logged in session.
+            </summary>
+            <param name="sessionContext"></param>
+            <returns>Abstract user, an abstract instance of both an external or internal user.</returns>
+        </member>
         <member name="M:Services.Filters.GlobalActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
             <summary>
             This method is called everytime a controller action is called. It ensures that the user in the current session has access to the action. 
@@ -81,6 +107,125 @@
             Used after editing dbset entities.
             </summary>
             <returns>An integer for how many rows in the db have been affected.</returns>
+        </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.Hash(System.String)">
+            <summary>
+            Hash a string with crytpo libs
+            </summary>
+            <param name="value">string value to hash</param>
+            <returns>hashed string</returns>
+        </member>
+        <member name="M:Services.HashManagement.Implementation.HashHelper.CompareHashToValue(System.String,System.String)">
+            <summary>
+            Compare a hased value with a non hashed value, used for seeing if passwords are
+            correct as it is not possible to has the value and see if it exists in the db.
+            The password hash must first be brough back.
+            </summary>
+            <param name="hash">Hashed string</param>
+            <param name="value">Value to compare</param>
+            <returns>Will return true if the hash is equal to the value and false if not</returns>
+        </member>
+        <member name="M:Services.QuoteManagement.IQuoteManager.RequestQuote(Services.Models.DTOs.VendorItemDTO,System.Int32)">
+            <summary>
+            Used to request a quote from a vendor 
+            </summary>
+            <param name="item">The item in question</param>
+            <param name="quantity">The amount of the item in question requested</param>
+            <returns>Returns a bool, true if the request is created.</returns>
+        </member>
+        <member name="M:Services.QuoteManagement.IQuoteManager.GetQuotes">
+            <summary>
+            Load all quotes that are currently on the system 
+            </summary>
+            <returns>A List of quotes</returns>
+        </member>
+        <member name="M:Services.QuoteManagement.IQuoteManager.GetVendorQuotes(System.Int32)">
+            <summary>
+            Get a list of all quotes associated with a specific vendor
+            </summary>
+            <param name="vendorID">Unique vendor id</param>
+            <returns>Returns a list of quote overviews, the quote overview object is a small summaty of the quote without its quote responses attatched.</returns>
+        </member>
+        <member name="M:Services.QuoteManagement.IQuoteManager.GetQuote(System.Int32)">
+            <summary>
+            A full quote with its summary and quote responses if it has any
+            </summary>
+            <param name="quoteID">Unique identifier for the quote</param>
+            <returns>Returns a quote</returns>
+        </member>
+        <member name="M:Services.QuoteResponseManagement.IQuoteResponseManager.Create(Services.EntityFramework.DbEntities.QuoteResponse)">
+            <summary>
+            Create a quote response
+            </summary>
+            <param name="response">Takes in a quoete response object which asks for a quote id associated with the response, a response text and a price.</param>
+            <returns>Returns a boolean, will be true of the response is successfully created.</returns>
+        </member>
+        <member name="M:Services.SessionManagement.Helpers.SessionHelper.Set``1(Microsoft.AspNetCore.Http.ISession,System.String,``0)">
+            <summary>
+            Helper for setting custom objects in the session
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="session"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Services.SessionManagement.Helpers.SessionHelper.Get``1(Microsoft.AspNetCore.Http.ISession,System.String)">
+            <summary>
+            Helper for getting custom session objects 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="session"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Services.SessionManagement.Helpers.SessionHelper.HasUserSession(Microsoft.AspNetCore.Http.ISession)">
+            <summary>
+            Bool checker to see of the current user has a logged in session for either
+            an external or internal user. 
+            </summary>
+            <param name="session">Session context from a controller</param>
+            <returns>Returns true if there is a user session and false if none was found</returns>
+        </member>
+        <member name="M:Services.SessionManagement.Helpers.SessionHelper.GetUserSession(Microsoft.AspNetCore.Http.ISession)">
+            <summary>
+            Used to see if their is a current user session stored in memory 
+            </summary>
+            <param name="session">Controller session contexxt</param>
+            <returns>Returns an authenticated session if a user has an exisitng session or will return null if there is no user session</returns>
+        </member>
+        <member name="M:Services.UserManagement.IUserManager.GetExternalUser(System.Int32)">
+            <summary>
+            Load External user, this user is a user from outside of the abcs internal system
+            </summary>
+            <param name="userID">Unique id for that user</param>
+            <returns>Returns the external user object</returns>
+        </member>
+        <member name="M:Services.VendorItemManagement.IVendorItemManager.LoadVendorItems">
+            <summary>
+            Load all vendor items that are in the abc system
+            </summary>
+            <returns>A list of vendro items containiing thier details such as name and description.</returns>
+        </member>
+        <member name="M:Services.VendorItemManagement.IVendorItemManager.LoadVendorItem(System.Int32)">
+            <summary>
+            Get a vendor item associated with a specific id
+            </summary>
+            <param name="ID">Requires a vendor items unique id.</param>
+            <returns>Returns a vendor item specific to the give id</returns>
+        </member>
+        <member name="M:Services.VendorItemManagement.IVendorItemManager.SearchVendorItems(System.String)">
+            <summary>
+            Search vendor item by seeing ifthe given string is contained within the items namn
+            </summary>
+            <param name="searchString">Search string</param>
+            <returns>Can return a list of 1 - x or an empty list if nothing is found.</returns>
+        </member>
+        <member name="M:Services.VendorManagement.IVendorManager.GetVendor(System.Int32)">
+            <summary>
+            Loading vendor entity, for vendors associateed with abc
+            </summary>
+            <param name="vendorId">Use a vendors unique id to get.</param>
+            <returns>Returns a vendor dto</returns>
         </member>
     </members>
 </doc>

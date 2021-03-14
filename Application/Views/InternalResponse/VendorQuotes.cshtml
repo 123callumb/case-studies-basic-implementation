@@ -8,20 +8,22 @@
     <div class="d-flex flex-column flex-sm-row align-items-center">
         <!-- Breadcrumb, User name, Home button and Logout button -->
         <ol class="breadcrumb me-auto">
-            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
-            <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Vendor", "VendorMenu", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item" aria-current="page" data-voice>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item active" aria-current="page" data-voice>@Html.ActionLink("Vendor", "VendorMenu", "Home", null, new { @class = "btn-link" })</li>
             <li class="breadcrumb-item active" aria-current="page">Vendor Quotes</li>
         </ol>
         <div class="me-3">@Model.user.Email</div>
-        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
-        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+        <div data-voice>
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        </div>
+        <a class="btn btn-link" data-voice="log out" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
     </div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a id="tabAll" class="nav-link active" aria-current="page" href="#">All</a>
+            <a id="tabAll" class="nav-link active" aria-current="page" href="#" data-voice>All</a>
         </li>
         <li class="nav-item">
-            <a id="tabApproved" class="nav-link" href="#">Approved</a>
+            <a id="tabApproved" class="nav-link" href="#" data-voice>Approved</a>
         </li>
     </ul>
     <div class="p-3 bg-white text-start">
@@ -33,7 +35,7 @@
                         <div class="col-3 text-center px-0">
                             <div class="w-100 h-100" style="background-image: url(@quote.VendorItem.ItemImageURL); background-size: cover; background-position: center"></div>
                         </div>
-                        <div class="col-7 p-3">
+                        <div class="col-7 p-3" data-voice>
                             @if (quote.LatestStatus == null)
                             {
                                 <div class="bg-danger status-box">Response Required</div>
@@ -49,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-2 p-3 text-end">
-                            <div class="btn-primary" data-responder-btn="@quote.QuoteID">Open Quote</div>
+                            <div class="btn-primary" data-quote-btn="@quote.QuoteID" data-voice>Open Quote</div>
                         </div>
                     </div>
                 }
@@ -103,7 +105,7 @@
 {
     <script src="~/js/quote-responder-modal.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        window.onload = function () {
+        window.addEventListener('load', (event) => {
             document.querySelector('#tabApprovedQuotes').style.display = "none";
 
             QuoteModal({

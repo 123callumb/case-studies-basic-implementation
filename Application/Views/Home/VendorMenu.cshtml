@@ -8,17 +8,19 @@
     <div class="d-flex flex-column flex-sm-row align-items-center">
         <!-- Breadcrumb, User name, Home button and Logout button -->
         <ol class="breadcrumb me-auto">
-            <li class="breadcrumb-item" aria-current="page">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
+            <li class="breadcrumb-item" aria-current="page" data-voice>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })</li>
             <li class="breadcrumb-item active" aria-current="page">Vendor</li>
         </ol>
         <div class="me-3">@Model.user.Email</div>
-        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
-        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")">Logout</a>
+        <div data-voice>
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn-link" })
+        </div>
+        <a class="btn btn-link" href="@Url.Action("LogoutUser", "Authentication")" data-voice="log out">Logout</a>
     </div>
     <div class="p-3 bg-white text-start">
         <div class="d-flex flex-column">
             <div class="col">
-                <div class="menu-item cs-vendor">
+                <div class="menu-item cs-green" data-voice="Vendor Catalog">
                     <span class="material-icons-outlined">
                         next_week
                     </span>
@@ -26,7 +28,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-supplier">
+                <div class="menu-item cs-lightblue" data-voice="Vendor List">
                     <span class="material-icons">
                         domain
                     </span>
@@ -34,7 +36,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="menu-item cs-accounts">
+                <div class="menu-item cs-yellow" data-voice="Vendor Quotes">
                     <span class="material-icons">
                         request_quote
                     </span>
@@ -48,10 +50,10 @@
 @section Scripts
 {
     <script type="text/javascript">
-        document.querySelector('.cs-vendor').addEventListener('click', function() {
+        document.querySelector('.cs-green').addEventListener('click', function() {
             document.location.href = "@Url.Action("index", "VendorCatalogue")";
         });
-        document.querySelector('.cs-accounts').addEventListener('click', function() {
+        document.querySelector('.cs-yellow').addEventListener('click', function() {
             document.location.href = "@Url.Action("VendorQuotes", "InternalResponse")";
         });
     </script>

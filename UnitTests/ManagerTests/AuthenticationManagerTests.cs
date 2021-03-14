@@ -4,6 +4,7 @@ using Moq;
 using Services.AuthenticationManagement.Implementation;
 using Services.AuthenticationManagement.Models;
 using Services.EntityFramework.DbEntities;
+using Services.HashManagement.Implementation;
 using Services.Models.Abstract;
 using Services.Models.DTOs;
 using Services.Models.Enums;
@@ -28,11 +29,12 @@ namespace UnitTests.ManagerTests
             var c = new MockContainer();
             var session = new Mock<ISession>();
             var manager = Manager(c);
+            string password = "password";
 
             c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<User, InternalUserDTO>>>(), It.IsAny <Expression<Func<User, bool>>>())).Returns(new List<InternalUserDTO>().GetMockQueryable());
 
             // Act & Assert
-            await Assert.ThrowsExceptionAsync<Exception>(() => manager.AuthenticateInternalUser(session.Object, "test@abc.com"));
+            await Assert.ThrowsExceptionAsync<Exception>(() => manager.AuthenticateInternalUser(session.Object, "test@abc.com", password));
         }
 
         [TestMethod]
@@ -43,13 +45,18 @@ namespace UnitTests.ManagerTests
             var session = new Mock<ISession>();
             var manager = Manager(c);
             string userEmail = "cb@abc.com";
+            string password = "password";
+            string hashedPAssword = password.Hash();
 
             c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<User, InternalUserDTO>>>(), It.IsAny<Expression<Func<User, bool>>>())).Returns(new List<InternalUserDTO>() { 
-                new InternalUserDTO(){ Email = userEmail }
+                new InternalUserDTO(){ 
+                    Email = userEmail,
+                    PasswordHash = hashedPAssword
+                }
             }.GetMockQueryable());
 
             // Act 
-            await manager.AuthenticateInternalUser(session.Object, userEmail);
+            await manager.AuthenticateInternalUser(session.Object, userEmail, password);
         }
 
         [TestMethod]
@@ -63,7 +70,7 @@ namespace UnitTests.ManagerTests
             c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<VendorUser, ExternalUserDTO>>>(), It.IsAny<Expression<Func<VendorUser, bool>>>())).Returns(new List<ExternalUserDTO>().GetMockQueryable());
 
             // Act & Assert
-            await Assert.ThrowsExceptionAsync<Exception>(() => manager.AuthenticateExternalUser(session.Object, "test@abc.com"));
+            await Assert.ThrowsExceptionAsync<Exception>(() => manager.AuthenticateExternalUser(session.Object, "test@abc.com", "password"));
         }
 
         [TestMethod]
@@ -74,13 +81,18 @@ namespace UnitTests.ManagerTests
             var session = new Mock<ISession>();
             var manager = Manager(c);
             string userEmail = "cb@abc.com";
+            string password = "password";
+            string hashedPAssword = password.Hash();
 
             c.GenericQuerier.Setup(s => s.Load(It.IsAny<Expression<Func<VendorUser, ExternalUserDTO>>>(), It.IsAny<Expression<Func<VendorUser, bool>>>())).Returns(new List<ExternalUserDTO>() { 
-                new ExternalUserDTO(){ Email = userEmail }
+                new ExternalUserDTO(){ 
+                    Email = userEmail,
+                    PasswordHash = hashedPAssword
+                }
             }.GetMockQueryable());
 
             // Act 
-            await manager.AuthenticateExternalUser(session.Object, userEmail);
+            await manager.AuthenticateExternalUser(session.Object, userEmail, password);
         }
 
         [TestMethod]
