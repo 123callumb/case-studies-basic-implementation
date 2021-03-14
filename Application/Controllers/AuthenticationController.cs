@@ -1,6 +1,8 @@
 ﻿using Application.Requests.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
+using Services.Filters.Attributes;
+using Services.Models.Enums;
 using System;
 using System.Threading.Tasks;
 
@@ -70,6 +72,21 @@ namespace Application.Controllers
             catch(Exception e)
             {
                 return new JsonResult(new { success = false, message = "Failed to login to sytem." });
+            }
+        }
+
+        [HttpGet]
+        [RequireUser(UserTypeEnum.ANY)]
+        public async Task<IActionResult> LogoutUser()
+        {
+            try
+            {
+                HttpContext.Session.Clear();
+                return new RedirectToActionResult("Login", "Authentication", null);
+            }
+            catch (Exception e)
+            {
+                return new RedirectToActionResult("Login", "Authentication", null);
             }
         }
     }
