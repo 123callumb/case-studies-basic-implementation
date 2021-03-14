@@ -116,12 +116,12 @@
 
 <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display:none;">
     Quote request for <strong><span id="successText"></span></strong> successful!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close" onclick="closeSuccess()"></button>
 </div>
 
 <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display:none;">
     Something went wrong.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close"onclick="closeError()"></button>
 </div>
 
 
@@ -176,8 +176,6 @@
     <br />
 }
 
-@* should I remove jquery? *@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 @section Scripts{
     <script type="text/javascript">
         window.onload = function () {
@@ -185,7 +183,7 @@
         };
 
         function runAction() {
-            location.href = '@Url.Action("VendorCatalogueSearch", "Home")?searchTerm=' + document.getElementById('searchInput').value;
+            location.href = '@Url.Action("VendorCatalogueSearch", "VendorCatalogue")?searchTerm=' + document.getElementById('searchInput').value;
         }
 
         function readInput(el, e) {
@@ -198,30 +196,34 @@
             runAction();
         });
 
-        function requestQuote(vendorItemID) {
+        async function requestQuote(vendorItemID) {
             var quantityInput = document.getElementById("quantity_" + vendorItemID);
             var quantity = quantityInput.value;
+
             if (quantity > 0) {
-                $.ajax({
-                    url: "/Home/RequestVendorQuote",
-                    type : "POST",
-                    data: {
-                        vendorItemID : vendorItemID,
-                        quantity : quantity,
-                        searchTerm : document.getElementById('searchInput').value
-                    },
-                    success: function(data){
-                        var parsedData = JSON.parse(data);                        
-                        if (parsedData.success == true) {
-                            quantityInput.value = null;
-                            $('#successText').text(parsedData.quantity + "x " + parsedData.itemName);
-                            $('#successAlert').show();
-                        } else {    
-                            $('#errorAlert').show();
-                        }
-                    }
+                const res = await MakeRequest("/VendorCatalogue/RequestVendorQuote", "POST", {
+                    VendorItemID: vendorItemID,
+                    Quantity: quantity,
+                    SearchTerm: document.getElementById('searchInput').value
                 });
-            } else quantityInput.parentElement.style.border = "1px solid red";            
+                console.log(res.data);
+                var parsedData = JSON.parse(res.data);
+                if (parsedData.success) {
+                    console.log(res);
+                    quantityInput.value = null;
+                    document.getElementById('successText').textContent = parsedData.quantity + "x " + parsedData.itemName;
+                    document.getElementById('successAlert').style.display = "block";
+                } else {
+                    document.getElementById('errorAlert').style.display = "block";
+                }
+            } else quantityInput.parentElement.style.border = "1px solid red";         
+        }
+
+        function closeSuccess() {
+            document.getElementById('successAlert').style.display = "none";
+        }
+        function closeError() {
+            document.getElementById('errorAlert').style.display = "none";
         }
     </script>
 }

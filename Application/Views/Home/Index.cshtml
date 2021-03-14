@@ -94,23 +94,11 @@
                         check_box
                     </span>
                     Requests
-                    <div class="btn-secondary" data-responder-btn="2">Open Modal</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-@section pageJS{ 
-@*//temp*@
-<script src="~/js/quote-responder-modal.js" asp-append-version="true"></script>
-<script>
-    QuoteModal({
-        quoteResponderModal: '@Url.Action("QuoteResponderModal", "Home")',
-        respondToQuote: '@Url.Action("Respond", "Home")'
-    });
-</script>
-}
 
 @section Scripts
 {

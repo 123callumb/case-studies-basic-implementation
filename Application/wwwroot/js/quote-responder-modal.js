@@ -5,6 +5,7 @@ class QuoteResponder {
     _modal;
 
     constructor(urls) {
+
         this._urls = urls;
 
         this.OpenQuoteModal = this.OpenQuoteModal.bind(this);
