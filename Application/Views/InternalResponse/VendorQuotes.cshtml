@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-2 p-3 text-end">
-                            <div class="btn-primary" data-quote-btn="@quote.QuoteID" data-voice>Open Quote</div>
+                            <div class="btn-primary" data-responder-btn="@quote.QuoteID" data-voice>Open Quote</div>
                         </div>
                     </div>
                 }
@@ -105,12 +105,13 @@
 {
     <script src="~/js/quote-responder-modal.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        window.addEventListener('onload', (event) => {
+        window.addEventListener('load', (event) => {
             document.querySelector('#tabApprovedQuotes').style.display = "none";
+            console.log("hi");
             QuoteModal({
                 quoteResponderModal: '@Url.Action("QuoteResponderModal", "InternalResponse")',
                 respondToQuote: '@Url.Action("Respond", "InternalResponse")'
-            })
+            });
         });
 
         document.querySelector('#tabApproved').addEventListener('click', (t) => {

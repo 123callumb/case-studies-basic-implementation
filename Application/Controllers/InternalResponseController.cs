@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
+using Services.MVCManagement;
 using Services.QuoteManagement;
 using Services.QuoteResponseManagement;
 using System;
@@ -15,11 +16,13 @@ namespace Application.Controllers
     {
         private readonly IQuoteManager _quoteManager;
         private readonly IQuoteResponseManager _quoteResponseManager;
+        private readonly IMVCManager _MVCManager;
 
-        public InternalResponseController(IAuthenticationManager authManager, IQuoteManager quoteManager, IQuoteResponseManager quoteResponseManager) : base(authManager)
+        public InternalResponseController(IAuthenticationManager authManager, IQuoteManager quoteManager, IQuoteResponseManager quoteResponseManager, IMVCManager MVCManager) : base(authManager)
         {
             _quoteManager = quoteManager;
             _quoteResponseManager = quoteResponseManager;
+            _MVCManager = MVCManager;
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]
@@ -49,7 +52,7 @@ namespace Application.Controllers
                     throw new Exception("Request sent was null.");
 
                 var quote = await _quoteManager.GetQuote(request.QuoteID);
-                string modalAsString = await this.RenderViewToString(quote);
+                string modalAsString = await _MVCManager.RenderViewToString(this, quote);
                 return new JsonResult(new { success = true, data = modalAsString });
 
             }
@@ -57,11 +60,6 @@ namespace Application.Controllers
             {
                 return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote." });
             }
-        }
-
-        private Task<string> RenderViewToString(Services.Models.DTOs.QuoteDTO quote)
-        {
-            throw new NotImplementedException();
         }
 
         [RequireUser(UserTypeEnum.INTERNAL)]

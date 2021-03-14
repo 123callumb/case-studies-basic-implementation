@@ -43,6 +43,7 @@ class QuoteResponder {
     }
 
     async OpenQuoteModal(quoteID) {
+        console.log("hi40");
         const res = await MakeRequest(this._urls.quoteResponderModal, "POST", { QuoteID: quoteID });
         if (res.success) {
             this._modal.setContent(res.data);
