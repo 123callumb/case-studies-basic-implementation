@@ -28,7 +28,7 @@ namespace Services.Models.DTOs
                 VendorID = s.VendorItem.VendorId,
                 VendorName = s.VendorItem.Vendor.VendorName
             },
-            Responses = s.QuoteResponses.AsQueryable().Select(QuoteResponseDTO.MapToDTO).ToList()
+            Responses = s.QuoteResponses.AsQueryable().Select(QuoteResponseDTO.MapToDTO).OrderBy(x => x.ResponseDate).ToList()
         };
     }
 }

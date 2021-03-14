@@ -51,7 +51,10 @@
 {
     <script type="text/javascript">
         document.querySelector('.cs-green').addEventListener('click', function() {
-            document.location.href = "@Url.Action("VendorCatalogue", "Home")";
+            document.location.href = "@Url.Action("index", "VendorCatalogue")";
+        });
+        document.querySelector('.cs-yellow').addEventListener('click', function() {
+            document.location.href = "@Url.Action("VendorQuotes", "InternalResponse")";
         });
     </script>
 }

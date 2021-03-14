@@ -15,7 +15,7 @@ namespace UnitTests.ManagerTests
     {
         private QuoteResponseManager Manager(MockContainer c)
         {
-            return new QuoteResponseManager(c.GenericRepo.Object);
+            return new QuoteResponseManager(c.GenericRepo.Object, c.GenericQuerier.Object);
         }
 
         [TestMethod]
