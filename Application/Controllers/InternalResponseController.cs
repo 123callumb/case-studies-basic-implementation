@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Services.AuthenticationManagement;
 using Services.Filters.Attributes;
 using Services.Models.Enums;
-using Services.MVCManagement.Helpers;
 using Services.QuoteManagement;
 using Services.QuoteResponseManagement;
 using System;
@@ -59,6 +58,12 @@ namespace Application.Controllers
                 return new RedirectToActionResult("Index", "Error", new { message = "Failed to load quote." });
             }
         }
+
+        private Task<string> RenderViewToString(Services.Models.DTOs.QuoteDTO quote)
+        {
+            throw new NotImplementedException();
+        }
+
         [RequireUser(UserTypeEnum.INTERNAL)]
         [HttpPost]
         public async Task<IActionResult> Respond([FromBody] BaseQuoteRequest request)

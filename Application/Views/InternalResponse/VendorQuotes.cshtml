@@ -105,14 +105,13 @@
 {
     <script src="~/js/quote-responder-modal.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        window.addEventListener('load', (event) => {
+        window.addEventListener('onload', (event) => {
             document.querySelector('#tabApprovedQuotes').style.display = "none";
-
             QuoteModal({
                 quoteResponderModal: '@Url.Action("QuoteResponderModal", "InternalResponse")',
                 respondToQuote: '@Url.Action("Respond", "InternalResponse")'
-            });
-        };
+            })
+        });
 
         document.querySelector('#tabApproved').addEventListener('click', (t) => {
             document.querySelector('#tabApprovedQuotes').style.display = "block";
