@@ -27,17 +27,27 @@ btnAudioAssist.addEventListener('click',
         if (btnAudioAssist.classList.contains('active')) {
             btnAudioAssist.classList.remove('active');
             btnAudioAssist.querySelector('span').innerHTML = 'volume_off';
+            createCookie("audio-selected",false,1);
             player.pause();
         } else {
             btnAudioAssist.classList.add('active');
             btnAudioAssist.querySelector('span').innerHTML = 'volume_up';
+            createCookie("audio-selected",true,1);
         }
     });
 
 // Find each element with the data-voice attribute and add a mouse over event listener to
 // use the audio player to play the inner Text of the element or the specified msg written in
 // the data-voice attribute. This is used for custom messages for specific elements.
-var EnableVoiceAssist = function() {
+var EnableVoiceAssist = function () {
+    var audioSelected = readCookie("audio-selected");
+    if (audioSelected == "true") {
+        btnAudioAssist.classList.add('active');
+        btnAudioAssist.querySelector('span').innerHTML = 'volume_up';
+    } else {
+        btnAudioAssist.classList.remove('active');
+        btnAudioAssist.querySelector('span').innerHTML = 'volume_off';
+    }
     document.querySelectorAll('[data-voice]').forEach(item => {
         item.addEventListener('mouseover',
             (event) => {
