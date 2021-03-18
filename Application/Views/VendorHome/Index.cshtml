@@ -25,11 +25,11 @@
                     <div class="col-7 p-3" data-voice>
                         @if (quote.LatestStatus == null)
                         {
-                            <div class="bg-danger status-box">Response Required</div>
+                            <div class="status-box cs-red">Response Required</div>
                         }
                         else
                         {
-                            <div class="status-box" style="background-color: @quote.LatestStatus.Colour">@quote.LatestStatus.StatusName</div>
+                            <div class="@quote.LatestStatus.Colour.ToString() status-box" style="">@quote.LatestStatus.StatusName</div>
                         }
                         <h5 class="mt-2">@quote.VendorItem.ItemName</h5>
                         <div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-2 p-3 text-end">
-                        <div class="btn-primary" data-quote-btn="@quote.QuoteID" data-voice>Open Quote</div>
+                        <div class="btn-primary cs-lightblue" data-quote-btn="@quote.QuoteID" data-voice>Open Quote</div>
                     </div>
                 </div>
             }
