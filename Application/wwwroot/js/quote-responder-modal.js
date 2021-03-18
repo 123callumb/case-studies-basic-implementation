@@ -43,11 +43,13 @@ class QuoteResponder {
     }
 
     async OpenQuoteModal(quoteID) {
+
         const res = await MakeRequest(this._urls.quoteResponderModal, "POST", { QuoteID: quoteID });
         if (res.success) {
             this._modal.setContent(res.data);
             EnableVoiceAssist();
             this._modal.open();
+            InitAccessibility();
         } else {
             throw "Failed to load modal responder partial.";
         }

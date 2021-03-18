@@ -42,6 +42,7 @@ class VendorHome {
             this._modal.setContent(res.data);
             EnableVoiceAssist();
             this._modal.open();
+            InitAccessibility();
         } else {
             throw "Failed to load modal response partial... check the logs...that we dont event have lol";
         }

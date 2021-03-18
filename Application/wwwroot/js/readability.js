@@ -27,6 +27,14 @@ function toggleRB() {
 
 //register buttons
 window.addEventListener('load', (event) => {
+    InitAccessibility();
+});
+
+function InitAccessibility() {
+    originalElementFontSizes = [];
+    originalBackgroundColors = [];
+    originalFontWeights = [];
+
     var paletteBtns = document.getElementsByClassName("rb_col");
     for (var i = 0; i < paletteBtns.length; i++) {
         paletteBtns[i].addEventListener("click", selectPalette);
@@ -71,7 +79,7 @@ window.addEventListener('load', (event) => {
     document.getElementById(colorPalettes[currentColorPalette]).classList.add("rb_selected");
     ChangeFontSize();
     ChangeColorPalette();
-});
+}
 
 //change selections
 function selectFontSize() { //fonts
