@@ -33,13 +33,13 @@
     </div>
 
     <div class="readability_container">
-        <div id="rb_openBtn" onclick="toggleRB()">
+        <div id="rb_openBtn" onclick="toggleRB()" data-voice="open accessibility">
             <span class="material-icons align-middle" style="font-size:25px;">
                 accessibility
             </span>
         </div>
         <div id="rb_content">
-            <div id="rb_close" onclick="toggleRB()">
+            <div id="rb_close" onclick="toggleRB()"  data-voice="Close accessibility">
                 <span class="material-icons align-middle">
                     close
                 </span>
@@ -52,17 +52,17 @@
             </p>
             <p class="rowHeader">Font Size</p>
             <div class="rb_contentRow">
-                <div class="rb_fon rb_contentItem" id="fnt_small" title="Small">
+                <div class="rb_fon rb_contentItem" id="fnt_small" title="Small" data-voice="Small font">
                     <span class="material-icons align-middle" style="font-size:20px;">
                         format_size
                     </span>
                 </div>
-                <div class="rb_fon rb_contentItem" id="fnt_medium" title="Medium">
+                <div class="rb_fon rb_contentItem" id="fnt_medium" title="Medium" data-voice="Medium font">
                     <span class="material-icons align-middle" style="font-size:30px;">
                         format_size
                     </span>
                 </div>
-                <div class="rb_fon rb_contentItem" id="fnt_large" title="Large">
+                <div class="rb_fon rb_contentItem" id="fnt_large" title="Large" data-voice="Large font">
                     <span class="material-icons align-middle" style="font-size:40px;">
                         format_size
                     </span>
@@ -70,9 +70,9 @@
             </div>
             <p class="rowHeader">Colour Palette</p>
             <div class="rb_contentRow">
-                <div id="col_default" class="rb_col rb_contentItem" title="Default" style="background-image:url('@Url.Content("~/img/cp_default.png")'); height:60px"></div>
-                <div id="col_highcontr" class="rb_col rb_contentItem" title="High Contrast" style="background-image:url('@Url.Content("~/img/cp_highcontrast.png")');"></div>
-                <div id="col_greyscale" class="rb_col rb_contentItem" title="GreyScale" style="background-image:url('@Url.Content("~/img/cp_greyscale.png")');"></div>
+                <div id="col_default" class="rb_col rb_contentItem" data-voice="Default palette" title="Default" style="background-image:url('@Url.Content("~/img/cp_default.png")'); height:60px"></div>
+                <div id="col_highcontr" class="rb_col rb_contentItem" data-voice="High Contrast palette" title="High Contrast" style="background-image:url('@Url.Content("~/img/cp_highcontrast.png")');"></div>
+                <div id="col_greyscale" class="rb_col rb_contentItem" data-voice="Greyscale palette" title="GreyScale" style="background-image:url('@Url.Content("~/img/cp_greyscale.png")');"></div>
             </div>
         </div>
     </div>
