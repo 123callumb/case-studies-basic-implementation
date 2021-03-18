@@ -4,11 +4,12 @@ let colorPalettes = { 0: "col_default", 1: "col_highcontr", 2: "col_greyscale" }
 let currentFontSize = 0;
 let currentColorPalette = 0;
 var originalElementFontSizes = [];
+var originalBackgroundColors = [];
+var originalFontWeights = [];
 
 let isOpenCookie = "accessibility_o"
 let fontSizeCookie = "accessibility_fs";
 let colourPaletteCookie = "accessibility_cp";
-
 
 //open/close accessibility container
 function toggleRB() {
@@ -39,8 +40,14 @@ window.addEventListener('load', (event) => {
     //save original elements to reference font sizes to
     var elements = document.getElementsByTagName("*");
     for (var i = 0; i < elements.length; ++i) {
-        var style = window.getComputedStyle(elements[i], null).getPropertyValue('font-size');
-        originalElementFontSizes.push(parseFloat(style));
+        var fontSize = window.getComputedStyle(elements[i], null).getPropertyValue('font-size');
+        originalElementFontSizes.push(parseFloat(fontSize));
+
+        var fontWeight = window.getComputedStyle(elements[i], null).getPropertyValue('font-weight');
+        originalFontWeights.push(parseFloat(fontWeight));
+
+        var bgColor = window.getComputedStyle(elements[i], null).getPropertyValue('background-color');
+        originalBackgroundColors.push(bgColor);
     }
 
     //handle cookies
@@ -56,7 +63,6 @@ window.addEventListener('load', (event) => {
 
     var openCookie = readCookie(isOpenCookie);
     if (openCookie != null) {
-        console.log(openCookie);
         if (openCookie == "true") toggleRB();
     } else createCookie(isOpenCookie, isRBOpen, 1);
 
@@ -64,10 +70,11 @@ window.addEventListener('load', (event) => {
     document.getElementById(fontSizes[currentFontSize]).classList.add("rb_selected");
     document.getElementById(colorPalettes[currentColorPalette]).classList.add("rb_selected");
     ChangeFontSize();
+    ChangeColorPalette();
 });
 
 //change selections
-function selectFontSize(s) { //fonts
+function selectFontSize() { //fonts
     var fontBtns = document.getElementsByClassName("rb_fon");
     for (var i = 0; i < fontBtns.length; i++) {
         fontBtns[i].classList.remove("rb_selected");
@@ -88,6 +95,7 @@ function selectPalette() { //palettes
     var arr = Array.from(paletteBtns);
     currentColorPalette = arr.findIndex(x => x.id === this.id);
     this.classList.add("rb_selected"); 
+    ChangeColorPalette();
 
     //edit cookie
     createCookie(colourPaletteCookie, currentColorPalette, 1);
@@ -95,9 +103,44 @@ function selectPalette() { //palettes
 
 function ChangeFontSize() {
     var elements = document.getElementsByTagName("*");
-    console.log(elements.length);
     for (var i = 0; i < elements.length; ++i) {
         elements[i].style.fontSize = (originalElementFontSizes[i] + (currentFontSize * 2)) + "px";
+        if (!elements[i].classList.contains("material-icons") && !elements[i].classList.contains("material-icons-outlined")) {
+            if (currentFontSize == 1) elements[i].style.fontWeight = 600;
+            else if (currentFontSize == 2) elements[i].style.fontWeight = 700;
+            else elements[i].style.fontWeight = originalFontWeights[i];
+        }
+    }
+}
+
+function ChangeColorPalette() {
+    var elements = document.getElementsByTagName("*");
+    
+    for (var i = 0; i < elements.length; ++i) {
+        elements[i].style.backgroundColor = originalBackgroundColors[i];
+
+        var count = elements[i].classList.length;
+        for (var j = 0; j < count; j++) {
+            var currentClass = elements[i].classList[j];
+            if (currentClass.substr(0, 3) == 'cs-') {
+                if (currentClass.substr(currentClass.length - 3, currentClass.length) == "-hc") {
+                    elements[i].classList.remove(currentClass);
+                }
+                //greyscale
+                if (currentColorPalette == 2) {
+                    elements[i].style.backgroundColor = '#444444';
+                }
+                else if (currentColorPalette == 1) {
+                    if (currentClass.substr(currentClass.length - 3, currentClass.length) != "-hc") {
+                        let newClassName = (currentClass + "-hc");
+                        if (!elements[i].classList.contains(newClassName)) {
+                            console.log(newClassName);
+                            elements[i].classList.add(newClassName);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

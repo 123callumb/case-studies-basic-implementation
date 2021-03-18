@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `quote_status` (
 DELETE FROM `quote_status`;
 /*!40000 ALTER TABLE `quote_status` DISABLE KEYS */;
 INSERT INTO `quote_status` (`QuoteStatusID`, `StatusName`, `Colour`) VALUES
-	(1, 'Awaitng Response', '#ebcc34'),
-	(2, 'Rejected', '#eb3d34'),
-	(3, 'Approved', '#66d17f');
+	(1, 'Awaitng Response', 'cs-orange'),
+	(2, 'Rejected', 'cs-red'),
+	(3, 'Approved', 'cs-green');
 /*!40000 ALTER TABLE `quote_status` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `role`;

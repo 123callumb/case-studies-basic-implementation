@@ -61,8 +61,96 @@
         padding: 0px 12px;
     }
 
-/*font sizes*/
+/*colour overwrite*/
 
-/*colour settings*/
+/*.cs-inventory*/
+.cs-purple-hc {
+    background: #C754B4!important;
+}
 
-/*font type settings*/
+/*.cs-report*/
+.cs-orange-hc {
+    background: #EB8F59 !important;
+}
+
+/*.cs-supplier*/
+.cs-lightblue-hc {
+    background: #62BBDB !important;
+}
+
+/*.cs-vendor*/
+.cs-green-hc {
+    background: #74DB60 !important;
+}
+
+/*.cs-company-resources*/
+.cs-blue-hc {
+    background: #403DD1 !important;
+}
+
+/*.cs-organisation*/
+.cs-teal-hc {
+    background: #26D9DB !important;
+}
+
+/*.cs-accounts*/
+.cs-yellow-hc {
+    background: #F0D541 !important;
+}
+
+/*.cs-contracts*/
+.cs-red-hc {
+    background: #F05C58 !important;
+}
+
+/*.cs-customer-management*/
+.cs-pink-hc {
+    background: #EE6FFA !important;
+}
+
+/*.cs-requests*/
+.cs-cyan-hc {
+    background: #72C0F5 !important;
+}
+
+/* Hover colours */
+
+/*.cs-purple-hc:hover {
+    background: #9E428F !important;
+}
+
+.cs-orange-hc:hover {
+    background: #C7794C !important;
+}
+
+.cs-lightblue-hc:hover {
+    background: #519AB5 !important;
+}
+
+.cs-green-hc:hover {
+    background: #62B851 !important;
+}
+
+.cs-blue-hc:hover {
+    background: #3735B8 !important;
+}
+
+.cs-teal-hc:hover {
+    background: #20BABD !important;
+}
+
+.cs-yellow-hc:hover {
+    background: #D1BA38 !important;
+}
+
+.cs-red-hc:hover {
+    background: #D1524D !important;
+}
+
+.cs-pink-hc:hover {
+    background: #CA5DD4 !important;
+}
+
+.cs-cyan-hc:hover {
+    background: #66ABD9 !important;
+}*/
