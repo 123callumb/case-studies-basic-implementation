@@ -142,7 +142,6 @@ function ChangeColorPalette() {
                     if (currentClass.substr(currentClass.length - 3, currentClass.length) != "-hc") {
                         let newClassName = (currentClass + "-hc");
                         if (!elements[i].classList.contains(newClassName)) {
-                            console.log(newClassName);
                             elements[i].classList.add(newClassName);
                         }
                     }
