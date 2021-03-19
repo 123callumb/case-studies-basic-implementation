@@ -28,6 +28,11 @@ namespace Application.Controllers
             _quoteResponseManager = quoteResponseManager;
         }
 
+        /// <summary>
+        /// Loads the view for the vendor catalogue. The vendor catalogue loads all vendor items and displays them in a list.
+        /// Users can request quotes for vendor items from this page.
+        /// </summary>
+        /// <returns>Returns a View</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> Index()
         {
@@ -43,6 +48,12 @@ namespace Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Searches the vendor items using the search term. 
+        /// Called when an item is searched for in the Vendor Catalogue.
+        /// </summary>
+        /// <param name="searchTerm"></param>
+        /// <returns>Returns the Vendor Catalogue View with a filtered list of items</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> VendorCatalogueSearch(string searchTerm)
         {
@@ -55,7 +66,7 @@ namespace Application.Controllers
                 else vendorItems = await _vendorItemManager.SearchVendorItems(searchTerm);
 
                 VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);
-                return View("VendorCatalogue", vm);
+                return View("Index", vm);
             }
             catch (Exception ex)
             {
@@ -63,6 +74,12 @@ namespace Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Called when a user requests a quote for an item in the Vendor Catalogue.
+        /// The quote is created and can be seen on the 'Vendor Quotes' page.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Returns a JsonResult with success data</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         [HttpPost]
         public async Task<JsonResult> RequestVendorQuote([FromBody] VendorQuoteRequest request)

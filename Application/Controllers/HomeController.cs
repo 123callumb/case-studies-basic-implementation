@@ -12,6 +12,11 @@ namespace Application.Controllers
     {
         public HomeController(IAuthenticationManager authManager) : base(authManager) {}
 
+        /// <summary>
+        /// The homescreen for the internal users. It is loaded straight after logging in and displays
+        /// a grid of possible further menus.
+        /// </summary>
+        /// <returns>Returns a View</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> Index()
         { 
@@ -19,6 +24,11 @@ namespace Application.Controllers
             return View(vm);
         }
 
+        /// <summary>
+        /// The internal vendor management menu, it is accessed from the homescreen.
+        /// This menu splits into 3 vendor related menus: Vendor Catalogue, Vendor List and Vendor Quotes.
+        /// </summary>
+        /// <returns>Returns a View</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> VendorMenu()
         {
