@@ -70,7 +70,7 @@ namespace Application.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+                return RedirectToAction("Index", "Error", new { errorMessage = ex.Message });
             }
         }
 

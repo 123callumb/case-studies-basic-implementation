@@ -11,5 +11,6 @@ namespace Services.UserManagement
         /// <param name="userID">Unique id for that user</param>
         /// <returns>Returns the external user object</returns>
         Task<ExternalUserDTO> GetExternalUser(int userID);
+        Task<InternalUserDTO> GetInternalUser(int userID);
     }
 }

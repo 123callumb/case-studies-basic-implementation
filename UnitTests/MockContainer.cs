@@ -5,6 +5,7 @@ using Services.MVCManagement;
 using Services.QuoteManagement;
 using Services.QuoteResponseManagement;
 using Services.UserManagement;
+using Services.VendorItemManagement;
 
 namespace UnitTests
 {
@@ -18,6 +19,7 @@ namespace UnitTests
             QuoteManager = new Mock<IQuoteManager>();
             UserManager = new Mock<IUserManager>();
             QuoteResponseManager = new Mock<IQuoteResponseManager>();
+            VendorItemManager = new Mock<IVendorItemManager>();
             MVCManager = new Mock<IMVCManager>();
         }
 
@@ -28,5 +30,6 @@ namespace UnitTests
         public Mock<IQuoteResponseManager> QuoteResponseManager { get; set; }
         public Mock<IUserManager> UserManager { get; set; }
         public Mock<IMVCManager> MVCManager { get; set; }
+        public Mock<IVendorItemManager> VendorItemManager { get; set; }
     }
 }

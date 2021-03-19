@@ -19,9 +19,15 @@ namespace Application.Controllers
         /// <returns>Returns a View</returns>
         [RequireUser(UserTypeEnum.INTERNAL)]
         public async Task<IActionResult> Index()
-        { 
-            BaseViewModel vm = new BaseViewModel(await GetSessionUser());
-            return View(vm);
+        {
+            try
+            {
+                BaseViewModel vm = new BaseViewModel(await GetSessionUser());
+                return View(vm);
+            }catch(Exception ex)
+            {
+                return new RedirectToActionResult("Index", "Error", new { errorMessage = ex.Message });
+            }
         }
 
         /// <summary>
