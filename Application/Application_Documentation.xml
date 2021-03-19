@@ -33,31 +33,41 @@
         </member>
         <member name="M:Application.Controllers.HomeController.Index">
             <summary>
-            This is the homescreen for the internal users. It is loaded straight after logging in and displays
+            The homescreen for the internal users. It is loaded straight after logging in and displays
             a grid of possible further menus.
             </summary>
             <returns>Returns a View</returns>
         </member>
         <member name="M:Application.Controllers.HomeController.VendorMenu">
             <summary>
-            This is the internal vendor management menu, it is accessed from the homescreen.
+            The internal vendor management menu, it is accessed from the homescreen.
             This menu splits into 3 vendor related menus: Vendor Catalogue, Vendor List and Vendor Quotes.
             </summary>
-            <returns>Returns a view</returns>
+            <returns>Returns a View</returns>
         </member>
         <member name="M:Application.Controllers.InternalResponseController.VendorQuotes">
             <summary>
-            Loads the internal Vendor Quotes page. A list of all vendor quotes and their statuses are displayed here.
+            Loads the internal Vendor Quotes page. 
+            A list of all vendor quotes and their statuses are displayed here.
             </summary>
-            <returns>Returns a view</returns>
+            <returns>Returns a View</returns>
         </member>
         <member name="M:Application.Controllers.InternalResponseController.QuoteResponderModal(Application.Requests.Vendor.BaseQuoteRequest)">
             <summary>
-            Loads the Quote Responder modal and returns it to be loaded on the Vendor Quotes page when 'Open 
-            The modal contains data 
+            Loads the Quote Responder modal when 'Open Quote' button is pressed on a quote.
+            The modal contains all previous responses for the loaded quote and an ability to approve/reject 
+            the quote if it is awaiting a response.
             </summary>
             <param name="request"></param>
-            <returns></returns>
+            <returns>Returns a JsonResult</returns>
+        </member>
+        <member name="M:Application.Controllers.InternalResponseController.Respond(Application.Requests.Vendor.BaseQuoteRequest)">
+            <summary>
+            Is called when an internal user on the Vendor Quotes page responds to quote from within a Quote Responder Modal.
+            The quote is updated when the user either approves or rejects it.
+            </summary>
+            <param name="request"></param>
+            <returns>Returns a JsonResult</returns>
         </member>
         <member name="M:Application.Controllers.QuoteResponseController.QuoteResponseModal(Application.Requests.Vendor.BaseQuoteRequest)">
             <summary>
@@ -79,20 +89,20 @@
             Loads the view for the vendor catalogue. The vendor catalogue loads all vendor items and displays them in a list.
             Users can request quotes for vendor items from this page.
             </summary>
-            <returns>Returns a view</returns>
+            <returns>Returns a View</returns>
         </member>
         <member name="M:Application.Controllers.VendorCatalogueController.VendorCatalogueSearch(System.String)">
             <summary>
-            Searches the vendor items using the searchTerm. 
-            Called when an item is searched for in the Vendor Catalogue
+            Searches the vendor items using the search term. 
+            Called when an item is searched for in the Vendor Catalogue.
             </summary>
             <param name="searchTerm"></param>
-            <returns>Returns the Vendor Catalogue view with a filtered list of items</returns>
+            <returns>Returns the Vendor Catalogue View with a filtered list of items</returns>
         </member>
         <member name="M:Application.Controllers.VendorCatalogueController.RequestVendorQuote(Application.Requests.QuoteRequest.VendorQuoteRequest)">
             <summary>
             Called when a user requests a quote for an item in the Vendor Catalogue.
-            The quote is created straight away and can be seen on the 'Vendor Quotes' page.
+            The quote is created and can be seen on the 'Vendor Quotes' page.
             </summary>
             <param name="request"></param>
             <returns>Returns a JsonResult with success data</returns>
