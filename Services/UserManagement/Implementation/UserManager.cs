@@ -22,5 +22,14 @@ namespace Services.UserManagement.Implementation
 
             return user;
         }
+        public async Task<InternalUserDTO> GetInternalUser(int userID)
+        {
+            var user = await _genericQuerier.Load(InternalUserDTO.MapToDTO, w => w.UserId == userID).FirstOrDefaultAsync();
+
+            if (user == null)
+                throw new Exception("Cannot find external user with the given id.");
+
+            return user;
+        }
     }
 }
