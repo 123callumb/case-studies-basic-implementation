@@ -31,6 +31,34 @@
             </summary>
             <returns>Returns the active user session, will reutrn null if there is no user session</returns>
         </member>
+        <member name="M:Application.Controllers.HomeController.Index">
+            <summary>
+            This is the homescreen for the internal users. It is loaded straight after logging in and displays
+            a grid of possible further menus.
+            </summary>
+            <returns>Returns a View</returns>
+        </member>
+        <member name="M:Application.Controllers.HomeController.VendorMenu">
+            <summary>
+            This is the internal vendor management menu, it is accessed from the homescreen.
+            This menu splits into 3 vendor related menus: Vendor Catalogue, Vendor List and Vendor Quotes.
+            </summary>
+            <returns>Returns a view</returns>
+        </member>
+        <member name="M:Application.Controllers.InternalResponseController.VendorQuotes">
+            <summary>
+            Loads the internal Vendor Quotes page. A list of all vendor quotes and their statuses are displayed here.
+            </summary>
+            <returns>Returns a view</returns>
+        </member>
+        <member name="M:Application.Controllers.InternalResponseController.QuoteResponderModal(Application.Requests.Vendor.BaseQuoteRequest)">
+            <summary>
+            Loads the Quote Responder modal and returns it to be loaded on the Vendor Quotes page when 'Open 
+            The modal contains data 
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:Application.Controllers.QuoteResponseController.QuoteResponseModal(Application.Requests.Vendor.BaseQuoteRequest)">
             <summary>
             Loads up the html for the modal that allows for external vendor users
@@ -46,9 +74,32 @@
             <param name="newResponse">Wull respond with a json object for the javascript to determine if the request has been completed</param>
             <returns>Quote response object asks for a price and a text response.</returns>
         </member>
+        <member name="M:Application.Controllers.VendorCatalogueController.Index">
+            <summary>
+            Loads the view for the vendor catalogue. The vendor catalogue loads all vendor items and displays them in a list.
+            Users can request quotes for vendor items from this page.
+            </summary>
+            <returns>Returns a view</returns>
+        </member>
+        <member name="M:Application.Controllers.VendorCatalogueController.VendorCatalogueSearch(System.String)">
+            <summary>
+            Searches the vendor items using the searchTerm. 
+            Called when an item is searched for in the Vendor Catalogue
+            </summary>
+            <param name="searchTerm"></param>
+            <returns>Returns the Vendor Catalogue view with a filtered list of items</returns>
+        </member>
+        <member name="M:Application.Controllers.VendorCatalogueController.RequestVendorQuote(Application.Requests.QuoteRequest.VendorQuoteRequest)">
+            <summary>
+            Called when a user requests a quote for an item in the Vendor Catalogue.
+            The quote is created straight away and can be seen on the 'Vendor Quotes' page.
+            </summary>
+            <param name="request"></param>
+            <returns>Returns a JsonResult with success data</returns>
+        </member>
         <member name="M:Application.Controllers.VendorHomeController.Index">
             <summary>
-            This is for the home screen of external users, it will load up a list of thier current
+            This is for the home screen of external users, it will load up a list of their current
             quotes that are active for the vendor that they work for.
             </summary>
             <returns>Returns a View</returns>

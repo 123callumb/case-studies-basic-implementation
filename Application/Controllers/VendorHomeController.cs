@@ -24,7 +24,7 @@ namespace Application.Controllers
             _userManager = userManager;
         }
         /// <summary>
-        /// This is for the home screen of external users, it will load up a list of thier current
+        /// This is for the home screen of external users, it will load up a list of their current
         /// quotes that are active for the vendor that they work for.
         /// </summary>
         /// <returns>Returns a View</returns>

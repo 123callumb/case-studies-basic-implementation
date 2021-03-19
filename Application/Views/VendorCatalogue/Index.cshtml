@@ -208,7 +208,6 @@
                     Quantity: quantity,
                     SearchTerm: document.getElementById('searchInput').value
                 });
-                console.log(res.data);
                 var parsedData = JSON.parse(res.data);
                 if (parsedData.success) {
                     quantityInput.value = null;
