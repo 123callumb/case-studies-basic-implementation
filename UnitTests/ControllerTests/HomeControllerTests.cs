@@ -19,7 +19,7 @@ namespace UnitTests.ControllerTests
             var c = new MockContainer();
             var controller = Controller(c);
 
-            c.AuthenticationManager.Setup(s => s.GetSessionUser(It.IsAny<ISession>())).ReturnsAsync(new InternalUserDTO() { UserID = 290 });
+            c.AuthenticationManager.Setup(s => s.GetSessionUser(It.IsAny<ISession>())).ReturnsAsync(new InternalUserDTO() { UserID = 290, UserType = UserTypeEnum.INTERNAL});
             
             //Act
             var res = await controller.Index();

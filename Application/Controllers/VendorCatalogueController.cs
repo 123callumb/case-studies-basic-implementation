@@ -55,11 +55,11 @@ namespace Application.Controllers
                 else vendorItems = await _vendorItemManager.SearchVendorItems(searchTerm);
 
                 VendorCatalogueViewModel vm = new VendorCatalogueViewModel(await GetSessionUser(), vendorItems);
-                return View("VendorCatalogue", vm);
+                return View("Index", vm);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "ErrorController", new { errorMessage = ex.Message });
+                return RedirectToAction("Index", "Error", new { errorMessage = ex.Message });
             }
         }
 
