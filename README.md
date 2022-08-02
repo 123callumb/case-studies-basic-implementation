@@ -1,3 +1,7 @@
+# This is a project created for a final year university module.
+- The task was to create a basic purchase order stock system.
+- This is now a public repo as It is no longer any use to me :) 
+
 # case-studies-basic-implementation
 Case studies implementation based on the designs done in task 1.
 
