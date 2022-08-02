@@ -3,9 +3,9 @@
 - This is now a public repo as It is no longer any use to me :) 
 
 # case-studies-basic-implementation
-Case studies implementation based on the designs done in task 1.
+Basic purchase order stock system, built with .net core 5.0.
 
-The application runs on .net core 5.0. To run and test the application you will need to have it installed. 
+To run and test the application you will need to have it installed. 
 
 You will need some form of MySQL databse running.
 
